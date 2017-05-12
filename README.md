@@ -5,7 +5,7 @@ DFG-Projekt gfbio
 
 ## Purpose
 Provide a webframework with CRUD functionalities for the metadata of research Projects.  
-(PMD is an acronym fpr Project MetaData). The underlying data architecture is generated on-the-fly via a backend-UI.
+(PMD is an acronym for Project MetaData). The underlying data architecture is generated on-the-fly via a backend-UI.
 
 ## Implementation
 - Laravel 5.1
@@ -46,7 +46,7 @@ get code from Mfn-Gitlab
 
 Extract it into home folder.
 
------
+
 <a name="step2"></a>
 ### Step 2: Use Composer to install dependencies
 
@@ -59,15 +59,14 @@ Then run:
     composer install
 to install dependencies Laravel and other packages.
 
------
+
 <a name="step3"></a>
 ### Step 3: Create database
 
 If you finished first three steps, now you can create database on your database server(MySQL). You must create database
 with utf-8 collation(uft8_general_ci), to install and application work perfectly.
-After that, copy .env.example and rename it as .env and put connection and change default database connection name, only database connection, put name database, database username and password.
 
------
+
 <a name="step4"></a>
 ### Step 4: Install
 
@@ -114,9 +113,9 @@ set some shell variables which we will use during the installation
     composer update  
     composer update --no-scripts
 
-fill in the environement file ``$PMD_HOME/.env``, especially the database settings   
+Please note that there is an environment file ``$PMD_HOME/.env``.
+The database settings are commented out since we get it from ``config/database.php``
 
-    $EDIT .env &
 
 
 Install dependencies listed in ``$PMD_HOME/package.json`` with:
@@ -149,6 +148,9 @@ creates migration classes in folder ``$PMD_HOME/database/migrations``
 
 
 ### using Liquibase
+
+**Liquibase needs an Java Runtime. You wil have to instal itb efooe ryoou can use Liquibase.**
+
     cd database /liquibase   
     ../../liquibase updateSQL   
 
