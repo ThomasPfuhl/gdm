@@ -16,7 +16,6 @@ Provide a webframework with CRUD functionalities for the metadata of research Pr
 - Colorbox jQuery modal popup
 
 
-## Laravel install
 
 ### Requirements
 
@@ -30,6 +29,7 @@ Provide a webframework with CRUD functionalities for the metadata of research Pr
 
 
 
+## Install
 * [Step 1: Get the code](#step1)
 * [Step 2: Use Composer to install dependencies](#step2)
 * [Step 3: Create database](#step3)
