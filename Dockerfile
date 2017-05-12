@@ -1,51 +1,75 @@
 FROM php:7.0-apache
 
+#enable mod_rewrite
+RUN a2enmod rewrite
+
+#install pdo_mysql
+RUN apt-get update \
+  && echo 'deb http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list \
+  && echo 'deb-src http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list \
+  && apt-get install -y apt-utils wget \
+  && wget https://www.dotdeb.org/dotdeb.gpg \
+  && apt-key add dotdeb.gpg \
+  && apt-get update \
+  && apt-get install -y php7.0-mysql \
+  && docker-php-ext-install pdo_mysql \
+  && apt-get -y install libapache2-mod-php7.0 zip unzip nano
+
+
 #add dotdeb repository:
-RUN	echo 'deb http://packages.dotdeb.org jessie all' > /etc/apt/sources.list.d/dotdeb.list
+#RUN	echo 'deb http://packages.dotdeb.org jessie all' > /etc/apt/sources.list.d/dotdeb.list
 
 #add dotdeb repository key:
-RUN curl http://www.dotdeb.org/dotdeb.gpg | apt-key add -
+#RUN curl http://www.dotdeb.org/dotdeb.gpg | apt-key add -
 
-RUN apt-get update
-RUN apt-get -y install libapache2-mod-php7.0 zip unzip
+#RUN apt-get -y install libapache2-mod-php7.0 zip unzip nano
 
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 RUN apt-get -y install nodejs
 
-RUN  curl -L https://www.npmjs.com/install.sh | sh
+RUN curl -L https://www.npmjs.com/install.sh | sh
 
 RUN curl -sS https://getcomposer.org/installer | \
 	php -- --install-dir=/usr/local/bin --filename=composer
 	
-#composer install  
+#create home directory 
 ENV PMD_HOME /usr/share/app/
 RUN mkdir $PMD_HOME -p && cd $PMD_HOME/ 
-	
-#composer install 
-RUN	cd / && cd $PMD_HOME && \
-	composer require doctrine/dbal && \ 
-	composer require ignasbernotas/laravel-model-generator --dev && \
-	#composer require stolz/laravel-schema-spy --dev  && \
-	#composer require laravelcollective/html   && \
-	composer update  
+
 
 COPY .env $PMD_HOME/	
 COPY gulpfile.js $PMD_HOME/	
 COPY package.json $PMD_HOME/	
+COPY composer.json $PMD_HOME/	
+
+	
+#RUN ls -l $PMD_HOME 
+
+#composer install 
+RUN	cd / && cd $PMD_HOME && \
+	composer require doctrine/dbal && \ 
+	composer require ignasbernotas/laravel-model-generator --dev && \
+        #composer dump-autoload &&  \
+        #composer install 
+        composer update 
+
+#RUN cd $PMD_HOME &&  composer update --no-scripts
+# cf. http://stackoverflow.com/questions/43769756/composer-install-doesnt-install-packages-when-running-in-dockerfile
+
+#install software tarball
+COPY pmd.tgz $PMD_HOME/
+RUN cd $PMD_HOME && \
+    tar -xzf  $PMD_HOME/pmd.tgz
 	
 RUN cd $PMD_HOME && \
-
 	npm install --save -g gulp-install && \
 	npm install
 	# npm install # && \
 	# gulp
 
 	
-# COPY files.tar $PMD_HOME/
-# ....
-RUN tar -xvfz  $PMD_HOME/files.tar
 	
-	
+#make our own apache configuration	
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
@@ -56,13 +80,12 @@ ENV APACHE_LOCK_DIR /var/lock/apache2
 RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
     ln -sf /dev/stderr /var/log/apache2/error.log
 
-	RUN mkdir -p $APACHE_RUN_DIR $APACHE_LOCK_DIR $APACHE_LOG_DIR
-
-RUN ln -s $PMD_HOME/ /var/www/html
+RUN mkdir -p $APACHE_RUN_DIR $APACHE_LOCK_DIR $APACHE_LOG_DIR
 	
 # VOLUME [ "/var/www/html" ]
-WORKDIR /var/www/html
-
+COPY 000-default.conf /etc/apache2/sites-available/
+WORKDIR $PMD_HOME/public
+RUN chown -R www-data $PMD_HOME/
 EXPOSE 80
 
 ENTRYPOINT [ "/usr/sbin/apache2" ]
