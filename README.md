@@ -149,7 +149,7 @@ creates migration classes in folder ``$PMD_HOME/database/migrations``
 
 ### using Liquibase
 
-**Liquibase needs an Java Runtime. You wil have to instal itb efooe ryoou can use Liquibase.**
+**Liquibase needs a Java Runtime. A JRE is not part of this distribution.**
 
     cd database /liquibase   
     ../../liquibase updateSQL   
