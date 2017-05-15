@@ -37,36 +37,39 @@ ENV PMD_HOME /usr/share/app/
 RUN mkdir $PMD_HOME -p && cd $PMD_HOME/ 
 
 
-COPY .env $PMD_HOME/	
-COPY gulpfile.js $PMD_HOME/	
-COPY package.json $PMD_HOME/	
-COPY composer.json $PMD_HOME/	
+#you will have to adapt the settings defined in .env
+# rather provide a .env.docker in the distribution tarball
+COPY .env.docker $PMD_HOME/.env	
 
-	
-#RUN ls -l $PMD_HOME 
-
-#composer install 
+#install dependencies with composer
 RUN	cd / && cd $PMD_HOME && \
 	composer require doctrine/dbal && \ 
-	composer require ignasbernotas/laravel-model-generator --dev && \
+	composer require ignasbernotas/laravel-model-generator --dev 
         #composer dump-autoload &&  \
         #composer install 
-        composer update 
-
-#RUN cd $PMD_HOME &&  composer update --no-scripts
-# cf. http://stackoverflow.com/questions/43769756/composer-install-doesnt-install-packages-when-running-in-dockerfile
+        #composer update 
 
 #install software tarball
 COPY pmd.tgz $PMD_HOME/
 RUN cd $PMD_HOME && \
     tar -xzf  $PMD_HOME/pmd.tgz
+
+RUN ls -l $PMD_HOME
+RUN tar tvzf $PMD_HOME/pmd.tgz
+
+#RUN cd $PMD_HOME &&  composer update 
+RUN cd $PMD_HOME &&  composer update --no-scripts
+# cf. http://stackoverflow.com/questions/43769756/composer-install-doesnt-install-packages-when-running-in-dockerfile
+
+
+#these files are included in the distribution tarball
+#COPY gulpfile.js $PMD_HOME/	
+#COPY package.json $PMD_HOME/	
+
 	
 RUN cd $PMD_HOME && \
-	npm install --save -g gulp-install && \
-	npm install
-	# npm install # && \
-	# gulp
-
+    npm install --save -g gulp-install 
+    # gulp
 	
 	
 #make our own apache configuration	
