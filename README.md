@@ -59,10 +59,12 @@ If you use docker, get the file `Dockerfile`, and use the usual docker process. 
     composer update --no-scripts
 
 Please note that there is an environment file ``$PMD_HOME/.env`` which overwrites
-the settings defined in  ``config/database.php`` and other config files.
+the settings defined in  ``config/database.php``, ``config/app.php`` and other config files.
 
 
-Install the dependencies listed in ``$PMD_HOME/package.json`` with:
+This project makes use of **node** and the node packlage manager **npm**.
+A recent version must be installed. Check with ``node -v``.
+Install the dependencies listed in ``$PMD_HOME/package.json`` :
 
     npm install   
 
@@ -72,15 +74,16 @@ Retrieve the frontend dependencies with Bower, compile SASS, and move frontend f
 
 ## Liquibase install
 
-        @mkdir database/liquibase   
-        cd database/liquibase   
-        $EDIT liquibase.properties &   
-        touch changelog.xml   
-        @mkdir changelogs   
+    @mkdir database/liquibase   
+    cd database/liquibase   
+    $EDIT liquibase.properties &   
+    touch changelog.xml   
+    @mkdir changelogs   
 
 ## Database Schemes
 
-Create the database `projektmetadatren` with utf-8 collation (uft8_general_ci).
+A database engine must be installed. We use here mySQL.
+Create the database `projektmetadaten` with utf-8 collation (uft8_general_ci).
 
 
 
@@ -104,7 +107,7 @@ creates migration classes in folder ``$PMD_HOME/database/migrations``
 
 **liquibase update command must be executed after each schema modification**:
 
-    ../../liquibase update   --defaultsFile=$PMD_HOME/database/liquibase/changelog.xml
+    ../../liquibase update  --defaultsFile=$PMD_HOME/database/liquibase/changelog.xml
 
 main changelog must be an XML file   
 chained changelog files may be XML or SQL files  
@@ -112,10 +115,10 @@ chained changelog files may be XML or SQL files
 ### Models
 (re)generate models depending on the database schemes, **must be executed after each schema modification**:
 
-    php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK --verbose
+    php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK --getset
 
-The Accessors (getters) and Mutators (setters) are magic methods,
-but one may add some methods to the generated model:
+With the option `--getset`, Accessors (getters) and Mutators (setters) are defined. 
+Nonetheless, feel free to modify the generated code:
 
     $EDIT app/Models/Project.php &
 
@@ -130,10 +133,14 @@ Table projects: some dummy records
     php artisan db:seed  
     php artisan db:seed --class=ProjectsTableSeeder
 
-## Frontend
-If you use docker, point your browser to ``http://172.17.0.2`` or some similar IP.
+## Webserver
+Install and configure a webserver.
 
-## Backend
+### Frontend
+Point your browser to the domain name or IP.
+If you use docker,this may be ``http://172.17.0.2`` or some similar IP.
+
+### Backend
 - point your browser to ``http://172.17.0.2/auth/login``,
 - log in with  administrator credentials,
 - go to ``http://172.17.0.2/admin/dashboard``
