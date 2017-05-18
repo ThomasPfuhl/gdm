@@ -22,11 +22,6 @@ Route::get('home', 'ProjectsController@index');
 Route::get('projects', 'ProjectsController@index');
 Route::get('project/{slug}', 'ProjectsController@show');
 
-/* * * dynamically generated routes */
-Route::get('dummies', 'DummiesController@index');
-Route::get('dummy/{slug}', 'DummiesController@show');
-
-
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
@@ -76,3 +71,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::resource('users', 'Admin\UserController');
 });
 
+/* * ************  dynamically generated routes ************* */
+
+Route::get('dummies', 'DummiesController@index');
+Route::get('dummie/{slug}', 'DummiesController@show');
+
+
+Route::get('dummies', 'DummiesController@index');
+Route::get('dummie/{slug}', 'DummiesController@show');

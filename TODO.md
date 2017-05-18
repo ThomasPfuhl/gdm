@@ -52,12 +52,12 @@ define a shell variable to be passed to the scripts
 
         php add_templates.php ${NEWTABLE}
 
+6. add routes
 
-6. add a route (pending)
-
-        php add_route.php ${NEWTABLE}
+        php add_routes.php ${NEWTABLE}
 
 
 PENDING: do the same thing for the backend MVC.
+
 
 END OF DOCUMENT.
