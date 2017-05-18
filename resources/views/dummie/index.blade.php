@@ -1,5 +1,5 @@
 
-@extends('layouts.default')
+@extends('layouts.app')
 
 {{-- Web site Title --}}
 @section('title') Dummies :: @parent @stop
@@ -16,7 +16,7 @@
 <table id="table" class="table table-striped table-hover">
     <thead>
         <tr>
-            @foreach ($attributes as $value)
+            @foreach ($propertyValues as $value)
             <th>{{ $value }}</th>
             @endforeach
             <th></th> <!-- placeholder for buttons -->

@@ -10,15 +10,21 @@ Route::pattern('id', '[0-9]+');
 Route::pattern('slug', '[0-9a-z-_]+');
 
 /* * *************    Site routes  ********************************* */
+
+Route::get('about', 'PagesController@about');
+Route::get('contact', 'PagesController@contact');
+
 //Route::get('/', 'HomeController@index');
 //Route::get('home', 'HomeController@index');
 Route::get('/', 'ProjectsController@index');
 Route::get('home', 'ProjectsController@index');
+
 Route::get('projects', 'ProjectsController@index');
 Route::get('project/{slug}', 'ProjectsController@show');
 
-Route::get('about', 'PagesController@about');
-Route::get('contact', 'PagesController@contact');
+/* * * dynamically generated routes */
+Route::get('dummies', 'DummiesController@index');
+Route::get('dummy/{slug}', 'DummiesController@show');
 
 
 Route::controllers([

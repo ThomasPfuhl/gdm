@@ -20,7 +20,7 @@
                 <li class="{{ (Request::is('projects') ? 'active' : '') }}">
                     <a href="{{ URL::to('projects') }}"><i class="fa fa-home"></i> Projekte</a>
                 </li>
-                <li class="{{ (Request::is('dummie') ? 'active' : '') }}"><a href="{{ URL::to('dummie') }}">Dummie</a></li></ul>
+            <li class="{{ (Request::is('Dummies') ? 'active' : '') }}"><a href="{{ URL::to('dummies') }}">Dummies</a></li></ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="{{ (Request::is('about') ? 'active' : '') }}">
