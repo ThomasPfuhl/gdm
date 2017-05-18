@@ -28,13 +28,6 @@ Provide a webframework with CRUD functionalities for the metadata of research Pr
 - NodeJS:  `sudo apt-get install nodejs; sudo apt-get install npm`
 
 
-
-
-
-
-
-
-
 ### Preliminaries
 set some shell variables which we will use during the installation
 
@@ -144,3 +137,7 @@ If you use docker,this may be ``http://172.17.0.2`` or some similar IP.
 - point your browser to ``http://172.17.0.2/auth/login``,
 - log in with  administrator credentials,
 - go to ``http://172.17.0.2/admin/dashboard``
+
+
+## to do
+[still to do...](TODO.md)
