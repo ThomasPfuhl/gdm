@@ -3,7 +3,16 @@
 
 ## user driven dynamic modification of database tables, in all MVC files
 
-example: create a new table `dummy`
+example: create a new table `dummie`
+
+define a shell variable to be passed to the scripts
+
+    NEWTABLE=dummie
+    cd lib/tools
+
+
+### done by user: 
+- add liquibase changelog file (GUI pending)
 
         --liquibase formatted sql
 
@@ -13,35 +22,42 @@ example: create a new table `dummy`
 
         CREATE TABLE IF NOT EXISTS dummy (
                 `id`                 BIGINT	UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-                `dummyProperty`      VARCHAR(100)	COMMENT 'dummy'
-        ) COMMENT 'main table';
-        --rollback drop table dummy;
-
-
-### done by user: 
-- add liquibase changelog file
+                `title`      VARCHAR(100)	COMMENT '${NEWTABLE}'
+        ) COMMENT '${NEWTABLE}';
+        --rollback drop table ${NEWTABLE};
 
 
 ### done automagically: 
 2. run liquibase update
 
         cd database/liquibase   
-        ../../liquibase updateSQL   
+        ../../liquibase update   
 
-3. (re)generate Model(s)
+3. (re)generate model(s)
 
         php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK --getset
 
-4. generate Controller, clone of ProjectsController
+4. generate controller, cloned from ProjectsController
 
-        cp app/Http/Controllers/ProjectsController app/Http/Controllers/DummyController
+        php add_controller.php ${NEWTABLE}
 
-5. generate Views
+5. generate views
 
-        cp -r resources/views/project resources/views/dummy
-    in  `partials/nav.blade.php`, add a new `<li>` of parent `<ul class="nav navbar-nav">`
+    create menu item, in the html template `partials/nav.blade.php`   
+    add a new `<li>` of parent `<ul class="nav navbar-nav">` :
+
+        php add_menu_item.php ${NEWTABLE}
+
+    create templates in  `resources/views/`
+
+        php add_templates.php ${NEWTABLE}
 
 
-do the same thing for the backend MVC.
+6. add a route (pending)
+
+        php add_route.php ${NEWTABLE}
+
+
+PENDING: do the same thing for the backend MVC.
 
 END OF DOCUMENT.
