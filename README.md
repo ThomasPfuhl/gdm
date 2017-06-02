@@ -122,7 +122,9 @@ creates seeder classes in folder ``$PMD_HOME/database/seeds``
 Table users: username=admin@admin.com   password=admin  
 Table users: username=user@user.com   password=user  
 Table projects: some dummy records
+Table proposals: some dummy records
 
+    composer dump-autoload
     php artisan db:seed  
     php artisan db:seed --class=ProjectsTableSeeder
 
