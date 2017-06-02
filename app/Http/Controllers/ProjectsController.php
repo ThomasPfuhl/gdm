@@ -7,23 +7,28 @@ use App\Models\Project;
 class ProjectsController extends Controller {
 
     public function index() {
-        $projects = Project::paginate(5);
-        $propertyNames = Project::first()["fillable"];
-        $collections = Project::all();
+        $records = Project::paginate(5);
+        //$propertyNames = Project::first()["fillable"]; // without field "id"
+        $propertyNames = array_keys($records[0]->getAttributes()); // with field "id"
 
-        $propertyValues = array();
-        foreach ($collections as $collection) {
-            $propertyValues[] = $collection["attributes"];
+        $extPropertyValues = array();
+        foreach ($records as $record) {
+            $extValues = $record["attributes"];
+            $extPropertyValues[] = $extValues;
         }
 
-        return view('project.index', compact('projects', 'propertyNames', 'propertyValues'));
+        $type = "";
+
+        return view('project.index', compact('records', 'propertyNames', 'extPropertyValues', 'type'));
     }
 
     public function show($slug) {
-        //$project = Project::findBySlugOrId($slug);
-        $project = Project::find($slug);
+        //$record = Project::findBySlugOrId($slug);
+        $record = Project::find($slug);
+        $type = "";
+        $extPropertyValues = $record["attributes"];
 
-        return view('project.view', compact('project'));
+        return view('project.view', compact('record', 'extPropertyValues', 'type'));
     }
 
 }

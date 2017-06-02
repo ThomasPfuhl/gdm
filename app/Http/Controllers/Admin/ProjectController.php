@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
-//use App\Article;
-//use App\ArticleCategory;
 use App\Models\Project;
-use App\Language;
-use Illuminate\Support\Facades\Input;
 use App\Http\Requests\Admin\ProjectRequest;
-use Illuminate\Support\Facades\Auth;
 use Datatables;
+
+//use App\Language;
+//use Illuminate\Support\Facades\Input;
+//use Illuminate\Support\Facades\Auth;
+
 
 class ProjectController extends AdminController {
 
@@ -25,6 +25,7 @@ class ProjectController extends AdminController {
      */
     public function index() {
         $projects = Project::all();
+        // pagination is handled via Datatables
         $attributes = array_keys($projects[0]->getAttributes());
         // Show the page
         return view('admin.project.index', compact('attributes'));
@@ -71,7 +72,7 @@ class ProjectController extends AdminController {
      */
     public function update(ProjectRequest $request, Project $project) {
         //$project->user_id = Auth::id();
-        print_r($request);
+        //print_r($request);
         $project->update($request);
     }
 
@@ -105,21 +106,12 @@ class ProjectController extends AdminController {
         $projects = Project::all();
 
         $attributes = array_keys($projects[0]->getAttributes());
-        //var_dump($attributes);
-        //return;
-        //$projects = Project::select(array_values($attributes));
-        // !!! display attributes in table header !!!
         return Datatables::of($projects)
                         ->add_column('actions', '<a href="{{{ URL::to(\'admin/project/\' . $id . \'/edit\' ) }}}" class="btn btn-success btn-sm iframe" ><span class="glyphicon glyphicon-pencil"></span>  {{ trans("admin/modal.edit") }}</a>
                           <a href="{{{ URL::to(\'admin/project/\' . $id . \'/delete\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("admin/modal.delete") }}</a>
                           <input type="hidden" name="row" value="{{$id}}" id="row">')
                         //->remove_column('id')
                         ->make();
-        // return $dt;
-        //return view('admin.project.index');
-        //print_r(get_defined_vars());
-        //return;
-        //return view('admin.project.index', get_defined_vars());
     }
 
 }
