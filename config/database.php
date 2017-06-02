@@ -49,7 +49,7 @@ return [
         ],
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '172.17.0.1'),
+            'host' => env('DB_HOST', 'localhost'),
             'database' => env('DB_DATABASE', 'projektmetadaten'),
             'username' => env('DB_USERNAME', 'root'),
             'password' => env('DB_PASSWORD', 'p'),

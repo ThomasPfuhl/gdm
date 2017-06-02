@@ -17,6 +17,11 @@ class LanguageTableSeeder extends Seeder {
         $language->name = 'Deutsch';
         $language->lang_code = 'de';
         $language->save();
+
+        $language = new Language();
+        $language->name = 'Français';
+        $language->lang_code = 'fr';
+        $language->save();
     }
 
 }

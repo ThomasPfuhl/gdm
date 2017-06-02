@@ -16,7 +16,7 @@ class ProjectsTableSeeder extends Seeder {
             'startDate' => '2010-01-01',
             'endDate' => '2020-12-31',
             'remarks' => 'Dummy2 Remarks',
-            'officialProjectID' => 'Dummy2 officialProjectID',
+            'officialProjectID' => 'Dummy2 officialProjectID_' . date("His"),
             'sapID' => 'Dummy2 SAP ID',
         ]);
 
@@ -26,7 +26,7 @@ class ProjectsTableSeeder extends Seeder {
             'startDate' => '2000-01-01',
             'endDate' => '2010-12-31',
             'remarks' => 'Dummy Remarks',
-            'officialProjectID' => 'Dummy officialProjectID',
+            'officialProjectID' => 'Dummy officialProjectID_' . date("His"),
             'sapID' => 'Dummy SAP ID',
         ]);
     }
