@@ -7,7 +7,8 @@ example: create a new table `dummie`
 
 define a shell variable to be passed to the scripts
 
-    NEWTABLE=dummie
+    # table name must be in singular form, i.e. not 'dummies'
+    NEWTABLE=dummie 
     cd lib/tools
 
 
@@ -36,6 +37,13 @@ define a shell variable to be passed to the scripts
 3. (re)generate model(s)
 
         php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK --getset
+
+This creates the Model class, defining the properties, Accessors and Mutators.
+You need to modify (for the moment manually) the Accessors to take account of the foreign key constraints.
+
+        public function project() {
+            return $this->hasOne('App\Models\Project', 'id', 'projectID'); // one to one relation
+        }
 
 4. generate controller, cloned from ProjectsController
 
