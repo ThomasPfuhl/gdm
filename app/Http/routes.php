@@ -51,17 +51,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('project/reorder', 'Admin\ProjectController@getReorder');
     Route::resource('project', 'Admin\ProjectController');
 
-
-
-    # Articles
-    Route::get('article/data', 'Admin\ArticleController@data');
-    Route::get('article/{article}/show', 'Admin\ArticleController@show');
-    Route::get('article/{article}/edit', 'Admin\ArticleController@edit');
-    Route::get('article/{article}/delete', 'Admin\ArticleController@delete');
-    Route::get('article/reorder', 'Admin\ArticleController@getReorder');
-    Route::resource('article', 'Admin\ArticleController');
-
-
     # Users
     Route::get('user/data', 'Admin\UserController@data');
     Route::get('user/{user}/show', 'Admin\UserController@show');
@@ -73,9 +62,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
 /* * ************  dynamically generated routes ************* */
 
-Route::get('dummies', 'DummiesController@index');
-Route::get('dummie/{slug}', 'DummiesController@show');
-
-
-Route::get('dummies', 'DummiesController@index');
-Route::get('dummie/{slug}', 'DummiesController@show');
+Route::get('proposals', 'ProposalsController@index');
+Route::get('proposal/{slug}', 'ProposalsController@show');
+Route::get('proposals/data', 'ProposalsController@data');
