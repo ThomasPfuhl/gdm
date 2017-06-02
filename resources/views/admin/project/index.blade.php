@@ -26,7 +26,7 @@
             @foreach ($attributes as $value)
             <th>{{ $value }}</th>
             @endforeach
-            <th></th> <!-- placeholder for buttons -->
+            <th>actions</th> <!-- placeholder for buttons -->
         </tr>
     </thead>
     <tbody></tbody>

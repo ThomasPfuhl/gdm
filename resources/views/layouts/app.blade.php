@@ -39,7 +39,49 @@
 
         @include('partials.footer')
 
+
         <!-- Scripts -->
+        <script type="text/javascript">
+var oTable;
+$(document).ready(function () {
+    oTable = $('#maintable').DataTable({
+        "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
+        "sPaginationType": "bootstrap",
+        "oLanguage": {
+            "sProcessing": "{{ trans('table.processing') }}",
+            "sLengthMenu": "{{ trans('table.showmenu') }}",
+            "sZeroRecords": "{{ trans('table.noresult') }}",
+            "sInfo": "{{ trans('table.show') }}",
+            "sEmptyTable": "{{ trans('table.emptytable') }}",
+            "sInfoEmpty": "{{ trans('table.view') }}",
+            "sInfoFiltered": "{{ trans('table.filter') }}",
+            "sInfoPostFix": "",
+            "sSearch": "{{ trans('table.search') }}:",
+            "sUrl": "",
+            "oPaginate": {
+                "sFirst": "{{ trans('table.start') }}",
+                "sPrevious": "{{ trans('table.prev') }}",
+                "sNext": "{{ trans('table.next') }}",
+                "sLast": "{{ trans('table.last') }}"
+            }
+        },
+        "processing": true,
+        "serverSide": false,
+        //"ajax": "{!! $type !!}/data",
+        "fnDrawCallback": function (oSettings) {
+            $(".iframe").colorbox({
+                iframe: true,
+                width: "80%",
+                height: "90%",
+                onClosed: function () {
+                    oTable.ajax.reload();
+                }
+            });
+        }
+    });
+    console.log(oTable);
+});
+        </script>
         @yield('scripts')
 
     </body>

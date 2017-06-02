@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 {{-- Web site Title --}}
 @section('title') { :: @parent @stop
@@ -8,22 +7,12 @@
 <div class="page-header">
     <h3>
         Proposal
-        <a href="{{{ URL::to('projects/') }}}" class="btn btn-success btn-sm "
+        <a href="{{{ URL::to('proposals/') }}}" class="btn btn-success btn-sm "
            ><span class="glyphicon glyphicon-eye-open"></span> {{ " view all" }}</a>
 
     </h3>
 </div>
 
-
-<h3>{{ $record->title }}</h3>
-<h4>{!! $record->description !!}</h4>
-<div>
-    <span>[ {!! $record->officialProjectID !!} ]</span>
-    <span class="badge badge-info">{!! $record->startDate !!} </span>
-    &rarr;
-    <span class="badge badge-info">{!! $record->endDate !!} </span>
-</div>
-<hr/>
 
 <table id="maintable" class="vertical">
     @foreach ($extPropertyValues as $key=>$value)

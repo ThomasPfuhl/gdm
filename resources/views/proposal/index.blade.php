@@ -1,13 +1,15 @@
+{{-- @todo
+recognize automatically fields that are foreign keys
+--}}
+
 @extends('layouts.app')
-{{-- Web site Title --}}
-@section('title')
-@parent
-@stop
+
+@section('title') Proposals :: @parent @stop
 
 @section('content')
 <div class="page-header">
     <h3>
-        Projects
+        Proposals
     </h3>
 </div>
 
@@ -27,7 +29,7 @@
             @foreach ($record as $key=>$item)
             <td>
                 @if (is_scalar($item) && $key == "id")
-                <a href="{{ URL::to('project/' . $item  ) }}" class="btn btn-success btn-sm "
+                <a href="{{ URL::to('proposal/' . $item  ) }}" class="btn btn-success btn-sm "
                    ><span class="glyphicon glyphicon-eye-open"></span> {{ $item }}</a>
                 @elseif (is_scalar($item))
                 {{ $item }}
@@ -49,29 +51,6 @@
         @endforeach
     </tbody>
 </table>
-
-
-
-
-<h3> COMPACT VIEW</h3>
-
-<ul style="margin:0;padding:0;list-style-type:none;">
-    @foreach($records as $project)
-    <li style="border:1px solid #ccc;padding:10px;margin:10px;float:left;width: 200px;">
-        <h4>{{ $project->title }}</h4>
-        <h5>{{ $project->description }}</h5>
-        <div>[ {!! $project->officialProjectID !!} ]</div>
-        <span class="badge badge-info">{!! $project->startDate !!} </span>
-        &rarr;
-        <span class="badge badge-info">{!! $project->endDate !!} </span>
-
-        <div style="margin-top:10px;">
-            <a class="btn btn-success" href="{{ URL::to('project/'.$project->id) }}"
-               >Read more</a>
-        </div>
-    </li>
-    @endforeach
-</ul>
 
 
 @stop
