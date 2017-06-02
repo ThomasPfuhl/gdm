@@ -54,16 +54,28 @@ elixir(function(mix) {
         '../../' + paths.fontawesome + '/css/font-awesome.css',
         '../../' + paths.bootswatch + '/bootstrap.css',
         '../../' + paths.colorbox + '/example3/colorbox.css',
-        '../../' + paths.justifiedGallery + '/css/justifiedGallery.css'
+        '../../' + paths.dataTables + '/css/dataTables.bootstrap.css',
+        '../../' + paths.dataTablesBootstrap3Plugin + '/css/datatables-bootstrap3.css',
+        '../../' + paths.justifiedGallery + '/css/justifiedGallery.css',
+        'gdm.css'
     ], 'public/css/site.css');
 
     // Merge Site scripts.
     mix.scripts([
         '../../' + paths.jquery + '/jquery.js',
+        '../../' + paths.jquery_ui + '/ui/jquery.ui.core.js',
         '../../' + paths.bootstrap + '/js/bootstrap.js',
         '../../' + paths.colorbox + '/jquery.colorbox.js',
+        '../../' + paths.dataTables + '/js/jquery.dataTables.js',
+        '../../' + paths.dataTables + '/js/dataTables.bootstrap.js',
+        '../../' + paths.dataTablesBootstrap3Plugin + '/js/datatables-bootstrap3.js',
+        '../../' + paths.datatablesResponsive + '/js/dataTables.responsive.js',
  //       '../../../' + paths.swipebox + '/src/js/jquery.swipebox.js',
-        '../../' + paths.justifiedGallery + '/js/jquery.justifiedGallery.js'
+ //       '../../' + paths.justifiedGallery + '/js/jquery.justifiedGallery.js'
+        'dataTables.bootstrap.js',
+        'bootstrap-dataTables-paging.js',
+        'datatables.fnReloadAjax.js',
+        'gdm.js'
     ], 'public/js/site.js');
 
     // Merge Admin CSSs.
@@ -81,7 +93,7 @@ elixir(function(mix) {
         '../../' + paths.summernote + '/summernote-bs3.css',
         '../../' + paths.select2 + '/css/select2.css',
         'jquery.dataTables.css',
-        'sb-admin-2.css',
+        'sb-admin-2.css'
     ], 'public/css/admin.css');
 
     // Merge Admin scripts.
