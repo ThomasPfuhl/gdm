@@ -4,13 +4,13 @@ FROM php:7.0-apache
 RUN a2enmod rewrite
 
 #install pdo_mysql
-RUN apt-get update \
+RUN  \
   && echo 'deb http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list \
   && echo 'deb-src http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list \
+  && apt-get update \
   && apt-get install -y apt-utils wget \
   && wget https://www.dotdeb.org/dotdeb.gpg \
   && apt-key add dotdeb.gpg \
-  && apt-get update \
   && apt-get install -y php7.0-mysql \
   && docker-php-ext-install pdo_mysql \
   && apt-get -y install libapache2-mod-php7.0 zip unzip nano
@@ -50,9 +50,9 @@ RUN	cd / && cd $PMD_HOME && \
         #composer update 
 
 #install software tarball
-COPY pmd.tgz $PMD_HOME/
-RUN cd $PMD_HOME && \
-    tar -xzf  $PMD_HOME/pmd.tgz
+#COPY pmd.tgz $PMD_HOME/
+#RUN cd $PMD_HOME && \
+#    tar -xzf  $PMD_HOME/pmd.tgz
 
 RUN ls -l $PMD_HOME
 RUN tar tvzf $PMD_HOME/pmd.tgz
@@ -86,7 +86,7 @@ RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
 RUN mkdir -p $APACHE_RUN_DIR $APACHE_LOCK_DIR $APACHE_LOG_DIR
 	
 # VOLUME [ "/var/www/html" ]
-COPY 000-default.conf /etc/apache2/sites-available/
+COPY lib/tools/000-default.conf /etc/apache2/sites-available/
 WORKDIR $PMD_HOME/public
 RUN chown -R www-data $PMD_HOME/
 EXPOSE 80
