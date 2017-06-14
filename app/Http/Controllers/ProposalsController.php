@@ -54,7 +54,7 @@ class ProposalsController extends Controller {
 
         $collection = collect($extPropertyValues);
 
-        return view('proposal.index', compact('propertyNames', 'extPropertyValues', 'collection'));
+        return view('proposal.index', compact('records', 'propertyNames', 'extPropertyValues', 'collection'));
     }
 
     public function show($slug) {
@@ -103,10 +103,9 @@ class ProposalsController extends Controller {
             $related_agencie = $record->agencie->getAttributes();
             $related_agent = $record->agent->getAttributes();
 
-            $related_project = $record["relations"]["project"]["attributes"];
-            $related_agencie = $record["relations"]["agencie"]["attributes"];
-            $related_agent = $record["relations"]["agent"]["attributes"];
-
+//            $related_project = $record["relations"]["project"]["attributes"];
+//            $related_agencie = $record["relations"]["agencie"]["attributes"];
+//            $related_agent = $record["relations"]["agent"]["attributes"];
 
             $extValues = $record["attributes"];
             $extValues["projectID"] = $related_project;
@@ -116,7 +115,6 @@ class ProposalsController extends Controller {
         }
 
         $collection = collect($extPropertyValues);
-
 
 //        echo "<pre>  --- ";
 //        print_r($collection);
