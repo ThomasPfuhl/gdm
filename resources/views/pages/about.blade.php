@@ -10,8 +10,8 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <h3>Generic Data Module</h3>
-        <p>Prototyp Juni 2017</p>
+
+        <?php include("appfiles/about.html") ?>
     </div>
 </div>
 

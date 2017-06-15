@@ -20,8 +20,22 @@
                 <li class="{{ (Request::is('projects') ? 'active' : '') }}">
                     <a href="{{ URL::to('projects') }}"><i class="fa fa-home"></i> Projects</a>
                 </li>
-                <li class="{{ (Request::is('proposals') ? 'active' : '') }}">
-                    <a href="{{ URL::to('proposals') }}"><i class="fa fa-table"></i> Proposals</a>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+                       ><i class="fa fa-table"></i> Tables <i class="fa fa-caret-down"></i></a>
+
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="{{ (Request::is('projects') ? 'active' : '') }}">
+                            <a href="{{ URL::to('projects') }}">Projects
+                        </li>
+
+                        <li class="{{ (Request::is('proposals') ? 'active' : '') }}">
+                            <a href="{{ URL::to('proposals') }}">Proposals</a>
+                        </li>
+
+                        @include("partials/menu-items")
+                    </ul>
                 </li>
 
                 <ul class="nav navbar-nav navbar-right">
