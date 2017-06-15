@@ -23,7 +23,7 @@ setlocale(LC_MONETARY, 'de_DE.UTF8');
 </div>
 
 
-<table id="maintable" class="maintable table table-striped table-hover table-responsive table-condensed">
+<table id="maintable" class="maintable table  table-hover table-responsive table-condensed">
     <thead>
         <tr>
             @foreach ($propertyNames as $value)

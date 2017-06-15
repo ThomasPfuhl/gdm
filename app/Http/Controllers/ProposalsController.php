@@ -59,13 +59,6 @@ class ProposalsController extends Controller {
 
     public function show($slug) {
         $record = Proposal::with('project', 'agencie', 'agent')->find($slug);
-//        echo $slug;
-//        echo "<pre>";
-//        var_dump($record["attributes"]);
-//        //var_dump($record["relations"]);
-//        var_dump($record["relations"]["project"]["attributes"]);
-//        var_dump($record["relations"]["agencie"]["attributes"]);
-//        echo "</pre>";
 
         $related_project = $record["relations"]["project"]["attributes"];
         $related_agencie = $record["relations"]["agencie"]["attributes"];
@@ -77,10 +70,8 @@ class ProposalsController extends Controller {
         $extValues["principalInvestigatorID"] = $related_agent;
 
         $extPropertyValues = $extValues;
-        $type = ""; // neeeded in datatable js in app.blade.php
-//        echo "<pre> extPropertyValues --- ";
-//        print_r($extPropertyValues);
-//        echo "</pre>";
+        $type = ""; // used for datatable js in app.blade.php
+
         return view('proposal.view', compact('record', 'extPropertyValues', 'type'));
     }
 
@@ -116,17 +107,12 @@ class ProposalsController extends Controller {
 
         $collection = collect($extPropertyValues);
 
-//        echo "<pre>  --- ";
-//        print_r($collection);
-//        echo "</pre>";
-
         return
-                //Datatables::of($records)
                         Datatables::of($collection)
 //                        ->add_column('action', '<a href="{{{ URL::to(\'proposal/\' . $id) }}}" class="btn btn-success btn-sm " '
 //                                . '><span class="glyphicon glyphicon-eye-open"></span> {{ $id }}</a>')
-                        //->remove_column('id')
-                        ->make();
+//                        ->remove_column('id')
+                        ->make(true);
     }
 
 }
