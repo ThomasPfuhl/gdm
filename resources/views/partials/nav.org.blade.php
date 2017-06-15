@@ -25,10 +25,7 @@
 
             <ul class="nav navbar-nav navbar-right">
                 <li class="{{ (Request::is('about') ? 'active' : '') }}">
-                    <a href="{{ URL::to('about') }}">Über uns</a>
-                </li>
-                <li class="{{ (Request::is('contact') ? 'active' : '') }}">
-                    <a href="{{ URL::to('contact') }}">Kontakt</a>
+                    <a href="{{ URL::to('about') }}"><i class="fa fa-info"></i> About</a>
                 </li>
                 @if (Auth::guest())
                 <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"><a href="{{ URL::to('auth/login') }}"><i

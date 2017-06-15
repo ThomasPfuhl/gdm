@@ -42,24 +42,25 @@ setlocale(LC_MONETARY, 'de_DE.UTF8');
             @elseif (is_int($value))
             {{ $value }}
             @elseif (is_float($value))
-            <div style="font-family:monospace;">{{ money_format("%!=*#9.2n", $value) }}</div>
+            <div style="width:7em;text-align:right;xxxfont-family:monospace;">{{ money_format("%!#9.2n", $value) }}</div>
             @else
-            {{ $value }}
+            <div style="min-width:20em;">{{ $value }}</div>
             @endif
 
             @else
             <a class="toggle-link" href="#maintable" data-toggle="collapse" data-target="#related_{{ $key }}"
                ><span class="glyphicon glyphicon-plus-sign"></span><span class="glyphicon glyphicon-minus-sign hidden"></span></a>
             {{ $value[array_keys($value)[0]] }}
-        <td>
-            <table id="related_{{ $key }}" class="collapse related">
-                @foreach ($value as $k=>$v)
-                <tr>
-                    <td>{{ $k }}</td>
-                    <td>{{ $v }}</td>
-                </tr>
-                @endforeach
-            </table>
+            <div>
+                <table id="related_{{ $key }}" class="collapse related">
+                    @foreach ($value as $k=>$v)
+                    <tr>
+                        <td>{{ $k }}</td>
+                        <td>{{ $v }}</td>
+                    </tr>
+                    @endforeach
+                </table>
+            </div>
         </td>
         @endif
     </tr>

@@ -4,6 +4,9 @@
     Author     : thomas.pfuhl@mfn-berlin.de
 */
 
+body {
+    font-family: 'Libre Franklin', sans-serif;
+}
 
 body:before {
     background:url("/img/data_module_icon.png") no-repeat center center fixed;
@@ -12,38 +15,65 @@ body:before {
     opacity: 0.05;
 }
 
-#maintable table.related {
-    font-size:0.8em;
+/* navbar */
+.navbar {
+    color: black;
+    background: #ccc;
+    border: none;
+ }
+
+
+.navbar .navbar-nav > li > a {color:black;}
+.navbar .navbar-nav > li > a:hover  {color:#d50000;}
+.navbar .navbar-nav > li > a:focus  {color:#d50000;}
+.navbar .navbar-nav > li.active > a {color:#d50000; background: transparent;}
+.navbar-inverse .navbar-nav > li > a {color:black;}
+.navbar-inverse .navbar-nav > li > a:hover {color:#d50000;}
+.navbar-inverse .navbar-nav > li > a:focus {color:#d50000;}
+.navbar-inverse .navbar-nav > li.active > a {color:#d50000; background: transparent;}
+
+.navbar-inverse .navbar-brand {
+    text-transform: uppercase;
+    font-weight: normal;
+    color: #d50000;
+}
+
+/* datatables */
+.maintable{
+    font-size:0.95em;
+}
+.maintable table.related {
+    font-size:0.9em;
     border:1px solid #ccc;
     margin-top:2px;
 }
-#maintable table.related td {
+.maintable table.related td {
     border:none;
     vertical-align:top;
     padding:3px;
 }
-#maintable table.related td:first-child {
+.maintable table.related td:first-child {
     color:#666;
 }
-#maintable table.related tr:nth-child(even) {
+.maintable table.related tr:nth-child(even) {
     background-color:#efefef;
 }
-#maintable table.related tr:nth-child(odd) {
+.maintable table.related tr:nth-child(odd) {
     background-color:#fff;
 }
-#maintable table.related a.toggle-link:hover span {
+.maintable table.related a.toggle-link:hover span {
     background-color:#d50000;
     color: #fff;
     text-decoration: none;
 }
 
-#maintable th.rotate {
+.maintable th.rotate {
     height: 160px !important;
     white-space: nowrap !important;
     vertical-align: top !important;
     max-width: 2em !important;
 }
-#maintable th.rotate > div {
+.maintable th.rotate > div {
     transform:
         /* Magic Numbers */
         /* translate(25px, 51px) */
@@ -54,18 +84,17 @@ body:before {
     width:160px !important;
 
 }
-#maintable th.rotate > div > span {
+.maintable th.rotate > div > span {
     /* border-bottom: 1px solid #ccc; */
     padding: 0 !important;
     width:160px !important;
 }
-#maintable td {
+.maintable td {
     border-right: 1px solid #ccc !important;
 }
 
 /* for views of single records */
 #maintable.vertical table.related {
-    font-size:1em;
     border-top : 1px solid #000;
     border-bottom : 1px solid #000;
     margin:0;
@@ -81,12 +110,30 @@ body:before {
 
 /* put sorting arrows at bottom right of the th */
 
+
 table.dataTable thead th.sorting::after, 
 table.dataTable thead th.sorting_asc::after, 
-table.dataTable thead th.sorting_desc::after {
+table.dataTable thead th.sorting_desc::after,
+table.dataTable .sorting::after, 
+table.dataTable .sorting_asc::after, 
+table.dataTable .sorting_desc::after,
+table.dataTable.table-condensed .sorting::after, 
+table.dataTable.table-condensed .sorting_asc::after, 
+table.dataTable.table-condensed .sorting_desc::after {
     position: absolute;
-    bottom:0 !important;
+    top: 150px;
     right: 8px;
     display: block;
     font-family: FontAwesome;
+}
+
+
+div.dataTables_filter {
+    text-align: right;
+    float: right;
+}
+
+div.dataTables_length {
+    text-align: left;
+    float: left;
 }

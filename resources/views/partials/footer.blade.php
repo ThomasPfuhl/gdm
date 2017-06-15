@@ -4,15 +4,19 @@
             <img valign="top" src="https://www.naturkundemuseum.berlin/sites/default/files/mfnb_logo_light_backgrounds_0.png"/>
         </div>
 
-        <p class="text-muted credit" style="margin-top:15px;padding-top:15px;border-top:1px solid black;">
-            <span style="text-align:left;float:left;margin-left:2em;font-size:3em;">
-                <span style="color:#d50000">GDM</span>
-                Generic Data Module
+        <p class="" style="margin-top:10px;padding-top:12px;border-top:1px solid black;">
+            <span style="text-align:left;float:left;margin-left:2em;color:black;font-size:1.8em;font-weight:bolder;line-height:24px;font-family: 'Libre Franklin', sans-serif;">
+                <span style="color:#d50000">g</span>eneric<br/>
+                <span style="color:#d50000">d</span>ata<br/>
+                <span style="color:#d50000">m</span>odule
+
             </span>
             <span class="hidden-phone" style="text-align:right;float:right;">
-                &copy; 2017
+                version: <span style="color:black">r0.1alpha 06/2017</span>
                 <br/>
-                written by <a href="mailto:thomas.pfuhl@mfn-berlin.de">thomas.pfuhl@mfn-berlin.de</a>
+                author: <a href="mailto:thomas.pfuhl@mfn-berlin.de">thomas.pfuhl@mfn-berlin.de</a>
+                <br/>
+                source code :<a href="https://code.naturkundemuseum.berlin/Thomas.Pfuhl/pmd" target="gitlab">MfN GitLab</a>
                 <!-- <br/>
                 with <a href="http://laravel.com/" alt="Laravel 5.1">Laravel 5.1</a></span>
                 -->

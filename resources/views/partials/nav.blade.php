@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#" title="GDM - Generic Data Module">Projektmetadaten</a>
+            <a class="navbar-brand" href="#">Projektmetadaten</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -18,18 +18,15 @@
                 </li>
                 -->
                 <li class="{{ (Request::is('projects') ? 'active' : '') }}">
-                    <a href="{{ URL::to('projects') }}"><i class="fa fa-home"></i> Projekte</a>
+                    <a href="{{ URL::to('projects') }}"><i class="fa fa-home"></i> Projects</a>
                 </li>
                 <li class="{{ (Request::is('proposals') ? 'active' : '') }}">
-                    <a href="{{ URL::to('proposals') }}"><i class="fa "></i> Proposals</a>
+                    <a href="{{ URL::to('proposals') }}"><i class="fa fa-table"></i> Proposals</a>
                 </li>
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="{{ (Request::is('about') ? 'active' : '') }}">
-                        <a href="{{ URL::to('about') }}">Über uns</a>
-                    </li>
-                    <li class="{{ (Request::is('contact') ? 'active' : '') }}">
-                        <a href="{{ URL::to('contact') }}">Kontakt</a>
+                        <a href="{{ URL::to('about') }}"><i class="fa fa-info-circle"></i> About</a>
                     </li>
                     @if (Auth::guest())
                     <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"><a href="{{ URL::to('auth/login') }}"><i class="fa fa-sign-in"></i> Login</a></li>
