@@ -137,3 +137,7 @@ div.dataTables_length {
     text-align: left;
     float: left;
 }
+
+.table-hover > tbody > tr:hover {
+    background-color: rgba(240,240,240,.5);
+}
