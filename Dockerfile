@@ -3,19 +3,23 @@ FROM php:7.0-apache
 #enable mod_rewrite
 RUN a2enmod rewrite
 
-#install pdo_mysql
+#install some packages
 RUN  \
-  && echo 'deb http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list \
+     echo 'deb http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list \
   && echo 'deb-src http://packages.dotdeb.org jessie all' >> /etc/apt/sources.list \
   && apt-get update \
   && apt-get install -y apt-utils wget \
   && wget https://www.dotdeb.org/dotdeb.gpg \
-  && apt-key add dotdeb.gpg \
-  && apt-get install -y php7.0-mysql \
+  && apt-key add dotdeb.gpg 
+
+#install pdo_mysql
+RUN \
+     apt-get install -y --force-yes php7.0-mysql \
   && docker-php-ext-install pdo_mysql \
-  && apt-get install -y libapache2-mod-php7.0 zip unzip nano
+  && apt-get install -y --force-yes libapache2-mod-php7.0 \
+  && apt-get install -y --force-yes zip unzip nano
 
-
+#install nodejs and npm
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 RUN apt-get -y install nodejs
 
@@ -31,8 +35,7 @@ ENV GDM_HOME /usr/share/app/
 RUN mkdir $GDM_HOME -p && cd $GDM_HOME/
 
 
-#you will have to adapt the settings defined in .env
-# rather provide a .env.docker in the distribution tarball
+# provide a sample dockjer environment file
 COPY .env.docker $GDM_HOME/.env
 
 #install dependencies with composer
@@ -44,6 +47,7 @@ RUN     cd / && cd $GDM_HOME && \
         #composer update 
 
 # download release file
+# ATTENTION !!! You need to sign in or sign up before continuing
 RUN cd $GDM_HOME && \
     curl -o gdm_latest.tgz https://code.naturkundemuseum.berlin/Thomas.Pfuhl/pmd/repository/archive.tar.gz?ref=master
 RUN cd $GDM_HOME && \
