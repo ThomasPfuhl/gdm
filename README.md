@@ -106,7 +106,8 @@ main changelog must be an XML file
 chained changelog files may be XML or SQL files  
 
 ### Models
-(re)generate models depending on the database schemes, **must be executed after each schema modification**:
+(re)generate models depending on the database schemes, **must be executed after each schema modification**      
+based on [https://github.com/ignasbernotas/laravel-model-generator](https://github.com/ignasbernotas/laravel-model-generator)
 
     php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK --getset
 

@@ -13,7 +13,7 @@ define a shell variable to be passed to the scripts
 
 
 ### done by user: 
-- add liquibase changelog file (GUI pending)
+add liquibase changelog file (GUI pending)
 
         --liquibase formatted sql
 
@@ -29,6 +29,7 @@ define a shell variable to be passed to the scripts
 
 
 ### done automagically: 
+
 2. run liquibase update
 
         cd database/liquibase   
@@ -36,16 +37,20 @@ define a shell variable to be passed to the scripts
 
 3. (re)generate model(s)
 
-        php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK --getset
+    based on [https://github.com/ignasbernotas/laravel-model-generator](https://github.com/ignasbernotas/laravel-model-generator)
 
-This creates the Model class, defining the properties, Accessors and Mutators.
-You need to modify (for the moment manually) the Accessors to take account of the foreign key constraints.
+        php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations --getset
+        php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations --getset --tables=foobar
+
+    This creates the Model class, defining the properties, Accessors and Mutators.   
+    We ignore the liquibase- and laravel-specific tables.
+    I modified the Plugin to create the One-to-One-Relations defined by the foreign key constraints, such like
 
         public function project() {
             return $this->hasOne('App\Models\Project', 'id', 'projectID'); // one to one relation
         }
 
-4. generate controller, cloned from ProjectsController
+4. generate controller, cloned from ProposalsController
 
         php add_controller.php ${NEWTABLE}
 
