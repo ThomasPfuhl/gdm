@@ -16,14 +16,6 @@ RUN  \
   && apt-get -y install libapache2-mod-php7.0 zip unzip nano
 
 
-#add dotdeb repository:
-#RUN    echo 'deb http://packages.dotdeb.org jessie all' > /etc/apt/sources.list.d/dotdeb.list
-
-#add dotdeb repository key:
-#RUN curl http://www.dotdeb.org/dotdeb.gpg | apt-key add -
-
-#RUN apt-get -y install libapache2-mod-php7.0 zip unzip nano
-
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
 RUN apt-get -y install nodejs
 
@@ -35,43 +27,43 @@ RUN curl -sS https://getcomposer.org/installer | \
         php -- --install-dir=/usr/local/bin --filename=composer
 
 #create home directory 
-ENV PMD_HOME /usr/share/app/
-RUN mkdir $PMD_HOME -p && cd $PMD_HOME/
+ENV GDM_HOME /usr/share/app/
+RUN mkdir $GDM_HOME -p && cd $GDM_HOME/
 
 
 #you will have to adapt the settings defined in .env
 # rather provide a .env.docker in the distribution tarball
-COPY .env.docker $PMD_HOME/.env
+COPY .env.docker $GDM_HOME/.env
 
 #install dependencies with composer
-RUN     cd / && cd $PMD_HOME && \
+RUN     cd / && cd $GDM_HOME && \
         composer require doctrine/dbal && \
         composer require ignasbernotas/laravel-model-generator --dev
         #composer dump-autoload &&  \
         #composer install 
         #composer update 
 
-#install software tarball
-#COPY pmd.tgz $PMD_HOME/
-#RUN cd $PMD_HOME && \
-#    tar -xzf  $PMD_HOME/pmd.tgz
+# download release file
+RUN cd $GDM_HOME && \
+    curl -o gdm_latest.tgz https://code.naturkundemuseum.berlin/Thomas.Pfuhl/pmd/repository/archive.tar.gz?ref=master
+RUN cd $GDM_HOME && \
+    tar -xzf  $GDM_HOME/gdm_latest.tgz
 
-RUN ls -l $PMD_HOME
-RUN tar tvzf $PMD_HOME/pmd.tgz
+# copy customized about-file
+COPY about.html $GDM_HOME/public/appfiles/about.html
 
-#RUN cd $PMD_HOME &&  composer update 
-RUN cd $PMD_HOME &&  composer update --no-scripts
+#RUN cd $GDM_HOME &&  composer update 
+RUN cd $GDM_HOME &&  composer update --no-scripts
 # cf. http://stackoverflow.com/questions/43769756/composer-install-doesnt-install-packages-when-running-in-dockerfile
 
+# copy customized model generator files
+COPY $GDM_HOME/lib/tools/MakeModelsCommand.php  $GDM_HOME/vendor/ignasbernotas/laravel-model-generator/src/Commands/MakeModelsCommand.php
+COPY $GDM_HOME/lib/tools/model.stub  $GDM_HOME/vendor/ignasbernotas/laravel-model-generator/src/stubs/model.stub
 
-#these files are included in the distribution tarball
-#COPY gulpfile.js $PMD_HOME/    
-#COPY package.json $PMD_HOME/   
-
-
-RUN cd $PMD_HOME && \
+RUN cd $GDM_HOME && \
     npm install --save -g gulp-install
-    # gulp
+RUN cd $GDM_HOME && \
+    gulp
 
 
 #make our own apache configuration      
@@ -87,10 +79,9 @@ RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
 
 RUN mkdir -p $APACHE_RUN_DIR $APACHE_LOCK_DIR $APACHE_LOG_DIR
 
-# VOLUME [ "/var/www/html" ]
-COPY lib/tools/000-default.conf /etc/apache2/sites-available/
-WORKDIR $PMD_HOME/public
-RUN chown -R www-data $PMD_HOME/
+COPY $GDM_HOME/lib/tools/000-default.conf /etc/apache2/sites-available/
+WORKDIR $GDM_HOME/public
+RUN chown -R www-data $GDM_HOME/
 EXPOSE 80
 
 ENTRYPOINT [ "/usr/sbin/apache2" ]
