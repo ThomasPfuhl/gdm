@@ -1,0 +1,28 @@
+<?php
+
+namespace DummyNamespace;
+
+use {{extends}};
+
+/**
+ * Class DummyClass
+ */
+class DummyClass extends {{shortNameExtends}}
+{
+    {{table}}
+
+    {{primaryKey}}{{timestamps}}
+
+    {{fillable}}
+
+    {{guarded}}
+
+    {{getters}}
+
+    {{setters}}
+
+// thomas.pfuhl@mfn-berlin.de: one-to-one relations BEGIN
+    {{relations}}
+// thomas.pfuhl@mfn-berlin.de: one-to-one relations END
+
+}
