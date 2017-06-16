@@ -62,6 +62,4 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
 /* * ************  dynamically generated routes ************* */
 
-Route::get('proposals', 'ProposalsController@index');
-Route::get('proposal/{slug}', 'ProposalsController@show');
-Route::get('proposals/data', 'ProposalsController@data');
+include('more_routes.php');
