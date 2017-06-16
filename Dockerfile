@@ -13,7 +13,7 @@ RUN  \
   && apt-key add dotdeb.gpg \
   && apt-get install -y php7.0-mysql \
   && docker-php-ext-install pdo_mysql \
-  && apt-get -y install libapache2-mod-php7.0 zip unzip nano
+  && apt-get install -y libapache2-mod-php7.0 zip unzip nano
 
 
 RUN curl -sL https://deb.nodesource.com/setup_7.x | bash -
