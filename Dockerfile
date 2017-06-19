@@ -31,7 +31,7 @@ RUN curl -sS https://getcomposer.org/installer | \
         php -- --install-dir=/usr/local/bin --filename=composer
 
 #create home directory 
-ENV GDM_HOME /usr/share/app/
+ENV GDM_HOME /usr/share/app
 RUN mkdir $GDM_HOME -p && cd $GDM_HOME/
 
 
@@ -46,14 +46,26 @@ RUN     cd / && cd $GDM_HOME && \
         #composer install 
         #composer update 
 
-# download release file
-# ATTENTION !!! You need to sign in or sign up before continuing
-RUN cd $GDM_HOME && \
-    curl -o gdm_latest.tgz https://code.naturkundemuseum.berlin/Thomas.Pfuhl/pmd/repository/archive.tar.gz?ref=master
-RUN cd $GDM_HOME && \
-    tar -xzf  $GDM_HOME/gdm_latest.tgz
+# download release file from public repository only
+#RUN cd $GDM_HOME && \
+#    curl -o gdm_latest.tgz https://code.naturkundemuseum.berlin/Thomas.Pfuhl/pmd/repository/archive.tar.gz?ref=master
+#COPY gdm_latest.tgz $GDM_HOME
+#RUN cd $GDM_HOME && \
+#    tar -xzf  $GDM_HOME/gdm_latest.tgz && \
+#    mv pmd-master-bb3075aefdb507cb699b598086e4f8e39ea86d77/* .
+#
+# temporary alternative for download
+COPY gdm_latest.tgz /tmp/
+RUN cd  /tmp && \
+    tar -xzf gdm_latest.tgz
+# The tar file comes with a parent directory that is named by the individual master version id. So it varies over time.
+# Thus, move all file (excluding hidden files) from the parent directory to $GDM_HOME and remove the parent dir that is left behind empty.
+RUN cd /tmp/ && \
+    mv $(find . -name "pmd-master-*")/* $GDM_HOME/ && \
+    rm -Rf $(find . -name "pmd-master-*")
 
 # copy customized about-file
+# ATTENTION: file must exist
 COPY about.html $GDM_HOME/public/appfiles/about.html
 
 #RUN cd $GDM_HOME &&  composer update 
@@ -61,13 +73,19 @@ RUN cd $GDM_HOME &&  composer update --no-scripts
 # cf. http://stackoverflow.com/questions/43769756/composer-install-doesnt-install-packages-when-running-in-dockerfile
 
 # copy customized model generator files
-COPY $GDM_HOME/lib/tools/MakeModelsCommand.php  $GDM_HOME/vendor/ignasbernotas/laravel-model-generator/src/Commands/MakeModelsCommand.php
-COPY $GDM_HOME/lib/tools/model.stub  $GDM_HOME/vendor/ignasbernotas/laravel-model-generator/src/stubs/model.stub
+RUN cd $GDM_HOME && \
+    cp lib/tools/model.stub  vendor/ignasbernotas/laravel-model-generator/src/stubs/model.stub && \
+    cp lib/tools/MakeModelsCommand.php  vendor/ignasbernotas/laravel-model-generator/src/Commands/MakeModelsCommand.php
 
-RUN cd $GDM_HOME && \
-    npm install --save -g gulp-install
-RUN cd $GDM_HOME && \
-    gulp
+#install gulp , bower, etc.
+#RUN cd $GDM_HOME && \
+#    npm install --save -g gulp-install
+#    npm install gulp
+#RUN cd $GDM_HOME && \
+#    node_modules/.bin/gulp
+RUN npm install gulp 
+RUN npm install gulp --save-dev
+
 
 
 #make our own apache configuration      
@@ -83,7 +101,8 @@ RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
 
 RUN mkdir -p $APACHE_RUN_DIR $APACHE_LOCK_DIR $APACHE_LOG_DIR
 
-COPY $GDM_HOME/lib/tools/000-default.conf /etc/apache2/sites-available/
+RUN cd $GDM_HOME && \
+    cp lib/tools/000-default.conf /etc/apache2/sites-available/
 WORKDIR $GDM_HOME/public
 RUN chown -R www-data $GDM_HOME/
 EXPOSE 80
