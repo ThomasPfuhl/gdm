@@ -29,7 +29,7 @@ $type = "";
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <link rel="shortcut icon" href="{!! asset('assets/site/ico/favicon.ico')  !!} ">
+        <link rel="shortcut icon" href="{!! asset('img/data_module_icon.png')  !!} ">
 
     </head>
     <body>
