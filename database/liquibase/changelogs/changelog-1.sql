@@ -3,6 +3,7 @@
 --changeset id:1 author:falko.gloeckler dbms:mysql
 
 --preconditions onFail:HALT onError:HALT
+SET FOREIGN_KEY_CHECKS=0;
 
 CREATE TABLE IF NOT EXISTS projects (
 	`id`                 BIGINT	UNSIGNED PRIMARY KEY AUTO_INCREMENT,
