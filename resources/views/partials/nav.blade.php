@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Projektmetadaten</a>
+            <a class="navbar-brand" href="#">@section('sitename')@show</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -27,7 +27,7 @@
 
                     <ul class="dropdown-menu" role="menu">
                         <li class="{{ (Request::is('projects') ? 'active' : '') }}">
-                            <a href="{{ URL::to('projects') }}">Projects
+                            <a href="{{ URL::to('projects') }}">Projects</a>
                         </li>
 
                         <li class="{{ (Request::is('proposals') ? 'active' : '') }}">
@@ -64,6 +64,9 @@
                     </li>
                     @endif
                 </ul>
+            </ul>
+
+
         </div>
     </div>
 </nav>

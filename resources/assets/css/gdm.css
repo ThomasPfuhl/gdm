@@ -4,6 +4,10 @@
     Author     : thomas.pfuhl@mfn-berlin.de
 */
 
+@import url('/fonts/LibreFranklin-Regular.ttf');
+@import url('/fonts/LibreFranklin-Bold.ttf');
+@import url('/fonts/LibreFranklin-Bold.ttf');
+
 body {
     font-family: 'Libre Franklin', sans-serif;
 }

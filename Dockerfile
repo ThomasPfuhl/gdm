@@ -35,10 +35,10 @@ ENV GDM_HOME /usr/share/app
 RUN mkdir $GDM_HOME -p && cd $GDM_HOME/
 
 
-# provide a sample dockjer environment file
+# provide a sample docker environment file
 COPY .env.docker $GDM_HOME/.env
 
-#install dependencies with composer
+# install dependencies with composer
 RUN     cd / && cd $GDM_HOME && \
         composer require doctrine/dbal && \
         composer require ignasbernotas/laravel-model-generator --dev
@@ -49,10 +49,6 @@ RUN     cd / && cd $GDM_HOME && \
 # download release file from public repository only
 #RUN cd $GDM_HOME && \
 #    curl -o gdm_latest.tgz https://code.naturkundemuseum.berlin/Thomas.Pfuhl/pmd/repository/archive.tar.gz?ref=master
-#COPY gdm_latest.tgz $GDM_HOME
-#RUN cd $GDM_HOME && \
-#    tar -xzf  $GDM_HOME/gdm_latest.tgz && \
-#    mv pmd-master-bb3075aefdb507cb699b598086e4f8e39ea86d77/* .
 #
 # temporary alternative for download
 COPY gdm_latest.tgz /tmp/
@@ -78,13 +74,19 @@ RUN cd $GDM_HOME && \
     cp lib/tools/MakeModelsCommand.php  vendor/ignasbernotas/laravel-model-generator/src/Commands/MakeModelsCommand.php
 
 #install gulp , bower, etc.
+# ATTENTION: only needed if you want to minify your css and js after modifictions are made
 #RUN cd $GDM_HOME && \
 #    npm install --save -g gulp-install
 #    npm install gulp
 #RUN cd $GDM_HOME && \
 #    node_modules/.bin/gulp
-RUN npm install gulp 
-RUN npm install gulp --save-dev
+#
+#RUN cd $GDM_HOME && \
+#    npm install gulp && \
+#    npm install gulp --save-dev
+#RUN cd $GDM_HOME && \
+#    gulp
+
 
 
 
