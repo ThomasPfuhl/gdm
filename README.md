@@ -1,7 +1,6 @@
 # GDM — Generic Data Module
 thomas.pfuhl@mfn-berlin.de   
 DFG-Projekt gfbio   
-&copy; MfN 15. Mai 2017
 
 ## Purpose
 Provide a webframework with CRUD functionalities for any relational data base.  
@@ -16,8 +15,6 @@ It can also be modified 'on-run' via a set of php scripts.
 - DataTables dynamic table sorting and filtering
 - Colorbox jQuery modal popup
 
-
-
 ### Requirements
 
 - PHP >= 5.5.9
@@ -28,13 +25,12 @@ It can also be modified 'on-run' via a set of php scripts.
 - Composer
 - NodeJS:  `sudo apt-get install nodejs; sudo apt-get install npm`
 
-
 ### Preliminaries
 set some shell variables which we will use during the installation
 
-    PMD_HOME=/usr/share/app
+    GDM_HOME=/usr/share/app
     EDIT=/usr/bin/gedit
-    cd $PMD_HOME
+    cd $GDM_HOME
 
 ### The project's code
 
@@ -52,13 +48,13 @@ If you use docker, get the file `Dockerfile`, and use the usual docker process. 
     composer update  
     composer update --no-scripts
 
-Please note that there is an environment file ``$PMD_HOME/.env`` which overwrites
+Please note that there is an environment file ``$GDM_HOME/.env`` which overwrites
 the settings defined in  ``config/database.php``, ``config/app.php`` and other config files.
 
 
 This project makes use of **node** and the node packlage manager **npm**.
 A recent version must be installed. Check with ``node -v``.
-Install the dependencies listed in ``$PMD_HOME/package.json`` :
+Install the dependencies listed in ``$GDM_HOME/package.json`` :
 
     npm install   
 
@@ -77,12 +73,11 @@ Retrieve the frontend dependencies with Bower, compile SASS, and move frontend f
 ## Database Schemes
 
 A database engine must be installed. We use here mySQL.
-Create the database `projektmetadaten` with utf-8 collation (uft8_general_ci).
-
+Create a database with utf-8 collation (utf8_general_ci).
 
 
 ### using Laravel migration utility
-creates migration classes in folder ``$PMD_HOME/database/migrations``
+creates migration classes in folder ``$GDM_HOME/database/migrations``
 
     #php artisan make:migration create_projects_table    
     $EDIT database/migrations/y_m_d_his_create_projects_table.php  &
@@ -101,7 +96,7 @@ creates migration classes in folder ``$PMD_HOME/database/migrations``
 
 **liquibase update command must be executed after each schema modification**:
 
-    ../../liquibase update  --defaultsFile=$PMD_HOME/database/liquibase/changelog.xml
+    ../../liquibase update  --defaultsFile=$GDM_HOME/database/liquibase/changelog.xml
 
 main changelog must be an XML file   
 chained changelog files may be XML or SQL files  
@@ -110,7 +105,7 @@ chained changelog files may be XML or SQL files
 (re)generate models depending on the database schemes, **must be executed after each schema modification**      
 based on [https://github.com/ignasbernotas/laravel-model-generator](https://github.com/ignasbernotas/laravel-model-generator)
 
-    php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK --getset
+    php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations --getset
 
 With the option `--getset`, Accessors (getters) and Mutators (setters) are defined. 
 Nonetheless, feel free to modify the generated code:
@@ -119,7 +114,7 @@ Nonetheless, feel free to modify the generated code:
 
 
 ### Database initial seed
-creates seeder classes in folder ``$PMD_HOME/database/seeds``
+creates seeder classes in folder ``$GDM_HOME/database/seeds``
 
 Table users: username=admin@admin.com   password=admin  
 Table users: username=user@user.com   password=user  
