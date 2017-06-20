@@ -1,11 +1,12 @@
-# PMD — Projektmetadaten
+# GDM — Generic Data Module
 thomas.pfuhl@mfn-berlin.de   
 DFG-Projekt gfbio   
 &copy; MfN 15. Mai 2017
 
 ## Purpose
-Provide a webframework with CRUD functionalities for the metadata of research Projects.  
-(PMD is an acronym for Project MetaData). The underlying data architecture is generated on-the-fly via a backend-UI.
+Provide a webframework with CRUD functionalities for any relational data base.  
+The underlying data architecture is generated 'on build' when deploying with docker.
+It can also be modified 'on-run' via a set of php scripts.
 
 ## Implementation
 - Laravel 5.1
