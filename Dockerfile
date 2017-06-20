@@ -34,7 +34,6 @@ RUN curl -sS https://getcomposer.org/installer | \
 ENV GDM_HOME /usr/share/app
 RUN mkdir $GDM_HOME -p && cd $GDM_HOME/
 
-
 # provide a sample docker environment file
 COPY .env.docker $GDM_HOME/.env
 
@@ -73,8 +72,27 @@ RUN cd $GDM_HOME && \
     cp lib/tools/model.stub  vendor/ignasbernotas/laravel-model-generator/src/stubs/model.stub && \
     cp lib/tools/MakeModelsCommand.php  vendor/ignasbernotas/laravel-model-generator/src/Commands/MakeModelsCommand.php
 
+#######################
+# liquibase
+
+# install jre
+RUN apt-get install -y --force-yes default-jre 
+
+# load environment variables
+# ISSUE !!!  ugly workaround, we should import them from the laravel environement file for shell variables
+ENV DB_CONNECTION   mysql
+ENV DB_HOST         172.17.0.1
+ENV DB_DATABASE     projektmetadaten
+ENV DB_USERNAME     root
+ENV DB_PASSWORD     p
+
+RUN echo host=$DB_HOST db=$DB_DATABASE 
+RUN cd $GDM_HOME/database/liquibase && \
+    ../../liquibase --logLevel=info updateSQL 
+#    ../../liquibase update
+
 #install gulp , bower, etc.
-# ATTENTION: only needed if you want to minify your css and js after modifictions are made
+# ATTENTION: only needed if you want to minify your css and js after modifications are made
 #RUN cd $GDM_HOME && \
 #    npm install --save -g gulp-install
 #    npm install gulp
@@ -90,13 +108,13 @@ RUN cd $GDM_HOME && \
 
 
 
-#make our own apache configuration      
-ENV APACHE_RUN_USER www-data
-ENV APACHE_RUN_GROUP www-data
-ENV APACHE_LOG_DIR /var/log/apache2
-ENV APACHE_PID_FILE /var/run/apache2.pid
-ENV APACHE_RUN_DIR /var/run/apache2
-ENV APACHE_LOCK_DIR /var/lock/apache2
+#make our own apache configuration, already defined in .env.docker    
+#ENV APACHE_RUN_USER www-data
+#ENV APACHE_RUN_GROUP www-data
+#ENV APACHE_LOG_DIR /var/log/apache2
+#ENV APACHE_PID_FILE /var/run/apache2.pid
+#ENV APACHE_RUN_DIR /var/run/apache2
+#ENV APACHE_LOCK_DIR /var/lock/apache2
 
 RUN ln -sf /dev/stdout /var/log/apache2/access.log && \
     ln -sf /dev/stderr /var/log/apache2/error.log
