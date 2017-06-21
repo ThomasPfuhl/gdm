@@ -145,3 +145,18 @@ div.dataTables_length {
 .table-hover > tbody > tr:hover {
     background-color: rgba(240,240,240,.5);
 }
+
+/* submenu */
+ul.dropdown-menu > li > a {
+    color: black;
+    background: #ccc;
+}
+ul.dropdown-menu > li > a:hover {
+    color: black;
+    background: #fff;
+}
+ul.dropdown-menu > li.active > a, 
+ul.dropdown-menu > li.active > a:hover {
+    color: #d50000;
+    background: #ccc;
+}
