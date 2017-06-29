@@ -17,7 +17,7 @@ class NetworkPartner extends Model
         'projectID',
         'proposalID',
         'institutionID',
-        'networkTypeID'
+        'networkID'
     ];
 
     protected $guarded = [];
@@ -30,12 +30,16 @@ class NetworkPartner extends Model
 		return $this->projectID;
 	}
 
+
+
 	/**
 	 * @return mixed
 	 */
 	public function getProposalID() {
 		return $this->proposalID;
 	}
+
+
 
 	/**
 	 * @return mixed
@@ -44,12 +48,16 @@ class NetworkPartner extends Model
 		return $this->institutionID;
 	}
 
+
+
 	/**
 	 * @return mixed
 	 */
-	public function getNetworkTypeID() {
-		return $this->networkTypeID;
+	public function getNetworkID() {
+		return $this->networkID;
 	}
+
+
 
 
     
@@ -84,11 +92,14 @@ class NetworkPartner extends Model
 	 * @param $value
 	 * @return $this
 	 */
-	public function setNetworkTypeID($value) {
-		$this->networkTypeID = $value;
+	public function setNetworkID($value) {
+		$this->networkID = $value;
 		return $this;
 	}
 
 
+// thomas.pfuhl@mfn-berlin.de: one-to-one relations BEGIN
+    
+// thomas.pfuhl@mfn-berlin.de: one-to-one relations END
 
 }

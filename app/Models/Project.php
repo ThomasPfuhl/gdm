@@ -11,7 +11,7 @@ class Project extends Model
 {
     protected $table = 'projects';
 
-    public $timestamps = true;
+    public $timestamps = false;
 
     protected $fillable = [
         'title',
@@ -33,12 +33,16 @@ class Project extends Model
 		return $this->title;
 	}
 
+
+
 	/**
 	 * @return mixed
 	 */
 	public function getDescription() {
 		return $this->description;
 	}
+
+
 
 	/**
 	 * @return mixed
@@ -47,12 +51,16 @@ class Project extends Model
 		return $this->startDate;
 	}
 
+
+
 	/**
 	 * @return mixed
 	 */
 	public function getEndDate() {
 		return $this->endDate;
 	}
+
+
 
 	/**
 	 * @return mixed
@@ -61,6 +69,8 @@ class Project extends Model
 		return $this->remarks;
 	}
 
+
+
 	/**
 	 * @return mixed
 	 */
@@ -68,12 +78,16 @@ class Project extends Model
 		return $this->officialProjectID;
 	}
 
+
+
 	/**
 	 * @return mixed
 	 */
 	public function getSapID() {
 		return $this->sapID;
 	}
+
+
 
 
     
@@ -141,5 +155,8 @@ class Project extends Model
 	}
 
 
+// thomas.pfuhl@mfn-berlin.de: one-to-one relations BEGIN
+    
+// thomas.pfuhl@mfn-berlin.de: one-to-one relations END
 
 }

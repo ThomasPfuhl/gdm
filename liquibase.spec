@@ -10,7 +10,7 @@
 %define lqver        2.0.0
 %define buildnum     1
 ## MySQL Jar
-%define mysqljar     mysql-connector-java-5.1.10.jar
+%define mysqljar     mysql-connector-java-5.1.40.jar
 %define gpl2license  gpl-2.0.txt
 ## Oracle Files
 %define oraLicense   oracle-license.txt 

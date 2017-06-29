@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * routes
+ * @todo write a dummy HomeController
+ */
 /* * **************   Model binding into route ************************* */
 Route::model('project', 'App\Models\Project');
 
@@ -16,11 +20,13 @@ Route::get('contact', 'PagesController@contact');
 
 //Route::get('/', 'HomeController@index');
 //Route::get('home', 'HomeController@index');
+
 Route::get('/', 'ProjectsController@index');
 Route::get('home', 'ProjectsController@index');
 
 Route::get('projects', 'ProjectsController@index');
-Route::get('project/{slug}', 'ProjectsController@show');
+Route::get('projects/{slug}', 'ProjectsController@show');
+Route::get('projects/data', 'ProjectsController@data');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
@@ -32,6 +38,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
     # Admin Dashboard
     Route::get('dashboard', 'Admin\DashboardController@index');
+
+
+    # Admin update UI
+    Route::get('update-ui', 'Admin\UpdateUIController@index');
 
     # Language
     Route::get('language/data', 'Admin\LanguageController@data');

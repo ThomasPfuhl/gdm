@@ -31,12 +31,16 @@ class Language extends Model
 		return $this->position;
 	}
 
+
+
 	/**
 	 * @return mixed
 	 */
 	public function getName() {
 		return $this->name;
 	}
+
+
 
 	/**
 	 * @return mixed
@@ -45,6 +49,8 @@ class Language extends Model
 		return $this->lang_code;
 	}
 
+
+
 	/**
 	 * @return mixed
 	 */
@@ -52,12 +58,16 @@ class Language extends Model
 		return $this->user_id;
 	}
 
+
+
 	/**
 	 * @return mixed
 	 */
 	public function getUserIdEdited() {
 		return $this->user_id_edited;
 	}
+
+
 
 
     
@@ -107,5 +117,24 @@ class Language extends Model
 	}
 
 
+// thomas.pfuhl@mfn-berlin.de: one-to-one relations BEGIN
+    
+        /**
+         * retrieve related User
+         * @return mixed
+         */
+        public function user() {
+            return $this->hasOne('App\Models\User', 'id', 'user_id'); // one to one relation
+        }
+
+        /**
+         * retrieve related User
+         * @return mixed
+         */
+        public function user() {
+            return $this->hasOne('App\Models\User', 'id', 'user_id_edited'); // one to one relation
+        }
+
+// thomas.pfuhl@mfn-berlin.de: one-to-one relations END
 
 }

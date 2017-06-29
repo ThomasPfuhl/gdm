@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+@import url('/fonts/LibreFranklin-Regular.ttf');
+@import url('/fonts/LibreFranklin-Bold.ttf');
+@import url('/fonts/LibreFranklin-Bold.ttf');
 /*!
  * Bootstrap v3.3.5 (http://getbootstrap.com)
  * Copyright 2011-2015 Twitter, Inc.
@@ -20836,6 +20839,7 @@ div.FixedHeader_Cloned table {
 
 body {
   font-family: 'Libre Franklin', sans-serif;
+  color: black;
 }
 
 body:before {
@@ -21010,4 +21014,22 @@ div.dataTables_length {
 
 .table-hover > tbody > tr:hover {
   background-color: rgba(240,240,240,.5);
+}
+
+/* submenu */
+
+ul.dropdown-menu > li > a {
+  color: black;
+  background: #ccc;
+}
+
+ul.dropdown-menu > li > a:hover {
+  color: black;
+  background: #fff;
+}
+
+ul.dropdown-menu > li.active > a,
+ul.dropdown-menu > li.active > a:hover {
+  color: #d50000;
+  background: #ccc;
 }

@@ -10,6 +10,7 @@
 
 body {
     font-family: 'Libre Franklin', sans-serif;
+    color: black;
 }
 
 body:before {

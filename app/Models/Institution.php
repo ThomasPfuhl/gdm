@@ -30,12 +30,16 @@ class Institution extends Model
 		return $this->name;
 	}
 
+
+
 	/**
 	 * @return mixed
 	 */
 	public function getAbbrev() {
 		return $this->abbrev;
 	}
+
+
 
 	/**
 	 * @return mixed
@@ -44,12 +48,16 @@ class Institution extends Model
 		return $this->address;
 	}
 
+
+
 	/**
 	 * @return mixed
 	 */
 	public function getCountryISO2() {
 		return $this->countryISO2;
 	}
+
+
 
 
     
@@ -90,5 +98,8 @@ class Institution extends Model
 	}
 
 
+// thomas.pfuhl@mfn-berlin.de: one-to-one relations BEGIN
+    
+// thomas.pfuhl@mfn-berlin.de: one-to-one relations END
 
 }

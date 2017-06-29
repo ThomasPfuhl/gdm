@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" title="Projektmetadaten" href="index.html">PMD - Administration</a>
+        <a class="navbar-brand" title="GDM" href="index.html">GDM - Administration</a>
     </div>
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
@@ -19,11 +19,19 @@
                         <i class="fa fa-dashboard fa-fw"></i> Dashboard
                     </a>
                 </li>
+
+                <li>
+                    <a href="{{url('admin/update-ui')}}">
+                        <i class="glyphicon glyphicon-cog"></i> update UI
+                    </a>
+                </li>
+
                 <li>
                     <a href="{{url('admin/project')}}">
                         <i class="glyphicon glyphicon-bullhorn"></i> Projects
                     </a>
                 </li>
+
 
                 <!--
                 <li>

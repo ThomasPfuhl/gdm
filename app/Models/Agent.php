@@ -36,12 +36,16 @@ class Agent extends Model
 		return $this->orcid;
 	}
 
+
+
 	/**
 	 * @return mixed
 	 */
 	public function getTitle() {
 		return $this->title;
 	}
+
+
 
 	/**
 	 * @return mixed
@@ -50,12 +54,16 @@ class Agent extends Model
 		return $this->givenName;
 	}
 
+
+
 	/**
 	 * @return mixed
 	 */
 	public function getFamilyName() {
 		return $this->familyName;
 	}
+
+
 
 	/**
 	 * @return mixed
@@ -64,12 +72,16 @@ class Agent extends Model
 		return $this->institutionID;
 	}
 
+
+
 	/**
 	 * @return mixed
 	 */
 	public function getRole() {
 		return $this->role;
 	}
+
+
 
 	/**
 	 * @return mixed
@@ -78,12 +90,16 @@ class Agent extends Model
 		return $this->email;
 	}
 
+
+
 	/**
 	 * @return mixed
 	 */
 	public function getPhone() {
 		return $this->phone;
 	}
+
+
 
 	/**
 	 * @return mixed
@@ -92,12 +108,16 @@ class Agent extends Model
 		return $this->fax;
 	}
 
+
+
 	/**
 	 * @return mixed
 	 */
 	public function getWebsite() {
 		return $this->website;
 	}
+
+
 
 
     
@@ -192,5 +212,16 @@ class Agent extends Model
 	}
 
 
+// thomas.pfuhl@mfn-berlin.de: one-to-one relations BEGIN
+    
+        /**
+         * retrieve related Institution
+         * @return mixed
+         */
+        public function institution() {
+            return $this->hasOne('App\Models\Institution', 'id', 'institutionID'); // one to one relation
+        }
+
+// thomas.pfuhl@mfn-berlin.de: one-to-one relations END
 
 }

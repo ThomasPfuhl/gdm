@@ -186,7 +186,7 @@ class MakeModelsCommand extends GeneratorCommand {
 
 // if we have ignore tables, we need to find all the posibilites
         if (is_string($ignoreTable) && preg_match("/^" . $table . "|^" . $table . ",|," . $table . ",|," . $table . "$/", $ignoreTable)) {
-            $this->info($table . " is ignored");
+            $this->info($table . ": is ignored.");
 
             return;
         }
@@ -204,14 +204,14 @@ class MakeModelsCommand extends GeneratorCommand {
         }
 
         if ($this->files->exists($path = $this->getPath($name)) && !$this->option('force')) {
-            return $this->error($this->extends . ' for ' . $table . ' already exists!');
+            return $this->error($table . ': ' . $this->extends . ' already exists!');
         }
 
         $this->makeDirectory($path);
 
         $this->files->put($path, $this->replaceTokens($name, $table));
 
-        $this->info($this->extends . ' for ' . $table . ' created successfully.');
+        $this->info($table . ': ' . $this->extends . ' created successfully.');
     }
 
     /**
@@ -245,12 +245,10 @@ class MakeModelsCommand extends GeneratorCommand {
             $class = $this->replaceTokensWithSetGetFunctions($properties, $class);
 
             /* thomas.pfuhl@mfn-berlin.de: one-to-one relations added */
-            echo "--------------------getAllForeignKeys() \n";
             $foreign_keys = $this->getAllForeignKeys();
-            echo print_r($foreign_keys, true);
 
-            echo "--------- Tables with foreign keys: \n";
-            echo print_r(array_keys($foreign_keys), true);
+//            echo "--------- Tables with foreign keys: \n";
+//            echo print_r(array_keys($foreign_keys), true);
 
             $class = $this->replaceRelationTokensWithFunctions($table, $foreign_keys, $class);
         } else {
@@ -305,13 +303,14 @@ class MakeModelsCommand extends GeneratorCommand {
 //$relations .= $fillableGetSet->generateGetFunctions();
 //$relations = print_r($foreign_keys[$table], true);
 
-        foreach ($foreign_keys[$table] as $relation) {
+        if (array_key_exists($table, $foreign_keys))
+            foreach ($foreign_keys[$table] as $relation) {
 
-            $foreign_key = $relation['foreign_key'];
-            $referenced_table_trunc = rtrim($relation['referenced_table'], "s");
-            $referenced_model = ucfirst($referenced_table_trunc);
+                $foreign_key = $relation['foreign_key'];
+                $referenced_table_trunc = Pluralizer::singular($relation['referenced_table']);
+                $referenced_model = ucfirst($referenced_table_trunc);
 
-            $stub = <<<RELATION
+                $stub = <<<RELATION
 
         /**
          * retrieve related $referenced_model
@@ -320,10 +319,10 @@ class MakeModelsCommand extends GeneratorCommand {
         public function $referenced_table_trunc() {
             return \$this->hasOne('App\Models\\$referenced_model', 'id', '$foreign_key'); // one to one relation
         }
-                    
+
 RELATION;
-            $relations .= $stub;
-        }
+                $relations .= $stub;
+            }
 
         return str_replace(["{{relations}}"], [$relations], $class);
     }
@@ -364,11 +363,11 @@ RELATION;
             }
         }
 
-        echo "--------------------getAllForeignKeys() \n";
-        $fk = $this->getAllForeignKeys();
-        echo print_r($fk, true);
-        echo "--------- Tables with foreign keys: \n";
-        echo print_r(array_keys($fk), true);
+//        echo "--------------------getAllForeignKeys() \n";
+//        $fk = $this->getAllForeignKeys();
+//        echo print_r($fk, true);
+//        echo "--------- Tables with foreign keys: \n";
+//        echo print_r(array_keys($fk), true);
 
         return ['primaryKey' => $primaryKey, 'fillable' => $fillable, 'guarded' => $guarded, 'timestamps' => $timestamps];
     }

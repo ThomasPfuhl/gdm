@@ -19,12 +19,12 @@ CREATE TABLE IF NOT EXISTS projects (
 
 CREATE TABLE IF NOT EXISTS proposals (
 	`id`            BIGINT	UNSIGNED COMMENT 'Primary key of the proposals table' PRIMARY KEY AUTO_INCREMENT,
-	`projectID`	BIGINT	UNSIGNED COMMENT 'Foreign key to the projects table' DEFAULT	1,
-	`fundingAgencyID`	BIGINT	UNSIGNED COMMENT 'Foreign key to the agencies table as funding agency',
+	`projectID`	BIGINT	UNSIGNED COMMENT 'Foreign key to the projects table' ,
+	`agencyID`	BIGINT	UNSIGNED COMMENT 'Foreign key to the agencies table',
 	`submissonDate`	DATE	COMMENT 'Date of submission',
 	`acceptionDate`	DATE	COMMENT 'Date of proposal acception',
 	`rejectionDate`	DATE	COMMENT 'Date of proposal rejection',
-	`principalInvestigatorID`	BIGINT	UNSIGNED COMMENT 'foreign key to the agents table',
+	`agentID`	BIGINT	UNSIGNED COMMENT 'Foreign key to the agents table',
 	`status`          VARCHAR(100)	COMMENT 'Status of the proposal: submitted, accepted, rejected. Has controlled vocabulary: (submitted|accepted|rejected)',
 	`call`            VARCHAR(500)	COMMENT 'Reference to the call for proposals',
 	`proposedFunding`	FLOAT	COMMENT 'Proposed amount of money',
@@ -34,8 +34,8 @@ CREATE TABLE IF NOT EXISTS proposals (
 	`endDate`       DATE	COMMENT 'Date of proposed project end',
 	`remarks`       TEXT	COMMENT 'Remarks related to the proposal',
         FOREIGN KEY (projectID) REFERENCES projects(id),
-        FOREIGN KEY (fundingAgencyID) REFERENCES agencies(id),
-        FOREIGN KEY (principalInvestigatorID) REFERENCES agents(id)
+        FOREIGN KEY (agencyID) REFERENCES agencies(id),
+        FOREIGN KEY (agentID) REFERENCES agents(id)
 ) COMMENT 'Table of proposals, regardless of the status of proposal or derived project';
 --rollback drop table proposals;
 
@@ -76,9 +76,9 @@ CREATE TABLE IF NOT EXISTS institutions	(
 CREATE TABLE IF NOT EXISTS networkPartners(
 	`projectID`	BIGINT	UNSIGNED    COMMENT 'Foreign key to the projects table',
 	`proposalID`	BIGINT	UNSIGNED    COMMENT 'Foreign key to the proposals table',
-	`institutionID`	BIGINT	UNSIGNED    COMMENT 'Foreign key to the institutions table as indication of the partner institution'	DEFAULT 1,
-	`networkTypeID`	BIGINT	UNSIGNED    COMMENT 'Foreign key to the networksType table'	DEFAULT 1
-) COMMENT' Table of network partners.	A look-up table for many-to-many relations between partners';
+	`institutionID`	BIGINT	UNSIGNED    COMMENT 'Foreign key to the institutions table as indication of the partner institution' DEFAULT 1,
+	`networkID`	BIGINT	UNSIGNED    COMMENT 'Foreign key to the networks table'	DEFAULT 1
+) COMMENT' Table of network partners. A look-up table for many-to-many relations between partners';
 --rollback drop table networkPartners;
 
 

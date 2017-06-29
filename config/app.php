@@ -24,7 +24,7 @@ return [
       | your application so that it is used when running Artisan tasks.
       |
      */
-    'url' => env('PMD_URL', true),
+    'url' => env('GMD_URL', true),
     /*
       |--------------------------------------------------------------------------
       | Application Timezone
@@ -35,7 +35,7 @@ return [
       | ahead and set this to a sensible default for you out of the box.
       |
      */
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Berlin',
     /*
       |--------------------------------------------------------------------------
       | Application Locale Configuration
@@ -46,7 +46,7 @@ return [
       | to any of the locales which will be supported by the application.
       |
      */
-    'locale' => 'en',
+    'locale' => 'de_DE',
     /*
       |--------------------------------------------------------------------------
       | Application Fallback Locale

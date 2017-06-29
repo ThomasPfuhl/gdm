@@ -10,10 +10,11 @@ It can also be modified 'on-run' via a set of php scripts.
 ## Implementation
 - Laravel 5.1
 - some Laravel plugins
-- Liquibase 3.5.3
 - Twitter Bootstrap 3.x
 - DataTables dynamic table sorting and filtering
 - Colorbox jQuery modal popup
+- optionally: Liquibase 3.5.3
+
 
 ### Requirements
 
@@ -38,7 +39,9 @@ set some shell variables which we will use during the installation
 
 
 ### Docker
-If you use docker, get the file `Dockerfile`, and use the usual docker process. Otherwise:
+If you want to deploy GDM with docker, have a look at the fully automated installer docker-gdm,
+at `https://code.naturkundemuseum.berlin/MfN-Berlin/docker-gdm` . 
+Otherwise build GDM by the following steps:
 
 
 ### Laravel framework
@@ -62,14 +65,6 @@ Retrieve the frontend dependencies with Bower, compile SASS, and move frontend f
 
     gulp
 
-## Liquibase install
-
-    @mkdir database/liquibase   
-    cd database/liquibase   
-    $EDIT liquibase.properties &   
-    touch changelog.xml   
-    @mkdir changelogs   
-
 ## Database Schemes
 
 A database engine must be installed. We use here mySQL.
@@ -87,21 +82,31 @@ creates migration classes in folder ``$GDM_HOME/database/migrations``
     #php artisan down  
 
 
-### using Liquibase
+### using Liquibase (optionally)
 
-**Liquibase needs a Java Runtime. A JRE is not part of this distribution.**
+- Liquibase needs a Java Runtime. A JRE is not part of this distribution.
+- download Liquibase: `curl https://github.com/liquibase/liquibase/releases/download/liquibase-parent-3.5.3/liquibase-3.5.3-bin.tar.gz`
+- download DB connector for java, e.g. `https://dev.mysql.com/downloads/connector/j/`
+- create Liquibase file structure  
+    - main changelog must be an XML file   
+    - chained changelog files may be XML or SQL files   
+    - please refer to the official liquibase documentation 
 
-    cd database/liquibase   
-    ../../liquibase updateSQL   
+        @mkdir database/liquibase   
+        cd database/liquibase   
+        $EDIT liquibase.properties &   
+        touch changelog.xml   
+        @mkdir changelogs   
 
-**liquibase update command must be executed after each schema modification**:
+- run Liquibase (put executable file in an appropriate folder)  
+`update` command must be executed after each schema modification
 
-    ../../liquibase update  --defaultsFile=$GDM_HOME/database/liquibase/changelog.xml
+        cd database/liquibase   
+        liquibase updateSQL   
+        liquibase update  --defaultsFile=$GDM_HOME/database/liquibase/changelog.xml
 
-main changelog must be an XML file   
-chained changelog files may be XML or SQL files  
+#### Models
 
-### Models
 (re)generate models depending on the database schemes, **must be executed after each schema modification**      
 based on [https://github.com/ignasbernotas/laravel-model-generator](https://github.com/ignasbernotas/laravel-model-generator)
 
@@ -111,6 +116,12 @@ With the option `--getset`, Accessors (getters) and Mutators (setters) are defin
 Nonetheless, feel free to modify the generated code:
 
     $EDIT app/Models/Project.php &
+
+#### Views, Controllers, Menu items, Routes
+all is done in a handy php script
+
+    cd lib/tools
+    php make_ui.php
 
 
 ### Database initial seed
@@ -136,6 +147,10 @@ If you use docker,this may be ``http://172.17.0.2`` or some similar IP.
 - point your browser to ``http://172.17.0.2/auth/login``,
 - log in with  administrator credentials,
 - go to ``http://172.17.0.2/admin/dashboard``
+
+
+- PENDING: Saving records 
+- WORKING: re-generate UI ``http://172.17.0.2/admin/update-ui``
 
 
 ## to do

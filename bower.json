@@ -1,6 +1,6 @@
 {
-  "name": "Projektmetadaten",
-  "version": "0.1",
+  "name": "GDM",
+  "version": "0.1a",
   "homepage": "https://code.naturkundemuseum.berlin/Thomas.Pfuhl/pmd/",
   "moduleType": [
     "node"

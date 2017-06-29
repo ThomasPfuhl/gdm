@@ -28,6 +28,8 @@ class Network extends Model
 	}
 
 
+
+
     
 	/**
 	 * @param $value
@@ -39,5 +41,8 @@ class Network extends Model
 	}
 
 
+// thomas.pfuhl@mfn-berlin.de: one-to-one relations BEGIN
+    
+// thomas.pfuhl@mfn-berlin.de: one-to-one relations END
 
 }
