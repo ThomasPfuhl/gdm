@@ -54,24 +54,31 @@ Otherwise build GDM step by step:
 
 #### Customization
 
-Please note that there is an environment file ``$GDM_HOME/.env`` which overwrites
-the settings defined in  ``config/database.php``, ``config/app.php`` and other config files.
-All customizing files are located in the folder ``custom``.
+All customizing files are located in the folder ``custom``, so go there:
 
-    cd cd $GDM_HOME/custom
+    cd $GDM_HOME/custom
+
+Laravel uses an environment file ``$GDM_HOME/.env`` which overwrites
+the settings defined in  ``config/database.php`` and ``config/app.php``.
+
     $EDIT env.example
-    cp env.example .env
+    cp env.example $GDM_HOME/.env
 
-You should define the name of your deployed application, by editing the following file:
+You should define the name and a short description of your application:
 
-    sitename.txt
+    $EDIT sitename.txt
+    $EDIT about.html
+    cp sitename.txt $GDM_HOME/public/appfiles
+    cp about.html $GDM_HOME/public/appfiles
 
 You may customize the layout, by adapting the following files:
 
-    custom.css
-    custom.js
+    $EDIT custom.css
+    $EDIT custom.js
+    cp custom.css $GDM_HOME/public/css
+    cp custom.js $GDM_HOME/public/js
 
-This project makes use of **node** and the node packlage manager **npm**.
+We make use of **node** and the node package manager **npm**.
 A recent version must be installed. Check with ``node -v``.
 Install the dependencies listed in ``$GDM_HOME/package.json`` :
 
@@ -81,10 +88,11 @@ Install the dependencies listed in ``$GDM_HOME/package.json`` :
 Retrieve the frontend dependencies with Bower, compile SASS, and move frontend files into place:  .
 This is an optional step , since the minimzed and compressed files are already provided.
 
+    cd $GDM_HOME
     gulp
 
 
-## Database Schemes
+## Database 
 
 A database engine must be installed. We use here mySQL.
 Create a database with utf-8 collation (utf8_general_ci).
@@ -97,9 +105,10 @@ in order to ensure the automatic generation of the User Interface:
 - Every table should have as its first column the auto_increment primary key field  `id`.
 - The second column should be a column with a human readable content, like .e.g `title` or `shortdescription`.
 - Foreign key columns should be built with the referenced table name in singular form, followed by `ID`.
-Example: `agencyID` is a foreign key for the table `agencies` that has a column `id`.
+Example: `proposals.agencyID` is a foreign key for `agencies.id`.
 
 ### using Laravel migration utility
+
 creates migration classes in folder ``$GDM_HOME/database/migrations``
 
     #php artisan make:migration create_projects_table    
@@ -133,7 +142,7 @@ creates migration classes in folder ``$GDM_HOME/database/migrations``
             liquibase updateSQL   
             liquibase update  --defaultsFile=$GDM_HOME/database/liquibase/changelog.xml
 
-#### Models, Views, Controllers, Menu items, Routes
+### Models, Views, Controllers, Menu items, Routes
     
 We generate models automatiocally, depending on the database schemes,    
 based on [https://github.com/ignasbernotas/laravel-model-generator](https://github.com/ignasbernotas/laravel-model-generator)
@@ -179,6 +188,7 @@ If you use docker,this may be ``http://172.17.0.2`` or some similar IP.
 - go to ``http://172.17.0.2/admin/dashboard``
 
 - PENDING: Saving records 
+- PENDING: User Rights Management
 
 
 
