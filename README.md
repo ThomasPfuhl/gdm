@@ -89,6 +89,15 @@ This is an optional step , since the minimzed and compressed files are already p
 A database engine must be installed. We use here mySQL.
 Create a database with utf-8 collation (utf8_general_ci).
 
+### Data Architecture
+
+There are some constraints for the database tables, 
+in order to ensure the automatic generation of the User Interface:
+
+- Every table should have as its first column the auto_increment primary key field  `id`.
+- The second column should be a column with a human readable content, like .e.g `title` or `shortdescription`.
+- Foreign key columns should be built with the referenced table name in singular form, followed by `ID`.
+Example: `agencyID` is a foreign key for the table `agencies` that has a column `id`.
 
 ### using Laravel migration utility
 creates migration classes in folder ``$GDM_HOME/database/migrations``
@@ -126,16 +135,16 @@ creates migration classes in folder ``$GDM_HOME/database/migrations``
 
 #### Models, Views, Controllers, Menu items, Routes
     
-generate models depending on the database schemes,    
+We generate models automatiocally, depending on the database schemes,    
 based on [https://github.com/ignasbernotas/laravel-model-generator](https://github.com/ignasbernotas/laravel-model-generator)
 
-This is done in a handy PHP script,  and must be executed after each schema modification: 
+This is done in a handy PHP script, and must be executed after each schema modification: 
 
     cd lib/tools
     php make_ui.php
 
 The script may also be called in the Admin Dashboard, so you do not need a commandline access.   
-Make sure thet the webuser (e.g. www-data) has write permissions to the folders 
+Make sure thet the webuser (e.g. www-data) has write permissions for the folders 
 `app/Models`, 
 `app/Http/Controllers`,
 the file `app/Http/more_routes.php`,
