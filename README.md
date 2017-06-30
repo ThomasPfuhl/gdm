@@ -41,8 +41,9 @@ set some shell variables which we will use during the installation
 ### Docker
 If you want to deploy GDM with docker, have a look at the fully automated installer docker-gdm,
 at `https://code.naturkundemuseum.berlin/MfN-Berlin/docker-gdm` . 
-Otherwise build GDM by the following steps:
 
+
+Otherwise build GDM step by step:
 
 ### Laravel framework
     composer install  
@@ -105,23 +106,25 @@ creates migration classes in folder ``$GDM_HOME/database/migrations``
         liquibase updateSQL   
         liquibase update  --defaultsFile=$GDM_HOME/database/liquibase/changelog.xml
 
-#### Models
-
-(re)generate models depending on the database schemes, **must be executed after each schema modification**      
+#### Models, Views, Controllers, Menu items, Routes
+    
+generate models depending on the database schemes,    
 based on [https://github.com/ignasbernotas/laravel-model-generator](https://github.com/ignasbernotas/laravel-model-generator)
 
-    php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations --getset
-
-With the option `--getset`, Accessors (getters) and Mutators (setters) are defined. 
-Nonetheless, feel free to modify the generated code:
-
-    $EDIT app/Models/Project.php &
-
-#### Views, Controllers, Menu items, Routes
-all is done in a handy php script
+This is done in a handy PHP script,  and must be executed after each schema modification: 
 
     cd lib/tools
     php make_ui.php
+
+The script may also be called in the Admin Dashboard, so you do not need a commandline access.   
+Make sure thet the webuser (e.g. www-data) has write permissions to the folders 
+`app/Models`, 
+`app/Http/Controllers`,
+the file `app/Http/more_routes.php`,
+and the file `resources/views/partials/menu-items.blade.php`.
+
+PENDING: many-to-many relations are yet not generated automagically.   
+PENDING: do the same thing for the backend MVC.  
 
 
 ### Database initial seed
@@ -145,13 +148,10 @@ If you use docker,this may be ``http://172.17.0.2`` or some similar IP.
 
 ### Backend
 - point your browser to ``http://172.17.0.2/auth/login``,
-- log in with  administrator credentials,
+- log in with administrator credentials,
 - go to ``http://172.17.0.2/admin/dashboard``
 
-
 - PENDING: Saving records 
-- WORKING: re-generate UI ``http://172.17.0.2/admin/update-ui``
 
 
-## to do
-[still to do...](TODO.md)
+
