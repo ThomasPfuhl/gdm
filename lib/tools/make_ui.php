@@ -8,6 +8,15 @@ define("DB_SCHEMA", "projektmetadaten");
 define("DB_USER", "root");
 define("DB_PASSWORD", "p");
 
+//$stream = fopen('php://output', 'w');
+//$stream = fopen('log.txt', 'w');
+//Artisan::call(
+//        'artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations --getset', array()
+//);
+echo "\n------------\nCREATING MODELS...\n\n";
+system('cd ../../; php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations --getset');
+
+
 $sql = "SELECT TABLE_NAME
             FROM
                 INFORMATION_SCHEMA.tables
@@ -24,11 +33,13 @@ $sql = "SELECT TABLE_NAME
 $pdo = new PDO(DB_ENGINE . ":host=" . DB_HOST . ";dbname=" . DB_SCHEMA, DB_USER, DB_PASSWORD);
 $response = $pdo->query($sql);
 
+echo "\n------------\nCREATING CONNTROLLERS, VIEWS, MENU ITEMS, and ROUTES...\n";
+
 //$result = array();
 foreach ($response as $row) {
     $name = $row["TABLE_NAME"];
     //$result[] = $name;
-    echo "\n\n----------------\n" . $row["TABLE_NAME"];
+    echo "\n----------------\n" . $row["TABLE_NAME"];
 
     include("add_controller.php");
     include("add_menu_item.php");
