@@ -76,8 +76,8 @@ CREATE TABLE IF NOT EXISTS institutions	(
 CREATE TABLE IF NOT EXISTS networkPartners(
 	`projectID`	BIGINT	UNSIGNED    COMMENT 'Foreign key to the projects table',
 	`proposalID`	BIGINT	UNSIGNED    COMMENT 'Foreign key to the proposals table',
-	`institutionID`	BIGINT	UNSIGNED    COMMENT 'Foreign key to the institutions table as indication of the partner institution' DEFAULT 1,
-	`networkID`	BIGINT	UNSIGNED    COMMENT 'Foreign key to the networks table'	DEFAULT 1
+	`institutionID`	BIGINT	UNSIGNED    COMMENT 'Foreign key to the institutions table as indication of the partner institution'  NOT NULL,
+	`networkID`	BIGINT	UNSIGNED    COMMENT 'Foreign key to the networks table'  NOT NULL
 ) COMMENT' Table of network partners. A look-up table for many-to-many relations between partners';
 --rollback drop table networkPartners;
 

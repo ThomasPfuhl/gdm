@@ -52,22 +52,37 @@ Otherwise build GDM step by step:
     composer update  
     composer update --no-scripts
 
+#### Customization
+
 Please note that there is an environment file ``$GDM_HOME/.env`` which overwrites
 the settings defined in  ``config/database.php``, ``config/app.php`` and other config files.
+All customizing files are located in the folder ``custom``.
 
+    cd cd $GDM_HOME/custom
     $EDIT env.example
     cp env.example .env
 
+You should define the name of your deployed application, by editing the following file:
+
+    sitename.txt
+
+You may customize the layout, by adapting the following files:
+
+    custom.css
+    custom.js
 
 This project makes use of **node** and the node packlage manager **npm**.
 A recent version must be installed. Check with ``node -v``.
 Install the dependencies listed in ``$GDM_HOME/package.json`` :
 
+    cd $GDM_HOME
     npm install   
 
-Retrieve the frontend dependencies with Bower, compile SASS, and move frontend files into place:   
+Retrieve the frontend dependencies with Bower, compile SASS, and move frontend files into place:  .
+This is an optional step , since the minimzed and compressed files are already provided.
 
     gulp
+
 
 ## Database Schemes
 
@@ -96,8 +111,8 @@ creates migration classes in folder ``$GDM_HOME/database/migrations``
     - main changelog must be an XML file   
     - chained changelog files may be XML or SQL files   
  
-            @mkdir database/liquibase   
-            cd database/liquibase   
+            @mkdir $GDM_HOME/database/liquibase   
+            cd GDM_HOME/database/liquibase   
             $EDIT liquibase.properties &   
             touch changelog.xml   
             @mkdir changelogs   
@@ -105,7 +120,7 @@ creates migration classes in folder ``$GDM_HOME/database/migrations``
 - run Liquibase (put executable file in an appropriate folder)  
 `update` command must be executed after each schema modification
 
-            cd database/liquibase   
+            cd GDM_HOME/database/liquibase   
             liquibase updateSQL   
             liquibase update  --defaultsFile=$GDM_HOME/database/liquibase/changelog.xml
 

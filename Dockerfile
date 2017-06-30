@@ -36,10 +36,11 @@ RUN mkdir $GDM_HOME -p && cd $GDM_HOME/
 
 #provide a sample docker environment file
 #@todo rather use VOLUME as externally mounted volume
-COPY .env.example $GDM_HOME/.env
+COPY env.example $GDM_HOME/.env
 #do the same for custom js and css files
 COPY custom.js $GDM_HOME/public/js
 COPY custom.css $GDM_HOME/public/css
+COPY sitename.txt $GDM_HOME/public/appfiles
 
 # install dependencies with composer
 RUN     cd / && cd $GDM_HOME && \
@@ -60,6 +61,9 @@ RUN cd  /tmp && \
 # The tar file comes with a parent directory that is named by the individual master version id. So it varies over time.
 # Thus, move all file (excluding hidden files) from the parent directory to $GDM_HOME and remove the parent dir that is left behind empty.
 RUN cd /tmp/ && \
+    ls -l /usr/share/app/public && \
+    rm -Rf /usr/share/app/public/js && \
+    rm -Rf /usr/share/app/public/css && \
     mv $(find . -name "pmd-master-*")/* $GDM_HOME/ && \
     rm -Rf $(find . -name "pmd-master-*")
 
@@ -84,7 +88,7 @@ RUN apt-get install -y --force-yes default-jre
 RUN apt-get clean 
 
 # load environment variables
-# @todo  UGLY WORKAROUND, we should import them from the laravel environement file for shell variables
+# @todo  UGLY WORKAROUND, we should import them from the laravel environment file for shell variables
 ENV DB_CONNECTION   mysql
 ENV DB_HOST         172.17.0.1
 ENV DB_DATABASE     projektmetadaten
@@ -116,7 +120,7 @@ ENV DB_PASSWORD     p
 
 
 #make our own apache configuration, 
-#@todo import envirnment variables from  .env.sample  
+#@todo import envirnment variables from  env.example  
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_LOG_DIR /var/log/apache2
