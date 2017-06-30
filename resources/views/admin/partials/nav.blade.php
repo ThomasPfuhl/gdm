@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" title="GDM" href="index.html">GDM - Administration</a>
+        <a class="navbar-brand" title="GDM" href="/admin/dashboard">GDM - Administration</a>
     </div>
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">

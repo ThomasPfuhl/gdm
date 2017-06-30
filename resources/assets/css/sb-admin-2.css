@@ -296,7 +296,11 @@ table.dataTable thead .sorting:after {
 }
 
 .huge {
-    font-size: 40px;
+    font-size: 36px;
+}
+
+.large {
+    font-size: 24px;
 }
 
 .panel-green {
@@ -353,8 +357,20 @@ table.dataTable thead .sorting:after {
     color: #df8a13;
 }
 
-/************ TP *****************/
+/*** thomas.pfuhl@mfn-berlin.de ***/
 .debug { color:red; border:1px solid red; border-radius:5px; font-family: monospace; margin: 1em 0; }
 .hint  { width:100%; margin:1em 0 1em 0; padding:5px; color:grey; border:1px solid grey; border-radius:5px;}
 
+.navbar-inverse {
+   border: none;
+}
+.navbar-inverse .navbar-brand {
+        color: white;
+}
+.navbar-inverse .navbar-brand:hover {
+        color: red;
+}
+
+a {
+    color: #d50000;
 }

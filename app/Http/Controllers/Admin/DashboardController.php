@@ -1,5 +1,12 @@
 <?php
 
+/**
+ * dashboard
+ *
+ * @todo include table comment in Model
+ * @todo add  all tables incl. their table comment
+ */
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
@@ -15,10 +22,13 @@ class DashboardController extends AdminController {
 
     public function index() {
         $title = "Dashboard";
-        $projects = Project::count();
         $users = User::count();
 
-        return view('admin.dashboard.index', compact('title', 'projects', 'users'));
+        $projects = Project::count();
+        $project_descr = "project description";
+        // @todo add here all tables incl. their table comment
+
+        return view('admin.dashboard.index', compact('title', 'users', 'projects', 'project_descr'));
     }
 
 }

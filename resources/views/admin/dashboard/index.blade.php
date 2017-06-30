@@ -5,10 +5,11 @@
 
 {{-- Content --}}
 @section('main')
-
-<h3>
-    {{$title}}
-</h3>
+<div class="page-header">
+    <h3>
+        {{$title}}
+    </h3>
+</div>
 
 <div class="row">
 
@@ -20,7 +21,7 @@
                         <i class="glyphicon glyphicon-cog fa-3x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">update UI</div>
+                        <div class="large">update UI</div>
                         <div>all tables</div>
                     </div>
                 </div>
@@ -45,8 +46,8 @@
                         <i class="glyphicon glyphicon-user fa-3x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">{{$users}}</div>
-                        <div>{{ trans("admin/admin.users") }}</div>
+                        <div class="large">{{$users}} {{ trans("admin/admin.users") }}</div>
+                        <div>registered users</div>
                     </div>
                 </div>
             </div>
@@ -70,11 +71,11 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-3">
-                        <i class="glyphicon glyphicon-list fa-3x"></i>
+                        <i class="glyphicon glyphicon-bullhorn fa-3x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="huge">{{$projects}}</div>
-                        <div>Projects</div>
+                        <div class="large">{{$projects}} Projects</div>
+                        <div></div>
                     </div>
                 </div>
             </div>
