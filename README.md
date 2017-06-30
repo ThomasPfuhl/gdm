@@ -55,6 +55,9 @@ Otherwise build GDM step by step:
 Please note that there is an environment file ``$GDM_HOME/.env`` which overwrites
 the settings defined in  ``config/database.php``, ``config/app.php`` and other config files.
 
+    $EDIT env.example
+    cp env.example .env
+
 
 This project makes use of **node** and the node packlage manager **npm**.
 A recent version must be installed. Check with ``node -v``.
@@ -89,22 +92,22 @@ creates migration classes in folder ``$GDM_HOME/database/migrations``
 - download Liquibase: `curl https://github.com/liquibase/liquibase/releases/download/liquibase-parent-3.5.3/liquibase-3.5.3-bin.tar.gz`
 - download DB connector for java, e.g. `https://dev.mysql.com/downloads/connector/j/`
 - create Liquibase file structure  
+    - read the official liquibase documentation 
     - main changelog must be an XML file   
     - chained changelog files may be XML or SQL files   
-    - please refer to the official liquibase documentation 
-
-        @mkdir database/liquibase   
-        cd database/liquibase   
-        $EDIT liquibase.properties &   
-        touch changelog.xml   
-        @mkdir changelogs   
+ 
+            @mkdir database/liquibase   
+            cd database/liquibase   
+            $EDIT liquibase.properties &   
+            touch changelog.xml   
+            @mkdir changelogs   
 
 - run Liquibase (put executable file in an appropriate folder)  
 `update` command must be executed after each schema modification
 
-        cd database/liquibase   
-        liquibase updateSQL   
-        liquibase update  --defaultsFile=$GDM_HOME/database/liquibase/changelog.xml
+            cd database/liquibase   
+            liquibase updateSQL   
+            liquibase update  --defaultsFile=$GDM_HOME/database/liquibase/changelog.xml
 
 #### Models, Views, Controllers, Menu items, Routes
     
