@@ -109,6 +109,9 @@ body:before {
     padding:5px;
     vertical-align:top;
 }
+#maintable.vertical td:first-child {
+    color:#d50000;
+}
 #maintable.vertical td:nth-child(2n) {
     color:#000;
 }

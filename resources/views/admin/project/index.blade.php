@@ -7,7 +7,7 @@
 @section('main')
 <div class="page-header">
     <h3>
-        Projects
+        Projects  +++ not yet functional for editing +++
         <div class="pull-right">
             <div class="pull-right">
                 <a href="{!! URL::to('admin/project/create') !!}"
