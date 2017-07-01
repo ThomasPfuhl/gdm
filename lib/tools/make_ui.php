@@ -2,11 +2,14 @@
 
 require("helpers.php");
 
-define("DB_ENGINE", "mysql");
-define("DB_HOST", "127.0.0.1");
-define("DB_SCHEMA", "projektmetadaten");
-define("DB_USER", "root");
-define("DB_PASSWORD", "p");
+$env = readEnvFile("../../.env");
+
+define("DB_ENGINE", $env["DB_CONNECTION"]);
+define("DB_HOST", $env["DB_HOST"]);
+define("DB_SCHEMA", $env["DB_DATABASE"]);
+define("DB_USER", $env["DB_USERNAME"]);
+define("DB_PASSWORD", $env["DB_PASSWORD"]);
+
 
 //$stream = fopen('php://output', 'w');
 //$stream = fopen('log.txt', 'w');
