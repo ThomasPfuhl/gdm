@@ -128,10 +128,10 @@ GDM ships with a sample database, defined in `$GDM_HOME/database`. Create and po
 ### Database initial seed
 creates seeder classes in folder ``$GDM_HOME/database/seeds``
 
-Table users: username=admin@admin.com   password=admin  
-Table users: username=user@user.com   password=user  
-Table foos: some dummy records
-Table bars: some dummy records
+- Table users: username=admin@admin.com   password=admin  
+- Table users: username=user@user.com   password=user  
+- Table foos: some dummy records
+- Table bars: some dummy records
 
     composer dump-autoload
     php artisan db:seed  
@@ -174,11 +174,11 @@ PENDING: do the same thing for the backend MVC.
 
 ## Webserver
 Install and configure a webserver.  
-Or launch the `php artisan serve` and point your browser to localpoint to `http://localhost:8000`
+Or launch the command `php artisan serve` and point your browser  to `http://localhost:8000`
 
 ### Frontend
 Point your browser to the domain name or IP.
-If you use docker,this may be ``http://172.17.0.2`` or some similar IP.
+If you use docker, this may be ``http://172.17.0.2`` or some similar IP.
 
 ### Backend
 - point your browser to ``http://your_IP/auth/login``,
