@@ -22,6 +22,7 @@ foreach ($env as $line) {
     }
 }
 
+// use modified Controller Generator
 copy("MakeModelsCommand.php", getcwd() . "/../../vendor/ignasbernotas/laravel-model-generator/src/Commands/");
 
 //$stream = fopen('php://output', 'w');
