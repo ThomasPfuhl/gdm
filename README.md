@@ -15,6 +15,8 @@ It can also be modified 'on-run' via a set of php scripts.
 - Colorbox jQuery modal popup
 - optionally: Liquibase 3.5.3
 
+This code has been inspired by 
+[https://github.com/mrakodol/Laravel-5-Bootstrap-3-Starter-Site/](https://github.com/mrakodol/Laravel-5-Bootstrap-3-Starter-Site/)
 
 ### Requirements
 
@@ -26,17 +28,6 @@ It can also be modified 'on-run' via a set of php scripts.
 - Composer
 - NodeJS:  `sudo apt-get install nodejs; sudo apt-get install npm`
 
-### Preliminaries
-set some shell variables which we will use during the installation
-
-    GDM_HOME=/usr/share/app
-    EDIT=/usr/bin/gedit
-    cd $GDM_HOME
-
-### The project's code
-
-    https://code.naturkundemuseum.berlin/Thomas.Pfuhl/pmd
-
 
 ### Docker
 If you want to deploy GDM with docker, have a look at the fully automated installer docker-gdm,
@@ -45,52 +36,49 @@ at `https://code.naturkundemuseum.berlin/MfN-Berlin/docker-gdm` .
 
 Otherwise build GDM step by step:
 
-### Laravel framework
-    composer install  
-    composer require doctrine/dbal  
-    composer require ignasbernotas/laravel-model-generator --dev
-    composer update  
-    composer update --no-scripts
 
-#### Customization
+### Customization
 
-All customizing files are located in the folder ``custom``, so go there:
-
-    cd $GDM_HOME/custom
+All customizing files are located in the folder ``custom``.
 
 Laravel uses an environment file ``$GDM_HOME/.env`` which overwrites
 the settings defined in  ``config/database.php`` and ``config/app.php``.
+You must adapt it to your needs.
 
-    $EDIT env.example
-    cp env.example $GDM_HOME/.env
+    cp $GDM_HOME/custom/env.example $GDM_HOME/.env
 
 You should define the name and a short description of your application:
 
-    $EDIT sitename.txt
-    $EDIT about.html
-    cp sitename.txt $GDM_HOME/public/appfiles
-    cp about.html $GDM_HOME/public/appfiles
+    cp $GDM_HOME/custom/sitename.txt $GDM_HOME/public/appfiles
+    cp $GDM_HOME/custom/about.html $GDM_HOME/public/appfiles
 
-You may customize the layout, by adapting the following files:
+You may customize the layout:
 
-    $EDIT custom.css
-    $EDIT custom.js
-    cp custom.css $GDM_HOME/public/css
-    cp custom.js $GDM_HOME/public/js
+    cp $GDM_HOME/custom/custom.css $GDM_HOME/public/css
+    cp $GDM_HOME/custom/custom.js $GDM_HOME/public/js
 
 We make use of **node** and the node package manager **npm**.
 A recent version must be installed. Check with ``node -v``.
 Install the dependencies listed in ``$GDM_HOME/package.json`` :
 
-    cd $GDM_HOME
+    cd $GDM_HOME 
     npm install   
 
 Retrieve the frontend dependencies with Bower, compile SASS, and move frontend files into place:  .
 This is an optional step , since the minimzed and compressed files are already provided.
 
-    cd $GDM_HOME
+    cd $GDM_HOME 
     gulp
 
+### Laravel framework
+
+    cd $GDM_HOME 
+    composer dump-autoload
+    composer install --no-scripts
+    composer require doctrine/dbal  
+    composer require ignasbernotas/laravel-model-generator --dev
+    composer update  
+    composer update --no-scripts
 
 ## Database 
 
@@ -105,18 +93,14 @@ in order to ensure the automatic generation of the User Interface:
 - Every table should have as its first column the auto_increment primary key field  `id`.
 - The second column should be a column with a human readable content, like .e.g `title` or `shortdescription`.
 - Foreign key columns should be built with the referenced table name in singular form, followed by `ID`.
-Example: `proposals.agencyID` is a foreign key for `agencies.id`.
+Example: `foos.barID` is a foreign key for `bars.id`.
 
 ### using Laravel migration utility
 
-creates migration classes in folder ``$GDM_HOME/database/migrations``
+GDM ships with a sample database, defined in `$GDM_HOME/database`. Create and populate it:
 
-    #php artisan make:migration create_projects_table    
-    $EDIT database/migrations/y_m_d_his_create_projects_table.php  &
-
+    composer dump-autoload
     php artisan migrate  
-    #php artisan up  
-    #php artisan down  
 
 
 ### using Liquibase (optionally)
@@ -130,34 +114,43 @@ creates migration classes in folder ``$GDM_HOME/database/migrations``
     - chained changelog files may be XML or SQL files   
  
             @mkdir $GDM_HOME/database/liquibase   
-            cd GDM_HOME/database/liquibase   
-            $EDIT liquibase.properties &   
+            cd $GDM_HOME/database/liquibase   
             touch changelog.xml   
             @mkdir changelogs   
 
 - run Liquibase (put executable file in an appropriate folder)  
 `update` command must be executed after each schema modification
 
-            cd GDM_HOME/database/liquibase   
+            cd $GDM_HOME/database/liquibase   
             liquibase updateSQL   
             liquibase update  --defaultsFile=$GDM_HOME/database/liquibase/changelog.xml
 
-### Models, Views, Controllers, Menu items, Routes
+### Models, Views, Controllers, Menu-Items, Routes
     
-We generate models automatiocally, depending on the database schemes,    
+We generate models automatically, depending on the database schemes,    
 based on [https://github.com/ignasbernotas/laravel-model-generator](https://github.com/ignasbernotas/laravel-model-generator)
 
 This is done in a handy PHP script, and must be executed after each schema modification: 
 
-    cd lib/tools
+    cd $GDM_HOME/lib/tools
     php make_ui.php
 
 The script may also be called in the Admin Dashboard, so you do not need a commandline access.   
-Make sure thet the webuser (e.g. www-data) has write permissions for the folders 
+Make sure that the webuser (e.g. www-data) has write permissions for the folders 
 `app/Models`, 
 `app/Http/Controllers`,
 the file `app/Http/more_routes.php`,
 and the file `resources/views/partials/menu-items.blade.php`.
+
+    chgrp -R www-data $GDM_HOME/app/Models
+    chgrp -R www-data $GDM_HOME/app/Http/Controllers
+    chgrp  www-data $GDM_HOME/app/Http/more_routes.php
+    chgrp  www-data $GDM_HOME/resources/views/partials/menu-items.blade.php
+    chmod -R g+w $GDM_HOME/app/Models
+    chmod -R g+w $GDM_HOME/app/Http/Controllers
+    chmod -R g+w $GDM_HOME/app/Http/more_routes.php
+    chmod -R g+w $GDM_HOME/resources/views/partials/menu-items.blade.ph
+
 
 PENDING: many-to-many relations are yet not generated automagically.   
 PENDING: do the same thing for the backend MVC.  
@@ -168,12 +161,13 @@ creates seeder classes in folder ``$GDM_HOME/database/seeds``
 
 Table users: username=admin@admin.com   password=admin  
 Table users: username=user@user.com   password=user  
-Table projects: some dummy records
-Table proposals: some dummy records
+Table foos: some dummy records
+Table bars: some dummy records
 
     composer dump-autoload
     php artisan db:seed  
-    php artisan db:seed --class=ProjectsTableSeeder
+    php artisan db:seed --class=FooTableSeeder
+    php artisan db:seed --class=BarTableSeeder
 
 ## Webserver
 Install and configure a webserver.
@@ -183,12 +177,11 @@ Point your browser to the domain name or IP.
 If you use docker,this may be ``http://172.17.0.2`` or some similar IP.
 
 ### Backend
-- point your browser to ``http://172.17.0.2/auth/login``,
+- point your browser to ``http://your_IP/auth/login``,
 - log in with administrator credentials,
-- go to ``http://172.17.0.2/admin/dashboard``
+- go to ``http://your_IP/admin/dashboard``
 
 - PENDING: Saving records 
 - PENDING: User Rights Management
-
 
 

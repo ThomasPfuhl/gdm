@@ -2,13 +2,27 @@
 
 require("helpers.php");
 
-$env = readEnvFile("../../.env");
+// get env varaibles defined in .env
+// 
+//define("DB_CONNECTION", $_ENV["DB_CONNECTION"]);
+//define("DB_HOST", $_ENV["DB_HOST"]);
+//define("DB_DATABASE", $_ENV["DB_DATABASE"]);
+//define("DB_USERNMAE", $_ENV["DB_USERNAME"]);
+//define("DB_PASSWORD", $_ENV["DB_PASSWORD"]);
 
-define("DB_ENGINE", $env["DB_CONNECTION"]);
-define("DB_HOST", $env["DB_HOST"]);
-define("DB_SCHEMA", $env["DB_DATABASE"]);
-define("DB_USER", $env["DB_USERNAME"]);
-define("DB_PASSWORD", $env["DB_PASSWORD"]);
+$env = file(getcwd() . "/../../.env");
+
+foreach ($env as $line) {
+    $elt = trim($line);
+    $pos = strpos($elt, "DB_");
+    if ($pos !== False && $pos == 0) {
+        echo $elt . "\n";
+        list($key, $value) = explode("=", $elt);
+        define("$key", $value);
+    }
+}
+
+
 
 
 //$stream = fopen('php://output', 'w');
@@ -25,7 +39,7 @@ $sql = "SELECT TABLE_NAME
                 INFORMATION_SCHEMA.tables
             WHERE
                 TABLE_TYPE='BASE TABLE'
-                AND TABLE_SCHEMA = '" . DB_SCHEMA . "'
+                AND TABLE_SCHEMA = '" . DB_DATABASE . "'
                 AND TABLE_NAME != 'DATABASECHANGELOG'
                 AND TABLE_NAME != 'DATABASECHANGELOGLOCK'
                 AND TABLE_NAME != 'migrations'
@@ -33,15 +47,15 @@ $sql = "SELECT TABLE_NAME
                 AND TABLE_NAME != 'password_resets'
                 AND TABLE_NAME != 'languages'
                 ";
-$pdo = new PDO(DB_ENGINE . ":host=" . DB_HOST . ";dbname=" . DB_SCHEMA, DB_USER, DB_PASSWORD);
+$pdo = new PDO(DB_CONNECTION . ":host=" . DB_HOST . ";dbname=" . DB_DATABASE, DB_USERNAME, DB_PASSWORD);
 $response = $pdo->query($sql);
 
-echo "\n------------\nCREATING CONNTROLLERS, VIEWS, MENU ITEMS, and ROUTES...\n";
+echo "\n------------\nCREATING CONTROLLERS, VIEWS, MENU ITEMS, and ROUTES...\n";
 
 //$result = array();
 foreach ($response as $row) {
     $name = $row["TABLE_NAME"];
-    //$result[] = $name;
+//$result[] = $name;
     echo "\n----------------\n" . $row["TABLE_NAME"];
 
     include("add_controller.php");

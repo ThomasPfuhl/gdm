@@ -7,14 +7,6 @@
     <a href="{{ URL::to('agents') }}">Agents</a>
 </li>
 
-<li class="{{ (Request::is('dummies') ? 'active' : '') }}">
-    <a href="{{ URL::to('dummies') }}">Dummies</a>
-</li>
-
-<li class="{{ (Request::is('foobars') ? 'active' : '') }}">
-    <a href="{{ URL::to('foobars') }}">Foobars</a>
-</li>
-
 <li class="{{ (Request::is('institutions') ? 'active' : '') }}">
     <a href="{{ URL::to('institutions') }}">Institutions</a>
 </li>
@@ -33,4 +25,12 @@
 
 <li class="{{ (Request::is('proposals') ? 'active' : '') }}">
     <a href="{{ URL::to('proposals') }}">Proposals</a>
+</li>
+
+<li class="{{ (Request::is('bars') ? 'active' : '') }}">
+    <a href="{{ URL::to('bars') }}">Bars</a>
+</li>
+
+<li class="{{ (Request::is('foos') ? 'active' : '') }}">
+    <a href="{{ URL::to('foos') }}">Foos</a>
 </li>
