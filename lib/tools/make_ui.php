@@ -2,8 +2,8 @@
 
 require("helpers.php");
 
-// get env varaibles defined in .env
-// 
+// get env variables defined in .env
+//
 //define("DB_CONNECTION", $_ENV["DB_CONNECTION"]);
 //define("DB_HOST", $_ENV["DB_HOST"]);
 //define("DB_DATABASE", $_ENV["DB_DATABASE"]);
