@@ -27,56 +27,6 @@
                 </li>
 
                 <li>
-                    <a href="{{url('admin/project')}}">
-                        <i class="glyphicon glyphicon-bullhorn"></i> Projects
-                    </a>
-                </li>
-
-
-                <!--
-                <li>
-                    <a href="{{url('admin/language')}}">
-                        <i class="fa fa-language"></i> Language
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-bullhorn"></i> Articles
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav collapse">
-                        <li>
-                            <a href="{{url('admin/articlecategory')}}">
-                                <i class="glyphicon glyphicon-list"></i>  Article categories
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{url('admin/article')}}">
-                                <i class="glyphicon glyphicon-bullhorn"></i> Articles
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="glyphicon glyphicon-camera"></i> Photo items
-                        <span class="fa arrow"></span>
-                    </a>
-                    <ul class="nav collapse">
-                        <li>
-                            <a href="{{url('admin/photoalbum')}}">
-                                <i class="glyphicon glyphicon-list"></i> Photo albums
-                            </a>
-                        </li>
-                        <li>
-                            <a href="{{url('admin/photo')}}">
-                                <i class="glyphicon glyphicon-camera"></i> Photo
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                -->
-                <li>
                     <a href="{{url('admin/user')}}">
                         <i class="glyphicon glyphicon-user"></i> Users
                     </a>
