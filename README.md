@@ -125,6 +125,20 @@ GDM ships with a sample database, defined in `$GDM_HOME/database`. Create and po
             liquibase updateSQL   
             liquibase update  --defaultsFile=$GDM_HOME/database/liquibase/changelog.xml
 
+### Database initial seed
+creates seeder classes in folder ``$GDM_HOME/database/seeds``
+
+Table users: username=admin@admin.com   password=admin  
+Table users: username=user@user.com   password=user  
+Table foos: some dummy records
+Table bars: some dummy records
+
+    composer dump-autoload
+    php artisan db:seed  
+    php artisan db:seed --class=FooTableSeeder
+    php artisan db:seed --class=BarTableSeeder
+
+
 ### Models, Views, Controllers, Menu-Items, Routes
     
 We generate models automatically, depending on the database schemes,    
@@ -156,21 +170,11 @@ PENDING: many-to-many relations are yet not generated automagically.
 PENDING: do the same thing for the backend MVC.  
 
 
-### Database initial seed
-creates seeder classes in folder ``$GDM_HOME/database/seeds``
 
-Table users: username=admin@admin.com   password=admin  
-Table users: username=user@user.com   password=user  
-Table foos: some dummy records
-Table bars: some dummy records
-
-    composer dump-autoload
-    php artisan db:seed  
-    php artisan db:seed --class=FooTableSeeder
-    php artisan db:seed --class=BarTableSeeder
 
 ## Webserver
-Install and configure a webserver.
+Install and configure a webserver.  
+Or launch the `php artisan serve` and point your browser to localpoint to `http://localhost:8000`
 
 ### Frontend
 Point your browser to the domain name or IP.
