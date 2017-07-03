@@ -22,7 +22,6 @@ foreach ($env as $line) {
     }
 }
 
-
 copy("MakeModelsCommand.php", getcwd() . "/../../vendor/ignasbernotas/laravel-model-generator/src/Commands/");
 
 //$stream = fopen('php://output', 'w');
