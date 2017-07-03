@@ -24,6 +24,7 @@ foreach ($env as $line) {
 
 // use modified Controller Generator
 copy("MakeModelsCommand.php", getcwd() . "/../../vendor/ignasbernotas/laravel-model-generator/src/Commands/");
+copy("model.stub", getcwd() . "/../../vendor/ignasbernotas/laravel-model-generator/src/stubs/");
 
 //$stream = fopen('php://output', 'w');
 //$stream = fopen('log.txt', 'w');
