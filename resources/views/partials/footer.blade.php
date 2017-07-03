@@ -18,7 +18,7 @@
                 <br/>
                 source code:
                 <a href="https://code.naturkundemuseum.berlin/Thomas.Pfuhl/pmd" target="gitlab">MfN GitLab</a>
-                <a href="https://github.com/MfN-Berlin/gdm/" target="github">GitHub</a>
+                and <a href="https://github.com/MfN-Berlin/gdm/" target="github">GitHub</a>
                 <!-- <br/>
                 with <a href="http://laravel.com/" alt="Laravel 5.1">Laravel 5.1</a></span>
                 -->
