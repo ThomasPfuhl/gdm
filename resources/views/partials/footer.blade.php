@@ -12,11 +12,13 @@
 
             </span>
             <span class="hidden-phone" style="text-align:right;float:right;">
-                version: <span style="color:black">r0.1alpha 06/2017</span>
+                version: <span style="color:black">r0.3alpha 07/2017</span>
                 <br/>
                 author: <a href="mailto:thomas.pfuhl@mfn-berlin.de">thomas.pfuhl@mfn-berlin.de</a>
                 <br/>
-                source code :<a href="https://code.naturkundemuseum.berlin/Thomas.Pfuhl/pmd" target="gitlab">MfN GitLab</a>
+                source code:
+                <a href="https://code.naturkundemuseum.berlin/Thomas.Pfuhl/pmd" target="gitlab">MfN GitLab</a>
+                <a href="https://github.com/MfN-Berlin/gdm/" target="github">GitHub</a>
                 <!-- <br/>
                 with <a href="http://laravel.com/" alt="Laravel 5.1">Laravel 5.1</a></span>
                 -->
