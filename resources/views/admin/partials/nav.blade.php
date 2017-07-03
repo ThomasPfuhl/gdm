@@ -14,6 +14,7 @@
                 <li>
                     <a href="{{ URL::to('') }}"><i class="fa fa-backward"></i> Go to frontend</a>
                 </li>
+
                 <li>
                     <a href="{{url('admin/dashboard')}}">
                         <i class="fa fa-dashboard fa-fw"></i> Dashboard
@@ -31,6 +32,7 @@
                         <i class="glyphicon glyphicon-user"></i> Users
                     </a>
                 </li>
+
                 <li>
                     <a href="{{ URL::to('auth/logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
                 </li>
