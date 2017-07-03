@@ -18,15 +18,8 @@ Route::pattern('slug', '[0-9a-z-_]+');
 Route::get('about', 'PagesController@about');
 Route::get('contact', 'PagesController@contact');
 
-//Route::get('/', 'HomeController@index');
-//Route::get('home', 'HomeController@index');
-
-Route::get('/', 'ProjectsController@index');
-Route::get('home', 'ProjectsController@index');
-
-Route::get('projects', 'ProjectsController@index');
-Route::get('projects/{slug}', 'ProjectsController@show');
-Route::get('projects/data', 'ProjectsController@data');
+Route::get('/', 'HomeController@index');
+Route::get('home', 'HomeController@index');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',

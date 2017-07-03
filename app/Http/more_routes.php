@@ -35,3 +35,11 @@ Route::get('projects/data', 'ProjectsController@data');
 Route::get('proposals', 'ProposalsController@index');
 Route::get('proposals/{slug}', 'ProposalsController@show');
 Route::get('proposals/data', 'ProposalsController@data');
+
+Route::get('bars', 'BarsController@index');
+Route::get('bars/{slug}', 'BarsController@show');
+Route::get('bars/data', 'BarsController@data');
+
+Route::get('foos', 'FoosController@index');
+Route::get('foos/{slug}', 'FoosController@show');
+Route::get('foos/data', 'FoosController@data');
