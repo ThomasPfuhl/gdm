@@ -4,7 +4,7 @@
  * dashboard
  *
  * @todo include table comment in Model
- * @todo add  all tables incl. their table comment
+ * @todo add all tables incl. their table comment
  */
 
 namespace App\Http\Controllers\Admin;
