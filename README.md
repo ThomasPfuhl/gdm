@@ -93,11 +93,13 @@ in order to ensure the automatic generation of the User Interface:
 - Every table should have as its first column the auto_increment primary key field  `id`.
 - The second column should be a column with a human readable content, like .e.g `title` or `shortdescription`.
 - Foreign key columns should be built with the referenced table name in singular form, followed by `ID`.
-Example: `foos.barID` is a foreign key for `bars.id`.
+
 
 ### using Laravel migration utility
 
-GDM ships with a sample database, defined in `$GDM_HOME/database`. Create and populate it:
+GDM ships with a sample database, defined in `$GDM_HOME/database`. 
+Create the tables needed by GDM and the tables `foos` and `bars`.
+`foos.barID` is a foreign key referencing `bars.id`.
 
     composer dump-autoload
     php artisan migrate  
@@ -126,17 +128,19 @@ GDM ships with a sample database, defined in `$GDM_HOME/database`. Create and po
             liquibase update  --defaultsFile=$GDM_HOME/database/liquibase/changelog.xml
 
 ### Database initial seed
-creates seeder classes in folder ``$GDM_HOME/database/seeds``
 
-- Table users: username=admin@admin.com   password=admin  
-- Table users: username=user@user.com   password=user  
-- Table foos: some dummy records
-- Table bars: some dummy records
+Populate the database tables `foos` and `bars`.
+Liquibase provides Seeder classes in the folder ``$GDM_HOME/database/seeds``
 
-    composer dump-autoload
-    php artisan db:seed  
-    php artisan db:seed --class=FooTableSeeder
-    php artisan db:seed --class=BarTableSeeder
+- Table `users`: username=admin@admin.com   password=admin  
+- Table `users`: username=user@user.com   password=user  
+- Table `foos`: some dummy records
+- Table `bars`: some dummy records
+
+        composer dump-autoload
+        php artisan db:seed  
+        php artisan db:seed --class=FooTableSeeder
+        php artisan db:seed --class=BarTableSeeder
 
 
 ### Models, Views, Controllers, Menu-Items, Routes
