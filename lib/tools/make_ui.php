@@ -22,14 +22,14 @@ foreach ($env as $line) {
     }
 }
 
-// install modified Controller Generator
-copy("MakeModelsCommand.php", getcwd() . "/../../vendor/ignasbernotas/laravel-model-generator/src/Commands/");
-copy("model.stub", getcwd() . "/../../vendor/ignasbernotas/laravel-model-generator/src/stubs/");
+// install modified Model Generator
+copy("MakeModelsCommand.php", getcwd() . "/../../vendor/ignasbernotas/laravel-model-generator/src/Commands/MakeModelsCommand.php");
+copy("model.stub", getcwd() . "/../../vendor/ignasbernotas/laravel-model-generator/src/stubs/model.stub");
 
 
 echo "\n------------\nCREATING MODELS...\n\n";
 
-system('cd ../../; php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations --getset');
+system('cd ../../; php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations,languages --getset');
 
 $sql = "SELECT TABLE_NAME
             FROM
