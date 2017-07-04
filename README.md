@@ -164,15 +164,17 @@ Make sure that the webuser (e.g. www-data) has write permissions for the folders
 `app/Http/Controllers`,
 the file `app/Http/more_routes.php`,
 and the file `resources/views/partials/menu-items.blade.php`.
+You might have to have sudoers' rights to do so.
 
-    chgrp -R www-data $GDM_HOME/app/Models
-    chgrp -R www-data $GDM_HOME/app/Http/Controllers
-    chgrp  www-data $GDM_HOME/app/Http/more_routes.php
-    chgrp  www-data $GDM_HOME/resources/views/partials/menu-items.blade.php
-    chmod -R g+w $GDM_HOME/app/Models
-    chmod -R g+w $GDM_HOME/app/Http/Controllers
-    chmod -R g+w $GDM_HOME/app/Http/more_routes.php
-    chmod -R g+w $GDM_HOME/resources/views/partials/menu-items.blade.ph
+    cd $GDM_HOME
+    chgrp -R www-data app/Models
+    chgrp -R www-data app/Http/Controllers
+    chgrp  www-data app/Http/more_routes.php
+    chgrp  www-data resources/views/partials/menu-items.blade.php
+    chmod -R g+w app/Models
+    chmod -R g+w app/Http/Controllers
+    chmod -R g+w app/Http/more_routes.php
+    chmod -R g+w resources/views/partials/menu-items.blade.php
 
 
 PENDING: many-to-many relations are yet not generated automagically.   
