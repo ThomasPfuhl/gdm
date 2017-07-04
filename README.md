@@ -81,9 +81,6 @@ This is an optional step, since the minimzed and compressed files are already pr
 
     composer dump-autoload
     composer install --no-scripts
-    composer require doctrine/dbal  
-    composer require ignasbernotas/laravel-model-generator --dev
-    composer update  
     composer update --no-scripts
 
 ## Database 
