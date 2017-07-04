@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder {
 
         // calls for System needed Tables
         $this->call(UserTableSeeder::class);
-        $this->command->info('Administrator created with username ' . env('GDM_SITE_MANAGER') . ' and password admin');
+        $this->command->info('Administrator created with username ' . env('GDM_MANAGER_NAME') . ' and password admin');
         $this->command->info('Default Admin User created with username admin@example.org and password admin');
         $this->command->info('Test User created with username user@example.org and password user');
 
