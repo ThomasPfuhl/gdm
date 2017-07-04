@@ -36,43 +36,49 @@ at `https://code.naturkundemuseum.berlin/MfN-Berlin/docker-gdm` .
 
 Otherwise build GDM step by step:
 
+### Deployment
+Unpack the downloaded tarball or clone the git repository in a folder 
+which we will refer to as `$GDM_HOME`.
+
+    cd $GDM_HOME
+
 
 ### Customization
 
-All customizing files are located in the folder ``custom``.
+Laravel uses an environment file ``.env`` which overwrites
+the settings defined in  ``config/database.php`` and ``config/app.php``.   
+__You have to adapt it to your needs:__
+Edit the file `env.example`, and define at least all variables GDM_* and DB_*.
 
-Laravel uses an environment file ``$GDM_HOME/.env`` which overwrites
-the settings defined in  ``config/database.php`` and ``config/app.php``.
-You must adapt it to your needs.
+ 
+All customizing files are located in the folder ``custom``. Please edit them: 
+- `about.html` contains short description of your application.
+- `custom.js` and `custom.css` to adapt the layout to your corporate identity.
+Finally provide the logos for your institution and your app: `institution_logo.png`, `app_logo.png`
 
-    cp $GDM_HOME/custom/env.example $GDM_HOME/.env
 
-You should define the name and a short description of your application:
+Once these steps accomplished, create the environment file:
 
-    cp $GDM_HOME/custom/sitename.txt $GDM_HOME/public/appfiles
-    cp $GDM_HOME/custom/about.html $GDM_HOME/public/appfiles
+    cp custom/env.example .env
 
-You may customize the layout:
+Then run the customizing script: 
 
-    cp $GDM_HOME/custom/custom.css $GDM_HOME/public/css
-    cp $GDM_HOME/custom/custom.js $GDM_HOME/public/js
+    php lib/tools/customize.php
+
 
 We make use of **node** and the node package manager **npm**.
 A recent version must be installed. Check with ``node -v``.
-Install the dependencies listed in ``$GDM_HOME/package.json`` :
+Install the dependencies listed in ``package.json`` :
 
-    cd $GDM_HOME 
     npm install   
 
 Retrieve the frontend dependencies with Bower, compile SASS, and move frontend files into place:  .
 This is an optional step , since the minimzed and compressed files are already provided.
 
-    cd $GDM_HOME 
     gulp
 
 ### Laravel framework
 
-    cd $GDM_HOME 
     composer dump-autoload
     composer install --no-scripts
     composer require doctrine/dbal  
@@ -97,7 +103,6 @@ in order to ensure the automatic generation of the User Interface:
 
 ### using Laravel migration utility
 
-GDM ships with a sample database, defined in `$GDM_HOME/database`. 
 Create the tables needed by GDM and the tables `foos` and `bars`.
 `foos.barID` is a foreign key referencing `bars.id`.
 
@@ -115,32 +120,32 @@ Create the tables needed by GDM and the tables `foos` and `bars`.
     - main changelog must be an XML file   
     - chained changelog files may be XML or SQL files   
  
-            @mkdir $GDM_HOME/database/liquibase   
-            cd $GDM_HOME/database/liquibase   
-            touch changelog.xml   
-            @mkdir changelogs   
+        @mkdir database/liquibase   
+        touch database/liquibase/changelog.xml      
+        @mkdir database/liquibase/changelogs   
 
 - run Liquibase (put executable file in an appropriate folder)  
 `update` command must be executed after each schema modification
 
-            cd $GDM_HOME/database/liquibase   
-            liquibase updateSQL   
-            liquibase update  --defaultsFile=$GDM_HOME/database/liquibase/changelog.xml
+        cd database/liquibase   
+        liquibase updateSQL   
+        liquibase update  --defaultsFile=database/liquibase/changelog.xml
 
 ### Database initial seed
 
 Populate the database tables `foos` and `bars`.
-Liquibase provides Seeder classes in the folder ``$GDM_HOME/database/seeds``
+Liquibase provides Seeder classes in the folder ``database/seeds``
 
-- Table `users`: username=admin@admin.com   password=admin  
-- Table `users`: username=user@user.com   password=user  
+- Table `users`: username=$GDM_MANAGER_NAME  email=$GDM_MANAGER_EMAIL  password=admin  
+- Table `users`: username=admin   password=admin  
+- Table `users`: username=test_user   password=user  
 - Table `foos`: some dummy records
 - Table `bars`: some dummy records
 
         composer dump-autoload
         php artisan db:seed  
-        php artisan db:seed --class=FooTableSeeder
-        php artisan db:seed --class=BarTableSeeder
+        #php artisan db:seed --class=FooTableSeeder
+        #php artisan db:seed --class=BarTableSeeder
 
 
 ### Models, Views, Controllers, Menu-Items, Routes
@@ -150,7 +155,7 @@ based on [https://github.com/ignasbernotas/laravel-model-generator](https://gith
 
 This is done in a handy PHP script, and must be executed after each schema modification: 
 
-    cd $GDM_HOME/lib/tools
+    cd lib/tools
     php make_ui.php
 
 The script may also be called in the Admin Dashboard, so you do not need a commandline access.   
@@ -177,8 +182,8 @@ PENDING: do the same thing for the backend MVC.
 
 
 ## Webserver
-Install and configure a webserver.  
-Or launch the command `php artisan serve` and point your browser  to `http://localhost:8000`
+Either install and configure a webserver for $GDM_URL  
+or launch the command `php artisan serve` and point your browser  to `http://localhost:8000`
 
 ### Frontend
 Point your browser to the domain name or IP.

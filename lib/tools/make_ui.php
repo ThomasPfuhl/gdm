@@ -22,18 +22,14 @@ foreach ($env as $line) {
     }
 }
 
-// use modified Controller Generator
+// install modified Controller Generator
 copy("MakeModelsCommand.php", getcwd() . "/../../vendor/ignasbernotas/laravel-model-generator/src/Commands/");
 copy("model.stub", getcwd() . "/../../vendor/ignasbernotas/laravel-model-generator/src/stubs/");
 
-//$stream = fopen('php://output', 'w');
-//$stream = fopen('log.txt', 'w');
-//Artisan::call(
-//        'artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations --getset', array()
-//);
-echo "\n------------\nCREATING MODELS...\n\n";
-system('cd ../../; php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations --getset');
 
+echo "\n------------\nCREATING MODELS...\n\n";
+
+system('cd ../../; php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations --getset');
 
 $sql = "SELECT TABLE_NAME
             FROM
@@ -53,10 +49,8 @@ $response = $pdo->query($sql);
 
 echo "\n------------\nCREATING CONTROLLERS, VIEWS, MENU ITEMS, and ROUTES...\n";
 
-//$result = array();
 foreach ($response as $row) {
     $name = $row["TABLE_NAME"];
-//$result[] = $name;
     echo "\n----------------\n" . $row["TABLE_NAME"];
 
     include("add_controller.php");
@@ -64,8 +58,5 @@ foreach ($response as $row) {
     include("add_views.php");
     include("add_routes.php");
 }
-//sort($result);
-//echo print_r($result, true);
 
 echo "\n\n ALL DONE.\n";
-

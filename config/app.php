@@ -24,7 +24,7 @@ return [
       | your application so that it is used when running Artisan tasks.
       |
      */
-    'url' => env('GMD_URL', true),
+    'url' => env('GDM_URL', true),
     /*
       |--------------------------------------------------------------------------
       | Application Timezone

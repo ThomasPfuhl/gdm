@@ -2,28 +2,27 @@
 
 /** Read .env file
  * @path string
-**/
+ * */
 function readEnvFile($path) {
-        if(!is_string($path)) {
-                return false;
+    if (!is_string($path)) {
+        return false;
+    }
+
+    $file = fopen($path, "r");
+    if ($file) {
+        while (($line = fgets($file)) !== false) {
+            $line = trim($line);
+            if ($line != "") {
+                $bits = explode("=", $line);
+                if (count($bits) > 1)
+                    $result[strtoupper(trim($bits[0]))] = trim($bits[1], '"');
+            }
         }
-
-        $file = fopen($path,"r");
-        if($file){
-                while(($line = fgets($file)) !== false) {
-                        $line = trim($line);
-                        if($line != ""){
-                                $bits = explode("=", $line);
-                                if(count($bits)>1)
-                                        $result[strtoupper(trim($bits[0]))] = $bits[1];
-                        }
-                }
-                fclose($file);
-                return $result;
-        }else
-                return false;
+        fclose($file);
+        return $result;
+    } else
+        return false;
 }
-
 
 /**
  * Singularize a string.
@@ -124,7 +123,7 @@ function getAllForeignKeys() {
                 WHERE
                     TABLE_SCHEMA = '" . "projektmetadaten" . "' AND REFERENCED_TABLE_NAME != 'DATABASECHANGELOG' AND REFERENCED_TABLE_NAME != 'DATABASECHANGELOGLOCK'";
 
-    $pdo = new PDO('mysql:host='.$env["DB_HOST"].';'.'dbname='.$env["DB_DATABASE"], $env["DB_USERNAME"], $env["DB_PASSWORD"]);
+    $pdo = new PDO('mysql:host=' . $env["DB_HOST"] . ';' . 'dbname=' . $env["DB_DATABASE"], $env["DB_USERNAME"], $env["DB_PASSWORD"]);
     $response = $pdo->query($sql);
 
     $result = array();
