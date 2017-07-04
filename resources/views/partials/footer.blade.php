@@ -24,7 +24,7 @@
                     <span style="color:#d50000">m</span>odule
                 </span>
                 <br/>
-                <h4 class="footertext" style="text-align:right">
+                <h4 class="footertext" style="text-align:right;max-width:15em;">
                     <span style="color:black;font-size:0.6em;" >
                         version: <span style="color:black">r0.3alpha 07/2017</span>
                         <br/>
