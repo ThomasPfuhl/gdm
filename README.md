@@ -1,11 +1,12 @@
 # GDM — Generic Data Module
-thomas.pfuhl@mfn-berlin.de   
-DFG-Projekt gfbio   
+
+funded by the DFG-Projekt gfbio [German Federation For Biological Data](https://www.gfbio.org)   
+written by thomas.pfuhl@mfn-berlin.de at the [Naturkundemuseum Berlin](https://www.naturkundemuseum.berlin)
 
 ## Purpose
 Provide a webframework with CRUD functionalities for any relational data base.  
-The underlying data architecture is generated 'on build' when deploying with docker.
-It can also be modified 'on-run' via a set of php scripts.
+The underlying data architecture is generated 'on build' 
+but can also be modified 'on-run'.
 
 ## Implementation
 - Laravel 5.1
@@ -30,9 +31,8 @@ This code has been inspired by
 
 
 ### Docker
-If you want to deploy GDM with docker, have a look at the fully automated installer docker-gdm,
+If you want to deploy GDM with docker, have a look at the fully automated installer **docker-gdm**,
 at `https://code.naturkundemuseum.berlin/MfN-Berlin/docker-gdm` . 
-
 
 Otherwise build GDM step by step:
 
@@ -45,15 +45,15 @@ which we will refer to as `$GDM_HOME`.
 
 ### Customization
 
-Laravel uses an environment file ``.env`` which overwrites
-the settings defined in  ``config/database.php`` and ``config/app.php``.   
+Laravel uses an environment file ``.env`` which overwrites the settings defined 
+in  ``config/database.php`` and ``config/app.php``.   
 __You have to adapt it to your needs:__
-Edit the file `env.example`, and define at least all variables GDM_* and DB_*.
+Edit the file `config/env.example`, and define at least all variables `GDM_*` and `DB_*`.
 
  
 All customizing files are located in the folder ``custom``. Please edit them: 
-- `about.html` contains short description of your application.
-- `custom.js` and `custom.css` to adapt the layout to your corporate identity.
+- `about.html` contains a description of your application.
+- `custom.js` and `custom.css` adapts the layout to your corporate identity.
 Finally provide the logos for your institution and your app: `institution_logo.png`, `app_logo.png`
 
 
@@ -72,8 +72,8 @@ Install the dependencies listed in ``package.json`` :
 
     npm install   
 
-Retrieve the frontend dependencies with Bower, compile SASS, and move frontend files into place:  .
-This is an optional step , since the minimzed and compressed files are already provided.
+Retrieve the frontend dependencies with Bower, compile SASS, and move frontend files into place:   
+This is an optional step, since the minimzed and compressed files are already provided.
 
     gulp
 
