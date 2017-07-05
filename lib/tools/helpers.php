@@ -121,7 +121,7 @@ function getAllForeignKeys() {
                 FROM
                     INFORMATION_SCHEMA.KEY_COLUMN_USAGE
                 WHERE
-                    TABLE_SCHEMA = '" . "projektmetadaten" . "' AND REFERENCED_TABLE_NAME != 'DATABASECHANGELOG' AND REFERENCED_TABLE_NAME != 'DATABASECHANGELOGLOCK'";
+                    TABLE_SCHEMA = '" . $env["DB_DATABASE"] . "' AND REFERENCED_TABLE_NAME != 'DATABASECHANGELOG' AND REFERENCED_TABLE_NAME != 'DATABASECHANGELOGLOCK'";
 
     $pdo = new PDO('mysql:host=' . $env["DB_HOST"] . ';' . 'dbname=' . $env["DB_DATABASE"], $env["DB_USERNAME"], $env["DB_PASSWORD"]);
     $response = $pdo->query($sql);
