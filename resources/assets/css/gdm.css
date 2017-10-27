@@ -1,0 +1,181 @@
+/*
+    customized styles for MfN
+    Created on : 01.06.2017, 13:16:08
+    Author     : thomas.pfuhl@mfn-berlin.de
+*/
+
+@import url('/fonts/LibreFranklin-Regular.ttf');
+@import url('/fonts/LibreFranklin-Bold.ttf');
+@import url('/fonts/LibreFranklin-Bold.ttf');
+@import url('/fonts/fontawesome-webfont.ttf');
+
+body {
+    font-family: 'Libre Franklin', sans-serif;
+    color: black;
+}
+
+body:before {
+    background:url("/img/data_module_icon.png") no-repeat center center fixed;
+    display: block; content:""; position: absolute; z-index:-1;
+    top:5%; left: 0; right: 0; height: 100%;
+    opacity: 0.02;
+}
+
+/* navbar */
+.navbar {
+    color: black;
+    background: #ccc;
+    border: none;
+}
+
+.navbar .navbar-nav > li > a {color:black;}
+.navbar .navbar-nav > li > a:hover  {color:#d50000;}
+.navbar .navbar-nav > li > a:focus  {color:#d50000;}
+.navbar .navbar-nav > li.active > a {color:#d50000; background: transparent;}
+
+.navbar-inverse .navbar-nav > li > a {color:black;}
+.navbar-inverse .navbar-nav > li > a:hover {color:#d50000;}
+.navbar-inverse .navbar-nav > li > a:focus {color:#d50000;}
+.navbar-inverse .navbar-nav > li.active > a {color:#d50000; background: transparent;}
+
+.navbar-inverse .navbar-brand {
+    text-transform: uppercase;
+    font-weight: normal;
+    color: #d50000;
+}
+
+/* datatables */
+.maintable{
+    font-size:0.95em;
+}
+.maintable table.related {
+    font-size:0.9em;
+    border:1px solid #ccc;
+    margin-top:2px;
+}
+.maintable table.related td {
+    border:none;
+    vertical-align:top;
+    padding:3px;
+}
+.maintable table.related td:first-child {
+    color:#666;
+}
+.maintable table.related tr:nth-child(even) {
+    background-color:#efefef;
+}
+.maintable table.related tr:nth-child(odd) {
+    background-color:#fff;
+}
+.maintable table.related a.toggle-link:hover span {
+    background-color:#d50000;
+    color: #fff;
+    text-decoration: none;
+}
+
+.maintable th.rotate {
+    height: 160px !important;
+    white-space: nowrap !important;
+    vertical-align: top !important;
+    max-width: 2em !important;
+}
+
+.maintable th.rotate > div {
+    transform:
+        translate(-25px, 75px)
+        rotate(315deg) !important;
+    width:160px !important;
+
+}
+.maintable th.rotate > div > span {
+    padding: 0 !important;
+    width:160px !important;
+}
+.maintable td {
+    border-right: 1px solid #ccc !important;
+}
+
+
+/* sorting */
+table.dataTable thead th.sorting:after {
+    content: "\f0dc";
+    color: #ddd;
+    font-size: 0.8em;
+    padding-top: 0.12em;
+}
+
+table.dataTable thead th.sorting_asc:after {
+    content: "\f0de";
+}
+
+table.dataTable thead th.sorting_desc:after {
+    content: "\f0dd";
+}
+
+div.dataTables_scrollBody table.dataTable thead th.sorting:after,
+div.dataTables_scrollBody table.dataTable thead th.sorting_asc:after,
+div.dataTables_scrollBody table.dataTable thead th.sorting_desc:after {
+    content: "";
+}
+
+table.dataTable .sorting::after,
+table.dataTable .sorting_asc::after,
+table.dataTable .sorting_desc::after
+{
+    font-family: FontAwesome;
+    position: relative;
+    top: 110px;
+    right: -22px;
+}
+
+
+
+/* for views of single records */
+#maintable.vertical table.related {
+    border-top : 1px solid #000;
+    border-bottom : 1px solid #000;
+    margin:0;
+}
+#maintable.vertical td {
+    border: none !important;
+    padding:5px;
+    vertical-align:top;
+}
+#maintable.vertical td:first-child {
+    /*    color:#d50000;*/
+    color: darkgray;
+}
+#maintable.vertical td:nth-child(2n) {
+    color: #000;
+}
+
+
+
+div.dataTables_filter {
+    text-align: right;
+    float: right;
+}
+
+div.dataTables_length {
+    text-align: left;
+    float: left;
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: rgba(240,240,240,.5);
+}
+
+/* submenu */
+ul.dropdown-menu > li > a {
+    color: black;
+    background: #ccc;
+}
+ul.dropdown-menu > li > a:hover {
+    color: black;
+    background: #fff;
+}
+ul.dropdown-menu > li.active > a,
+ul.dropdown-menu > li.active > a:hover {
+    color: #d50000;
+    background: #ccc;
+}
