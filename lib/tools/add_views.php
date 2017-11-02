@@ -33,10 +33,14 @@ setlocale(LC_MONETARY, 'de_DE.UTF8');
                class="btn btn-sm btn-success"><span
                     class="glyphicon glyphicon-eye-open"></span> Aggregated View</a>
             @endif
+            @if(Auth::check())
+            @if(Auth::user()->admin==1)
             <a href="{!! URL::to('NAME/create') !!}"
                    class="btn btn-sm btn-primary iframe"><span
                         class="glyphicon glyphicon-plus-sign"></span> {{
                     trans("admin/modal.new") }}</a>
+            @endif
+            @endif
        </div>
 </div>
 
@@ -110,11 +114,16 @@ setlocale(LC_MONETARY, 'de_DE.UTF8');
             </td>
             @endforeach
             <td>
+            @if(Auth::check())
+            @if(Auth::user()->admin==1)
+
                 <a href="{{ URL::to('NAME/' . $record['id'] . '/edit' ) }}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil"></span> {{ trans("admin/modal.edit") }}</a>
                 <!--
                 <a href="{{ URL::to('NAME/' . $record['id'] . '/destroy' ) }}" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"></span> {{ trans("admin/modal.delete") }}</a>
                 -->
-                </td>
+            @endif
+            @endif
+            </td>
         </tr>
         @endforeach
     </tbody>
@@ -314,13 +323,17 @@ setlocale(LC_MONETARY, 'de_DE.UTF8');
 </div>
 
 <div class="col-md-1">
+    @if(Auth::check())
+    @if(Auth::user()->admin==1)
+
         <div class="pull-right">
             <a href="{{ URL::to('NAME/' . $id . '/edit' ) }}" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-pencil"></span> {{ trans("admin/modal.edit") }}</a>
         </div>
 
         <div class="pull-right" style="margin-top:20px">
         </div>
-        
+    @endif
+    @endif
 </div>
 </div>
 

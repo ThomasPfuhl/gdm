@@ -26,10 +26,18 @@ Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') . '/TABL
 Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') . '/TABLENAME/{id}', 'CTABLENAMEController@apiGetOne');
 Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') . '/TABLENAME/search', 'CTABLENAMEController@apiSearch');
 // GUI
-Route::get('TABLENAME/aggregated', 'CTABLENAMEController@index_aggregated');
-Route::get('TABLENAME/data', 'CTABLENAMEController@data');
-Route::get('TABLENAME/{id}/datum', 'CTABLENAMEController@datum');
+Route::get('TABLENAME/aggregated',  'CTABLENAMEController@index_aggregated');
+Route::get('TABLENAME/data',        'CTABLENAMEController@data');
+Route::get('TABLENAME/{id}/datum',  'CTABLENAMEController@datum');
+// FORBIDDEN, unless authenticated:
+Route::get(     'TABLENAME/{id}/edit',  ['middleware' => 'auth', 'uses' => 'CTABLENAMEController@show']);
+Route::put(     'TABLENAME/{id}',       ['middleware' => 'auth', 'uses' => 'CTABLENAMEController@show']);
+Route::delete(  'TABLENAME/{id}',       ['middleware' => 'auth', 'uses' => 'CTABLENAMEController@show']);
+// since we are lazy, we use this shortcut:
 Route::resource('TABLENAME', 'CTABLENAMEController');
+// FORBIDDEN, unless authenticated:
+Route::get(     'TABLENAME/create',     ['middleware' => 'auth', 'uses' => 'CTABLENAMEController@show']);
+Route::post(    'TABLENAME',            ['middleware' => 'auth', 'uses' => 'CTABLENAMEController@show']);
 
 PHPCODE;
 

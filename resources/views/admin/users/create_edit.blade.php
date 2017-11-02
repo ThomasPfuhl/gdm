@@ -1,11 +1,13 @@
 @extends('admin.layouts.modal')
 {{-- Content --}}
 @section('content')
-<!-- Tabs -->
+
+<!-- Tabs 
 <ul class="nav nav-tabs">
     <li class="active"><a href="#tab-general" data-toggle="tab"> {{
 			trans("admin/modal.general") }}</a></li>
 </ul>
+-->
 <!-- ./ tabs -->
 @if (isset($user))
 {!! Form::model($user, array('url' => URL::to('admin/user') . '/' . $user->id, 'method' => 'put', 'class' => 'bf', 'files'=> true)) !!}
@@ -51,6 +53,13 @@
                 <span class="help-block">{{ $errors->first('password_confirmation', ':message') }}</span>
             </div>
         </div>
+        <div class="form-group  {{ $errors->has('language') ? 'has-error' : '' }}">
+            {!! Form::label('language', trans("admin/language.language"), array('class' => 'control-label')) !!}
+            <div class="controls">
+                {!! Form::text('language', null, array('class' => 'form-control')) !!}
+                <span class="help-block">{{ $errors->first('language', ':message') }}</span>
+            </div>
+        </div>
         <div class="form-group  {{ $errors->has('confirmed') ? 'has-error' : '' }}">
             {!! Form::label('confirmed', trans("admin/users.active_user"), array('class' => 'control-label')) !!}
             <div class="controls">
@@ -83,11 +92,13 @@
         </div>
     </div>
     {!! Form::close() !!}
-    @stop @section('scripts')
+    @stop 
+    
+    @section('scripts')
     <script type="text/javascript">
-        $(function () {
-            $("#roles").select2()
-        });
+//        $(function () {
+//            $("#roles").select2()
+//        });
     </script>
 </div>
 @stop

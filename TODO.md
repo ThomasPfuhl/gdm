@@ -6,13 +6,22 @@
 
 ## write Tests
 
+
 ## Frontend
 
 - many-to-many Relations
+- zoom into referenced tables, given the depth as parameter
 
 ## Backend
 
-- User Right Management
+- delete records
+
+
+## Localisation
+
+- check language files in `resources/lang/en`
+- create `resources/lang/[de,fr,es,it,sv,jp,cn]`
+
 
 ## API
 

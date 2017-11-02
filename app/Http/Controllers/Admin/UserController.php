@@ -21,7 +21,7 @@ class UserController extends AdminController {
 
     public function index() {
         // Show the page
-        return view('admin.user.index');
+        return view('admin.users.index');
     }
 
     /**
@@ -30,7 +30,7 @@ class UserController extends AdminController {
      * @return Response
      */
     public function create() {
-        return view('admin.user.create_edit');
+        return view('admin.users.create_edit');
     }
 
     /**
@@ -49,11 +49,12 @@ class UserController extends AdminController {
     /**
      * Show the form for editing the specified resource.
      *
-     * @param User $user
+     * @param int $id
      * @return Response
      */
-    public function edit(User $user) {
-        return view('admin.user.create_edit', compact('user'));
+    public function edit(int $id) {
+        $user = User::find($id);
+        return view('admin.users.create_edit', compact('user'));
     }
 
     /**
@@ -82,7 +83,7 @@ class UserController extends AdminController {
      * @return Response
      */
     public function delete(User $user) {
-        return view('admin.user.delete', compact('user'));
+        return view('admin.users.delete', compact('user'));
     }
 
     /**
@@ -125,13 +126,14 @@ class UserController extends AdminController {
     public function data() {
         $records = User::all();
         //$records = Language::select(array('languages.id', 'languages.alpha2_code', 'languages.name'))->get();
- 
+
         return Datatables::of($records)
                         ->edit_column('confirmed', '@if ($confirmed=="1") <span class="glyphicon glyphicon-ok"></span> @else <span class=\'glyphicon glyphicon-remove\'></span> @endif')
                         ->edit_column('admin', '@if ($admin=="1") <span class="glyphicon glyphicon-ok"></span> @else <span class=\'glyphicon glyphicon-remove\'></span> @endif')
-                        ->add_column('actions', '@if ($id!="1")<a href="{{{ URL::to(\'admin/users/\' . $id . \'/edit\' ) }}}" class="btn btn-success btn-sm iframe" ><span class="glyphicon glyphicon-pencil"></span>  {{ trans("admin/modal.edit") }}</a>
+                        ->add_column('actions', '
+                    <a href="{{{ URL::to(\'admin/users/\' . $id . \'/edit\' ) }}}" class="btn btn-success btn-sm iframe" ><span class="glyphicon glyphicon-pencil"></span>  {{ trans("admin/modal.edit") }}</a>
                     <a href="{{{ URL::to(\'admin/users/\' . $id . \'/delete\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("admin/modal.delete") }}</a>
-                @endif')
+                ')
                         //->remove_column('id')
                         ->make();
     }

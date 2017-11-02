@@ -6,7 +6,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button> 
+            </button>
             <div style="float:left;margin-right:5px;"><img height="30" alt="logo" src="{!! asset('img/app_logo.png') !!}"/></div>
             <a class="navbar-brand" href="#">@section('sitename') @show</a>
         </div>
@@ -48,8 +48,9 @@
                 <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"
                     ><a href="{{ URL::to('auth/login') }}"
                     ><i class="fa fa-sign-in"></i> Login</a></li>
-                <li class="{{ (Request::is('auth/register') ? 'active' : '') }}"
+                <!-- <li class="{{ (Request::is('auth/register') ? 'active' : '') }}"
                     ><a href="{{ URL::to('auth/register') }}">Register</a></li>
+                -->
                 @else
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"

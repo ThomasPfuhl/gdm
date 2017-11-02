@@ -35,59 +35,38 @@
 
         @include('partials.footer')
 
-
         <!-- Scripts -->
         <script type="text/javascript">
             $(document).ready(function () {
 
-//    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-//        console.log("aha");
-//        console.log($('div.tab-pane.active > table'));
-//        console.log($.fn.dataTable.tables({visible: true, api: true}));
-//        $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
-//    });
-
-                var oTable;
-                oTable = $('#maintable').DataTable
-                        ({
-                            "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
+            var oTable;
+            oTable = $('#maintable').DataTable
+                    ({
+                    "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
                             "sPaginationType": "bootstrap",
                             "oLanguage": {
-                                "sProcessing": "{{ trans('table.processing') }}",
-                                "sLengthMenu": "{{ trans('table.showmenu') }}",
-                                "sZeroRecords": "{{ trans('table.noresult') }}",
-                                "sInfo": "{{ trans('table.show') }}",
-                                "sEmptyTable": "{{ trans('table.emptytable') }}",
-                                "sInfoEmpty": "{{ trans('table.view') }}",
-                                "sInfoFiltered": "{{ trans('table.filter') }}",
-                                "sInfoPostFix": "",
-                                "sSearch": "{{ trans('table.search') }}:",
-                                "sUrl": "",
-                                "oPaginate": {
+                            "sProcessing": "{{ trans('table.processing') }}",
+                                    "sLengthMenu": "{{ trans('table.showmenu') }}",
+                                    "sZeroRecords": "{{ trans('table.noresult') }}",
+                                    "sInfo": "{{ trans('table.show') }}",
+                                    "sEmptyTable": "{{ trans('table.emptytable') }}",
+                                    "sInfoEmpty": "{{ trans('table.view') }}",
+                                    "sInfoFiltered": "{{ trans('table.filter') }}",
+                                    "sInfoPostFix": "",
+                                    "sSearch": "{{ trans('table.search') }}:",
+                                    "sUrl": "",
+                                    "oPaginate": {
                                     "sFirst": "{{ trans('table.start') }}",
-                                    "sPrevious": "{{ trans('table.prev') }}",
-                                    "sNext": "{{ trans('table.next') }}",
-                                    "sLast": "{{ trans('table.last') }}"
-                                }
+                                            "sPrevious": "{{ trans('table.prev') }}",
+                                            "sNext": "{{ trans('table.next') }}",
+                                            "sLast": "{{ trans('table.last') }}"
+                                    }
                             },
                             "pageLength": 25,
                             "processing": false,
                             "serverSide": false,
-//                            "processing": true,
-//                            "serverSide": true,
-//                            "ajax": "/{!! $type !!}/data",
-//                            "fnDrawCallback": function (oSettings) {
-//                                $(".iframe").colorbox({
-//                                    iframe: true,
-//                                    width: "80%",
-//                                    height: "90%",
-//                                    onClosed: function () {
-//                                        oTable.ajax.reload();
-//                                    }
-//                                });
-//                            }
-                        });
-           });
+                    });
+            });
         </script>
         @yield('scripts')
 

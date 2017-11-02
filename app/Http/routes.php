@@ -14,6 +14,7 @@ Route::pattern('slug', '[0-9a-z-_]+');
 /* * *************    Site routes  ********************************* */
 
 Route::get('about', 'PagesController@about');
+Route::get('home',  'PagesController@about');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',

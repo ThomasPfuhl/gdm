@@ -141,9 +141,8 @@ Create the tables needed by GDM.
 Populate the database tables.
 Liquibase provides Seeder classes in the folder ``database/seeds``
 
-- Table `users`: username=$GDM_MANAGER_NAME  email=$GDM_MANAGER_EMAIL  password=admin  
-- Table `users`: username=admin   password=admin  
-- Table `users`: username=test_user   password=user  
+- Table `users`: *administrator* : username=$GDM_MANAGER_NAME  email=$GDM_MANAGER_EMAIL  password=admin  
+- Table `users`: *test user*: username=test_user   password=user   (currently not used)
 
         composer dump-autoload
         php artisan db:seed  
@@ -194,12 +193,10 @@ Point your browser to the domain name or IP.
 If you use docker, this may be ``http://172.17.0.2`` or some similar IP.
 
 ### Backend
-- point your browser to ``http://your_IP/auth/login``,
-- log in with administrator credentials,
-- go to ``http://your_IP/admin/dashboard``
+1. point your browser to ``http://your_IP/auth/login`,
+2. log in with administrator credentials,
+3. go to ``http://your_IP/admin/dashboard``
 
-### User Rights Management
- PENDING ! Currently, data can be edited without authentication. 
 
 ### Reference Manual
 
