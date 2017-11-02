@@ -38,9 +38,9 @@ Otherwise build GDM step by step:
 
 ### Deployment
 Unpack the downloaded tarball or clone the git repository in a folder 
-which we will refer to as `$GDM_HOME`.
+which we will refer to as `GDM_HOME`.
 
-    cd $GDM_HOME
+    cd GDM_HOME
 
 
 ### Customization
@@ -141,7 +141,7 @@ Create the tables needed by GDM.
 Populate the database tables.
 Liquibase provides Seeder classes in the folder ``database/seeds``
 
-- Table `users`: *administrator* : username=$GDM_MANAGER_NAME  email=$GDM_MANAGER_EMAIL  password=admin  
+- Table `users`: *administrator* : username=GDM_MANAGER_NAME  email=GDM_MANAGER_EMAIL  password=admin  
 - Table `users`: *test user*: username=test_user   password=user   (currently not used)
 
         composer dump-autoload
@@ -165,7 +165,7 @@ the file `app/Http/more_routes.php`,
 and the file `resources/views/partials/menu-items.blade.php`.
 You might have to have sudoers' rights to do so.
 
-    cd $GDM_HOME
+    cd GDM_HOME
     chgrp -R www-data app/Models
     chgrp -R www-data app/Http/Controllers
     chgrp  www-data app/Http/more_routes.php
@@ -185,26 +185,24 @@ PENDING: many-to-many relations are yet not generated automagically.
 
 
 ## Webserver
-Either install and configure a webserver for `$GDM_URL`  
+Either install and configure a webserver for `GDM_URL`  
 or launch the command `php artisan serve` and point your browser  to `http://localhost:8000`
 
 ### Frontend
 Point your browser to the domain name or IP.
-If you use docker, this may be ``http://172.17.0.2`` or some similar IP.
+If you use docker, this may be `http://172.17.0.2` or some similar IP.
 
 ### Backend
-1. point your browser to ``http://your_IP/auth/login`,
-2. log in with administrator credentials,
-3. go to ``http://your_IP/admin/dashboard``
+1. point your browser to `http://your_IP/auth/login`
+2. log in with administrator credentials
+3. go to `http://your_IP/admin/dashboard`
 
 
 ### Reference Manual
 
 After having finished the installation, you may generate the reference manual, 
 using an appropriate tool processing annotations, e.g. `doxygen` (not provided with this software package).
-It may be useful to place the documentation into the public folder:
-
-    /doc/referencemanual/html/index.html
+It may be useful to place the documentation into the public folder: `/doc/referencemanual/html/index.html`
 
 ### API
 
