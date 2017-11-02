@@ -304,7 +304,7 @@ class CAP_NAMEController extends Controller {
     public function apiGetDoc() {
        // show the API endpoint documentation for MODEL_NAME. 
        $modelName = "MODEL_NAME";
-       return view('vendor.swaggervel.doc', compact('modelName'));
+       return view('pages.apidoc', compact('modelName'));
     }
 
     /**

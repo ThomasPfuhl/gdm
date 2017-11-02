@@ -176,8 +176,13 @@ You might have to have sudoers' rights to do so.
     chmod -R g+w app/Http/more_routes.php
     chmod -R g+w resources/views/partials/menu-items.blade.php
 
-
 PENDING: many-to-many relations are yet not generated automagically.   
+
+### Generate the API docs:
+
+    php artisan vendor:publish --tag=public
+    php artisan vendor:publish --tag=config
+    php artisan vendor:publish --tag=views
 
 
 ## Webserver

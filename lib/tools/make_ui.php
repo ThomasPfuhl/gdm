@@ -85,7 +85,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
   *     version="GDM_DATAMODEL_VERSION",  
   *     title="GDM_NAME",  
   *     description="GDM_TITLE",  
-  *     termsOfService="",  
   *     @SWG\Contact(  
   *       email="GDM_MANAGER_EMAIL"  
   *     ),  
@@ -111,6 +110,7 @@ $content = str_replace('GDM_NAME', GDM_NAME, $content);
 $content = str_replace('GDM_TITLE', GDM_TITLE, $content);
 $content = str_replace('GDM_DATAMODEL_VERSION', GDM_DATAMODEL_VERSION, $content);
 $content = str_replace('GDM_MANAGER_EMAIL', GDM_MANAGER_EMAIL, $content);
+$content = str_replace('""', '"', $content);
 
 file_put_contents("../../app/Http/Controllers/Controller.php", $content);
 

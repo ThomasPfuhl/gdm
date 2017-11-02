@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button> 
-            <div style="float:left;margin-top:0;"><img height="30" alt="logo" src="{!! asset('img/app_logo.png') !!}"/></div>
+            <div style="float:left;margin-right:5px;"><img height="30" alt="logo" src="{!! asset('img/app_logo.png') !!}"/></div>
             <a class="navbar-brand" href="#">@section('sitename') @show</a>
         </div>
 

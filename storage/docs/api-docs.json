@@ -1,19 +1,18 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "GDM API",
-        "description": "Api description for GDM",
-        "termsOfService": "",
+        "title": "kaffeekasse",
+        "description": "Kaffeekasse FB3",
         "contact": {
             "email": "thomas.pfuhl@mfn-berlin.de"
         },
         "license": {
-            "name": "GNU Public License",
-            "url": "URL to the license"
+            "name": "GNU General Public License",
+            "url": "http://www.gnu.org/licenses/"
         },
-        "version": "1.0.0"
+        "version": "v0_9"
     },
-    "host": "localhost:8000",
+    "host": "http://localhost:8000",
     "basePath": "/api",
     "schemes": [
         "http",
@@ -22,7 +21,7 @@
     "paths": {
         "/kaffeekasse/v0_9/aggregations/{id}": {
             "get": {
-                "description": "get single record",
+                "description": "get single record from aggregations",
                 "operationId": "getAggregation",
                 "produces": [
                     "application/json"
@@ -49,7 +48,7 @@
         },
         "/kaffeekasse/v0_9/aggregations/all": {
             "get": {
-                "description": "get all records",
+                "description": "get all records from aggregations",
                 "operationId": "getAggregations",
                 "produces": [
                     "application/json"
@@ -63,7 +62,7 @@
         },
         "/kaffeekasse/v0_9/communities/{id}": {
             "get": {
-                "description": "get single record",
+                "description": "get single record from communities",
                 "operationId": "getCommunity",
                 "produces": [
                     "application/json"
@@ -90,7 +89,7 @@
         },
         "/kaffeekasse/v0_9/communities/all": {
             "get": {
-                "description": "get all records",
+                "description": "get all records from communities",
                 "operationId": "getCommunities",
                 "produces": [
                     "application/json"
@@ -104,7 +103,7 @@
         },
         "/kaffeekasse/v0_9/deposits/{id}": {
             "get": {
-                "description": "get single record",
+                "description": "get single record from deposits",
                 "operationId": "getDeposit",
                 "produces": [
                     "application/json"
@@ -131,7 +130,7 @@
         },
         "/kaffeekasse/v0_9/deposits/all": {
             "get": {
-                "description": "get all records",
+                "description": "get all records from deposits",
                 "operationId": "getDeposits",
                 "produces": [
                     "application/json"
@@ -145,7 +144,7 @@
         },
         "/kaffeekasse/v0_9/members/{id}": {
             "get": {
-                "description": "get single record",
+                "description": "get single record from members",
                 "operationId": "getMember",
                 "produces": [
                     "application/json"
@@ -172,7 +171,7 @@
         },
         "/kaffeekasse/v0_9/members/all": {
             "get": {
-                "description": "get all records",
+                "description": "get all records from members",
                 "operationId": "getMembers",
                 "produces": [
                     "application/json"
@@ -186,7 +185,7 @@
         },
         "/kaffeekasse/v0_9/products/{id}": {
             "get": {
-                "description": "get single record",
+                "description": "get single record from products",
                 "operationId": "getProduct",
                 "produces": [
                     "application/json"
@@ -213,7 +212,7 @@
         },
         "/kaffeekasse/v0_9/products/all": {
             "get": {
-                "description": "get all records",
+                "description": "get all records from products",
                 "operationId": "getProducts",
                 "produces": [
                     "application/json"
@@ -226,9 +225,5 @@
             }
         }
     },
-    "definitions": {},
-    "externalDocs": {
-        "description": "Find out more about GDM",
-        "url": "http..."
-    }
+    "definitions": {}
 }
