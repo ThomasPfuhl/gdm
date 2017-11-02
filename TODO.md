@@ -1,5 +1,9 @@
 # TODO 
 
+## laravel framework
+
+- upgrade to v5.4 LTS
+
 ## write Tests
 
 ## Frontend

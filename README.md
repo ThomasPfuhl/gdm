@@ -198,8 +198,8 @@ If you use docker, this may be ``http://172.17.0.2`` or some similar IP.
 - log in with administrator credentials,
 - go to ``http://your_IP/admin/dashboard``
 
-- User Rights Management
-    - As outlined above, there are 
+### User Rights Management
+ PENDING ! Currently, data can be edited without authentication. 
 
 ### Reference Manual
 
@@ -216,3 +216,4 @@ The API comes with a concise and complete documentation, including webforms to t
 - GUI:  `/api/_module_name_ /_version_/_tablename_/`
 
 
+END OF DOCUMENT.

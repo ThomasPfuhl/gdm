@@ -1,7 +1,7 @@
 {
   "name": "gdm",
-  "version": "0.4a",
-  "homepage": "https://code.naturkundemuseum.berlin/Thomas.Pfuhl/pmd/",
+  "version": "0.5b",
+  "homepage": "https://code.naturkundemuseum.berlin/Thomas.Pfuhl/gdm/",
   "moduleType": [
     "node"
   ],
