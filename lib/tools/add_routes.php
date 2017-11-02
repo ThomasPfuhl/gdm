@@ -21,9 +21,10 @@ $content = <<<'PHPCODE'
 
 //////////////////////////////
 // API, returns JSON
-Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_VERSION') . '/TABLENAME/', 'CTABLENAMEController@apiGetAll');
-Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_VERSION') . '/TABLENAME/{id}', 'CTABLENAMEController@apiGetOne');
-Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_VERSION') . '/TABLENAME/search', 'CTABLENAMEController@apiSearch');
+Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') . '/TABLENAME/', 'CTABLENAMEController@apiGetDoc');
+Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') . '/TABLENAME/all', 'CTABLENAMEController@apiGetAll');
+Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') . '/TABLENAME/{id}', 'CTABLENAMEController@apiGetOne');
+Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') . '/TABLENAME/search', 'CTABLENAMEController@apiSearch');
 // GUI
 Route::get('TABLENAME/aggregated', 'CTABLENAMEController@index_aggregated');
 Route::get('TABLENAME/data', 'CTABLENAMEController@data');

@@ -5,10 +5,10 @@
 #---------------------------------------------------------------------------
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = "GDM"
-PROJECT_NUMBER         = "0.9b"
-PROJECT_BRIEF          = "general data module"
+PROJECT_NUMBER         = "0.5b"
+PROJECT_BRIEF          = "generic data module"
 PROJECT_LOGO           = /home/pfuhl/NetBeansProjects/gdm/public/img/data_module_icon.png
-OUTPUT_DIRECTORY       = /home/pfuhl/NetBeansProjects/gdm/public/doc/api
+OUTPUT_DIRECTORY       = /home/pfuhl/NetBeansProjects/gdm/public/doc/referencemanual
 CREATE_SUBDIRS         = NO
 ALLOW_UNICODE_NAMES    = NO
 OUTPUT_LANGUAGE        = English
@@ -115,8 +115,7 @@ INPUT                  = /home/pfuhl/NetBeansProjects/gdm
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.php *.js *.md 
 RECURSIVE              = YES
-EXCLUDE                =  \
-                         ./lib \
+EXCLUDE                = ./lib \
                          ./bootstrap \
                          ./tests \
                          ./storage \
@@ -126,8 +125,8 @@ EXCLUDE                =  \
                          ./node_modules \
                          ./bower_components \
                          ./vendor \
-                         ./resources/vendor \
-                           
+                         ./public/vendor \
+                         ./resources/vendor                         
 EXCLUDE_SYMLINKS       = YES
 EXCLUDE_PATTERNS       = 
 EXCLUDE_SYMBOLS        =  

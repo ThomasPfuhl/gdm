@@ -4,16 +4,15 @@
 /home/pfuhl/NetBeansProjects/gdm/app/Http/Middleware/RedirectIfAuthenticated.php:9: warning: Compound App::Http::Middleware::RedirectIfAuthenticated is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Exceptions/Handler.php:12: warning: Compound App::Exceptions::Handler is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Http/Middleware/EncryptCookies.php:8: warning: Compound App::Http::Middleware::EncryptCookies is not documented.
-/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/DepositsController.php:13: warning: Compound App::Http::Controllers::DepositsController is not documented.
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/DepositsController.php:14: warning: Compound App::Http::Controllers::DepositsController is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Forms/ProductsForm.php:8: warning: Compound App::Forms::ProductsForm is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Providers/AppServiceProvider.php:8: warning: Compound App::Providers::AppServiceProvider is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Console/Commands/Inspire.php:9: warning: Compound App::Console::Commands::Inspire is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Forms/DepositsForm.php:8: warning: Compound App::Forms::DepositsForm is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Console/Kernel.php:9: warning: Compound App::Console::Kernel is not documented.
-/home/pfuhl/NetBeansProjects/gdm/app/Http/Middleware/Album.php:5: warning: Compound App::Http::Middleware::Album is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/Admin/LanguageController.php:15: warning: Compound App::Http::Controllers::Admin::LanguageController is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/Admin/UserController.php:10: warning: Compound App::Http::Controllers::Admin::UserController is not documented.
-/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/PagesController.php:8: warning: Compound App::Http::Controllers::PagesController is not documented.
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/PagesController.php:9: warning: Compound App::Http::Controllers::PagesController is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Http/Middleware/VerifyCsrfToken.php:8: warning: Compound App::Http::Middleware::VerifyCsrfToken is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/Admin/DashboardController.php:16: warning: Compound App::Http::Controllers::Admin::DashboardController is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/Admin/UpdateUIController.php:8: warning: Compound App::Http::Controllers::Admin::UpdateUIController is not documented.
@@ -24,12 +23,12 @@
 /home/pfuhl/NetBeansProjects/gdm/app/Providers/RouteServiceProvider.php:9: warning: Compound App::Providers::RouteServiceProvider is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Http/Kernel.php:8: warning: Compound App::Http::Kernel is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Language.php:7: warning: Compound App::Language is not documented.
-/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/ProductsController.php:13: warning: Compound App::Http::Controllers::ProductsController is not documented.
-/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/AggregationsController.php:13: warning: Compound App::Http::Controllers::AggregationsController is not documented.
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/ProductsController.php:14: warning: Compound App::Http::Controllers::ProductsController is not documented.
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/AggregationsController.php:14: warning: Compound App::Http::Controllers::AggregationsController is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/Auth/AuthController.php:11: warning: Compound App::Http::Controllers::Auth::AuthController is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/User.php:13: warning: Compound App::User is not documented.
-/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/MembersController.php:13: warning: Compound App::Http::Controllers::MembersController is not documented.
-/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/CommunitiesController.php:13: warning: Compound App::Http::Controllers::CommunitiesController is not documented.
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/MembersController.php:14: warning: Compound App::Http::Controllers::MembersController is not documented.
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/CommunitiesController.php:14: warning: Compound App::Http::Controllers::CommunitiesController is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Http/Requests/Admin/UserRequest.php:6: warning: Compound App::Http::Requests::Admin::UserRequest is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Http/Middleware/Authenticate.php:9: warning: Compound App::Http::Middleware::Authenticate is not documented.
 /home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/HomeController.php:9: warning: Compound App::Http::Controllers::HomeController is not documented.
@@ -57,15 +56,85 @@ todo:2: warning: Illegal command Admin as part of a \ref
 /home/pfuhl/NetBeansProjects/gdm/app/Exceptions/Handler.php:41: warning: Found unknown command `\Http'
 /home/pfuhl/NetBeansProjects/gdm/app/Exceptions/Handler.php:41: warning: Found unknown command `\Response'
 /home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/AdminController.php:8: warning: Found unknown command `\AdminController'
-/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/AggregationsController.php:151: warning: The following parameters of App\Http\Controllers\AggregationsController\store(Request $request, FormBuilder $formBuilder) are not documented:
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/AggregationsController.php:345: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/AggregationsController.php:345: warning: Found unknown command `\Get'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/AggregationsController.php:350: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/AggregationsController.php:350: warning: Found unknown command `\Response'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/AggregationsController.php:300: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/AggregationsController.php:300: warning: Found unknown command `\Get'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/AggregationsController.php:305: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/AggregationsController.php:305: warning: Found unknown command `\Parameter'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/AggregationsController.php:313: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/AggregationsController.php:313: warning: Found unknown command `\Response'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/AggregationsController.php:317: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/AggregationsController.php:317: warning: Found unknown command `\Response'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/AggregationsController.php:152: warning: The following parameters of App\Http\Controllers\AggregationsController\store(Request $request, FormBuilder $formBuilder) are not documented:
   parameter '$request'
-/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/CommunitiesController.php:151: warning: The following parameters of App\Http\Controllers\CommunitiesController\store(Request $request, FormBuilder $formBuilder) are not documented:
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/CommunitiesController.php:345: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/CommunitiesController.php:345: warning: Found unknown command `\Get'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/CommunitiesController.php:350: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/CommunitiesController.php:350: warning: Found unknown command `\Response'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/CommunitiesController.php:300: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/CommunitiesController.php:300: warning: Found unknown command `\Get'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/CommunitiesController.php:305: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/CommunitiesController.php:305: warning: Found unknown command `\Parameter'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/CommunitiesController.php:313: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/CommunitiesController.php:313: warning: Found unknown command `\Response'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/CommunitiesController.php:317: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/CommunitiesController.php:317: warning: Found unknown command `\Response'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/CommunitiesController.php:152: warning: The following parameters of App\Http\Controllers\CommunitiesController\store(Request $request, FormBuilder $formBuilder) are not documented:
   parameter '$request'
-/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/DepositsController.php:175: warning: The following parameters of App\Http\Controllers\DepositsController\store(Request $request, FormBuilder $formBuilder) are not documented:
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/Controller.php:16: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/Controller.php:16: warning: Found unknown command `\Swagger'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/Controller.php:20: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/Controller.php:20: warning: Found unknown command `\Info'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/Controller.php:25: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/Controller.php:25: warning: Found unknown command `\Contact'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/Controller.php:28: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/Controller.php:28: warning: Found unknown command `\License'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/Controller.php:33: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/Controller.php:33: warning: Found unknown command `\ExternalDocumentation'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/DepositsController.php:388: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/DepositsController.php:388: warning: Found unknown command `\Get'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/DepositsController.php:393: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/DepositsController.php:393: warning: Found unknown command `\Response'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/DepositsController.php:343: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/DepositsController.php:343: warning: Found unknown command `\Get'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/DepositsController.php:348: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/DepositsController.php:348: warning: Found unknown command `\Parameter'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/DepositsController.php:356: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/DepositsController.php:356: warning: Found unknown command `\Response'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/DepositsController.php:360: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/DepositsController.php:360: warning: Found unknown command `\Response'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/DepositsController.php:176: warning: The following parameters of App\Http\Controllers\DepositsController\store(Request $request, FormBuilder $formBuilder) are not documented:
   parameter '$request'
-/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/MembersController.php:175: warning: The following parameters of App\Http\Controllers\MembersController\store(Request $request, FormBuilder $formBuilder) are not documented:
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/MembersController.php:388: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/MembersController.php:388: warning: Found unknown command `\Get'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/MembersController.php:393: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/MembersController.php:393: warning: Found unknown command `\Response'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/MembersController.php:343: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/MembersController.php:343: warning: Found unknown command `\Get'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/MembersController.php:348: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/MembersController.php:348: warning: Found unknown command `\Parameter'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/MembersController.php:356: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/MembersController.php:356: warning: Found unknown command `\Response'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/MembersController.php:360: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/MembersController.php:360: warning: Found unknown command `\Response'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/MembersController.php:176: warning: The following parameters of App\Http\Controllers\MembersController\store(Request $request, FormBuilder $formBuilder) are not documented:
   parameter '$request'
-/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/ProductsController.php:151: warning: The following parameters of App\Http\Controllers\ProductsController\store(Request $request, FormBuilder $formBuilder) are not documented:
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/ProductsController.php:345: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/ProductsController.php:345: warning: Found unknown command `\Get'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/ProductsController.php:350: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/ProductsController.php:350: warning: Found unknown command `\Response'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/ProductsController.php:300: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/ProductsController.php:300: warning: Found unknown command `\Get'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/ProductsController.php:305: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/ProductsController.php:305: warning: Found unknown command `\Parameter'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/ProductsController.php:313: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/ProductsController.php:313: warning: Found unknown command `\Response'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/ProductsController.php:317: warning: Found unknown command `\SWG'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/ProductsController.php:317: warning: Found unknown command `\Response'
+/home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/ProductsController.php:152: warning: The following parameters of App\Http\Controllers\ProductsController\store(Request $request, FormBuilder $formBuilder) are not documented:
   parameter '$request'
 /home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/Admin/LanguageController.php:76: warning: argument '$id' of command @param is not found in the argument list of LanguageController::delete(Language $language)
 /home/pfuhl/NetBeansProjects/gdm/app/Http/Controllers/Admin/LanguageController.php:81: warning: The following parameters of App\Http\Controllers\Admin\LanguageController\delete(Language $language) are not documented:

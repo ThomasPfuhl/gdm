@@ -1,0 +1,234 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "GDM API",
+        "description": "Api description for GDM",
+        "termsOfService": "",
+        "contact": {
+            "email": "thomas.pfuhl@mfn-berlin.de"
+        },
+        "license": {
+            "name": "GNU Public License",
+            "url": "URL to the license"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:8000",
+    "basePath": "/api",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/kaffeekasse/v0_9/aggregations/{id}": {
+            "get": {
+                "description": "get single record",
+                "operationId": "getAggregation",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "primary key",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "aggregations response"
+                    },
+                    "500": {
+                        "description": "aggregations error: not a valid primary key ?"
+                    }
+                }
+            }
+        },
+        "/kaffeekasse/v0_9/aggregations/all": {
+            "get": {
+                "description": "get all records",
+                "operationId": "getAggregations",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "aggregations response"
+                    }
+                }
+            }
+        },
+        "/kaffeekasse/v0_9/communities/{id}": {
+            "get": {
+                "description": "get single record",
+                "operationId": "getCommunity",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "primary key",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "communities response"
+                    },
+                    "500": {
+                        "description": "communities error: not a valid primary key ?"
+                    }
+                }
+            }
+        },
+        "/kaffeekasse/v0_9/communities/all": {
+            "get": {
+                "description": "get all records",
+                "operationId": "getCommunities",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "communities response"
+                    }
+                }
+            }
+        },
+        "/kaffeekasse/v0_9/deposits/{id}": {
+            "get": {
+                "description": "get single record",
+                "operationId": "getDeposit",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "primary key",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "deposits response"
+                    },
+                    "500": {
+                        "description": "deposits error: not a valid primary key ?"
+                    }
+                }
+            }
+        },
+        "/kaffeekasse/v0_9/deposits/all": {
+            "get": {
+                "description": "get all records",
+                "operationId": "getDeposits",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "deposits response"
+                    }
+                }
+            }
+        },
+        "/kaffeekasse/v0_9/members/{id}": {
+            "get": {
+                "description": "get single record",
+                "operationId": "getMember",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "primary key",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "members response"
+                    },
+                    "500": {
+                        "description": "members error: not a valid primary key ?"
+                    }
+                }
+            }
+        },
+        "/kaffeekasse/v0_9/members/all": {
+            "get": {
+                "description": "get all records",
+                "operationId": "getMembers",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "members response"
+                    }
+                }
+            }
+        },
+        "/kaffeekasse/v0_9/products/{id}": {
+            "get": {
+                "description": "get single record",
+                "operationId": "getProduct",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "primary key",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "products response"
+                    },
+                    "500": {
+                        "description": "products error: not a valid primary key ?"
+                    }
+                }
+            }
+        },
+        "/kaffeekasse/v0_9/products/all": {
+            "get": {
+                "description": "get all records",
+                "operationId": "getProducts",
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "products response"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {},
+    "externalDocs": {
+        "description": "Find out more about GDM",
+        "url": "http..."
+    }
+}

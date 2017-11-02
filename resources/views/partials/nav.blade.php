@@ -6,8 +6,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">@section('sitename')@show</a>
+            </button> 
+            <div style="float:left;margin-top:0;"><img height="30" alt="logo" src="{!! asset('img/app_logo.png') !!}"/></div>
+            <a class="navbar-brand" href="#">@section('sitename') @show</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

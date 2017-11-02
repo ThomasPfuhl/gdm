@@ -144,6 +144,7 @@ return [
         Codingo\Dropzoner\DropzonerServiceProvider::class,
         Iber\Generator\ModelGeneratorProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+        Appointer\Swaggervel\SwaggervelServiceProvider::class,
     ],
     /*
       |--------------------------------------------------------------------------

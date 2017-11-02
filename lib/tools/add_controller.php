@@ -6,8 +6,33 @@
  * @todo:  install and use  https://github.com/constant-null/backstubber
  */
 // unused
-// use Illuminate\Support\Pluralizer;
+//use Illuminate\Support\Pluralizer;
+//use Swagger\Annotations as SWG;
 
+/*  
+  * @SWG\Swagger(  
+  *   schemes={"http","https"},  
+  *   host="localhost:8000",  
+  *   basePath="/api/GDM_NAME/GDM_DATAMODEL_VERSION/TABLE_NAME",  
+  *   @SWG\Info(  
+  *     version="1.0.0",  
+  *     title="GDM API",  
+  *     description="Api description for GDM",  
+  *     termsOfService="",  
+  *     @SWG\Contact(  
+  *       email="thomas.pfuhl@mfn-berlin.de"  
+  *     ),  
+  *     @SWG\License(  
+  *       name="GNU Public License",  
+  *       url="URL to the license"  
+  *     )  
+  *   ),  
+  *   @SWG\ExternalDocumentation(  
+  *     description="Find out more about GDM",  
+  *     url="http..."  
+  *   )  
+  * )  
+  */  
 
 $stub = <<<'PHPCODE'
 <?php
@@ -18,8 +43,9 @@ use App\Models\MODEL_NAME;
 use Datatables;
 use Request;
 use Input;
-Use DB;
+use DB;
 use Kris\LaravelFormBuilder\FormBuilder;
+
 
 
 class CAP_NAMEController extends Controller {
@@ -269,20 +295,90 @@ class CAP_NAMEController extends Controller {
         return Datatables::of($collection)->make(true);
     }
 
-    
+
     /**
-     * API: get one record.
+     * API: get documentation
      *
-     * @param int $id
      * @return JSON
      */
-    public function apiGetOne($id) {
-        //$record = MODEL_NAME::findOrFail($id);
+    public function apiGetDoc() {
+       // show the API endpoint documentation for MODEL_NAME. 
+       $modelName = "MODEL_NAME";
+       return view('vendor.swaggervel.doc', compact('modelName'));
+    }
+
+    /**
+     * @SWG\Get(
+     *   path="/MODULE_INSTANCE/v0_9/TABLE_NAME/{id}",
+     *   description="get single record from TABLE_NAME",
+     *   operationId="getMODEL_NAME",
+     *   produces={"application/json"},  
+     *   @SWG\Parameter(  
+     *     name="id",  
+     *     in="path",  
+     *     description="primary key",  
+     *     required=true,  
+     *     type="integer",
+     *     format="int32"  
+     *   ),
+     *   @SWG\Response(  
+     *     response=200,  
+     *     description="TABLE_NAME response"
+     *     ),
+     *   @SWG\Response(  
+     *     response=500,  
+     *     description="TABLE_NAME error: not a valid primary key ?"
+     *     )
+     *   )
+     * )
+     */
+
+
+    /**
+     * API: get single record
+     *
+     * @param int $id primary key
+     * @return JSON
+     */
+     public function apiGetOne($id) {
         $record = MODEL_NAME::where('id', $id);
-        $json = $record->get()->toJson();
+
+        $jsonapi = array();
+        $jsonapi["version"] = env('GDM_DATAMODEL_VERSION');
+
+        $meta_infos = array();
+        $meta_infos["copyright"] = env('GDM_COPYRIGHT');
+        $meta_infos["authors"] = explode(",", env('GDM_AUTHORS'));
+
+        $data = $record->get();
+        foreach ($data as $datum) {
+            $datum->self = env('GDM_NAME') . '/' . env('GDM_DATAMODEL_VERSION') . '/TABLE_NAME/' . $id;
+         }
+
+        $result = array();
+        $result["jsonapi"] = $jsonapi;
+        $result["meta"] = $meta_infos;
+        $result["data"] = $datum;
+
+        $json = json_encode($result, JSON_FORCE_OBJECT);
         return response($json)->header('Content-Type', 'application/json');
     }
 
+
+   /**
+     * @SWG\Get(
+     *   path="/MODULE_INSTANCE/v0_9/TABLE_NAME/all",
+     *   description="get all records from TABLE_NAME",
+     *   operationId="getCAP_NAME",
+     *   produces={"application/json"},  
+     *   @SWG\Response(  
+     *     response=200,  
+     *     description="TABLE_NAME response"
+     *     )
+     *   )
+     * )
+     */
+     
     /**
      * API: get all records
      *
@@ -307,7 +403,7 @@ class CAP_NAMEController extends Controller {
         $collection = collect($extPropertyValues);
 
         $jsonapi = array();
-        $jsonapi["version"] = env('GDM_DATAMODEL_VERSION');
+        $jsonapi["version"] = env('GDM_DATAMODEL_VERSION') ;
         
         $meta_infos = array();
         $meta_infos["copyright"] = env('GDM_COPYRIGHT');
@@ -367,6 +463,8 @@ PHPCODE;
 echo "\n adding controller for " . $name;
 
 $content = $stub;
+$content = str_replace('MODULE_INSTANCE', GDM_NAME, $content);
+
 $content = str_replace('SINGULAR_NAME', singularize($name), $content);
 $content = str_replace('CAP_NAME', ucfirst($name), $content);
 $content = str_replace('MODEL_NAME', ucfirst(singularize($name)), $content);

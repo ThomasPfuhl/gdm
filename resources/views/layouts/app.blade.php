@@ -15,7 +15,7 @@
         @section('meta_description')
         <meta name="description" content="A generic framework to view and edit database records"/>
         @show
-        <link rel="shortcut icon" href="{!! asset('img/app_logo.png')  !!} ">
+        <link rel="shortcut icon" href="{!! asset('img/data_module_icon.png') !!} ">
 
         <link href="{{ asset('css/site.css') }}" rel="stylesheet">
         <script src="{{ asset('js/site.js') }}"></script>

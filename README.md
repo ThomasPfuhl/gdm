@@ -1,7 +1,7 @@
 # GDM — Generic Data Module
 
 funded by the DFG-Projekt gfbio [German Federation For Biological Data](https://www.gfbio.org)   
-written by thomas.pfuhl@mfn-berlin.de at the [Naturkundemuseum Berlin](https://www.naturkundemuseum.berlin)
+written by thomas.pfuhl@mfn-berlin.de at the [Museum für Naturkunde Berlin](https://www.naturkundemuseum.berlin)
 
 ## Purpose
 Provide a webframework with CRUD functionalities for any relational data base.  
@@ -10,10 +10,10 @@ but can also be modified 'on-run'.
 
 ## Implementation
 - Laravel 5.1
-- some Laravel packages
-- Twitter Bootstrap 3.x
-- DataTables dynamic table sorting and filtering
-- Colorbox jQuery modal popup
+- Twitter Bootstrap 3.3.7
+- DataTables: dynamic table sorting and filtering
+- Colorbox: jQuery modal popup
+- Swagger: API generating tool 
 - optionally: Liquibase 3.5.3
 
 This code has been inspired by 
@@ -21,12 +21,12 @@ This code has been inspired by
 
 ### Requirements
 
-- PHP >= 5.5.9
+- PHP >= 5.6
 - OpenSSL PHP Extension (included in php7)
 - Mbstring PHP Extension : `sudo apt-get install php-mbstring`   
 - Tokenizer PHP Extension (included in php7)
 - SQL engine (for example MySQL)
-- Composer
+- Composer: see `https://getcomposer.org/`
 - NodeJS:  `sudo apt-get install nodejs; sudo apt-get install npm`
 
 
@@ -48,14 +48,12 @@ which we will refer to as `$GDM_HOME`.
 Laravel uses an environment file ``.env`` which overwrites the settings defined 
 in  ``config/database.php`` and ``config/app.php``.   
 __You have to adapt it to your needs:__
-Edit the file `config/env.example`, and define at least all variables `GDM_*` and `DB_*`.
-
+Edit the file `config/.env.example`, and define at least all variables `GDM_*` and `DB_*`.
  
-All customizing files are located in the folder ``custom``. Please edit them: 
-- `about.html` contains a description of your application.
-- With `custom.js` and `custom.css` you can adapt the layout to your corporate identity.
-- Finally provide the logos for your institution and your app: `institution_logo.png`, `app_logo.png`
-
+All customizing files are located in the folder ``custom``. Please edit them:   
+- `about.html` contains a description of your application.  
+- With `custom.js` and `custom.css` you can adapt the layout to your corporate identity.  
+- Finally provide the logos for your institution and your app: `institution_logo.png`, `app_logo.png`  
 
 Once these steps accomplished, create the environment file:
 
@@ -64,7 +62,6 @@ Once these steps accomplished, create the environment file:
 Then run the customizing script: 
 
     php lib/tools/customize.php
-
 
 We make use of **node** and the node package manager **npm**.
 A recent version must be installed. Check with ``node -v``.
@@ -93,17 +90,18 @@ Create a database with utf-8 collation (utf8_general_ci).
 There are some constraints for the database tables, 
 in order to ensure the automatic generation of the User Interface:
 
-- Every table should have as its first column the auto_increment primary key field  `id`.
+- Every table should have as its first column the auto_increment primary key `id`.
 - The second column should be a column with a human readable content, like .e.g `title` or `shortdescription`.
 - Foreign key columns should be built with the referenced table name in singular form, followed by `_id`.
-- Aggregations are displayed in special aggregated views, getting the necessary information from the following table:
+- Aggregations are displayed in special aggregated views, getting the necessary information from the following table, 
+which is under complete control of the user.
  
         CREATE TABLE IF NOT EXISTS aggregations (
-                `id`      	BIGINT     UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-                `table_name`         VARCHAR(200),
-                `grouped_by_field_name`         VARCHAR(200),
-                `field_name`         VARCHAR(200),
-                `function_name`      ENUM('AVG','COUNT','GROUP_CONCAT','MAX','MIN','SUM') 
+            `id`                    BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+            `table_name`            VARCHAR(200),
+            `grouped_by_field_name` VARCHAR(200),
+            `field_name`            VARCHAR(200),
+            `function_name`         ENUM('AVG','COUNT','GROUP_CONCAT','MAX','MIN','SUM') 
         ) COMMENT 'aggregations table'; 
 
 
@@ -158,8 +156,7 @@ based on [https://github.com/ignasbernotas/laravel-model-generator](https://gith
 
 This is done in a handy PHP script, and must be executed after each schema modification: 
 
-    cd lib/tools
-    php make_ui.php
+    (cd lib/tools; php make_ui.php)
 
 The script may also be called in the Admin Dashboard, so you do not need a commandline access.   
 Make sure that the webuser (e.g. www-data) has write permissions for the folders 
@@ -181,13 +178,10 @@ You might have to have sudoers' rights to do so.
 
 
 PENDING: many-to-many relations are yet not generated automagically.   
-PENDING: do the same thing for the backend MVC.  
-
-
 
 
 ## Webserver
-Either install and configure a webserver for $GDM_URL  
+Either install and configure a webserver for `$GDM_URL`  
 or launch the command `php artisan serve` and point your browser  to `http://localhost:8000`
 
 ### Frontend
@@ -199,11 +193,21 @@ If you use docker, this may be ``http://172.17.0.2`` or some similar IP.
 - log in with administrator credentials,
 - go to ``http://your_IP/admin/dashboard``
 
-- PENDING: Saving records 
-- PENDING: User Rights Management
+- User Rights Management
+    - As outlined above, there are 
+
+### Reference Manual
+
+After having finished the installation, you may generate the reference manual, 
+using an appropriate tool processing annotations, e.g. `doxygen` (not provided with this software package).
+It may be useful to place the documentation into the public folder:
+
+    /doc/referencemanual/html/index.html
 
 ### API
-@todo
-endpoints
-incl documentation endpoint
+
+The API comes with a concise and complete documentation, including webforms to try out the endpoints.
+- JSON: `/docs`
+- GUI:  `/api/_module_name_ /_version_/_tablename_/`
+
 
