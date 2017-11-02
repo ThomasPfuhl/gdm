@@ -12,7 +12,7 @@
         },
         "version": "v0_9"
     },
-    "host": "http://localhost:8000",
+    "host": "localhost:8000",
     "basePath": "/api",
     "schemes": [
         "http",

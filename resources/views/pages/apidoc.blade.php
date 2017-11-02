@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title') Members :: @parent @stop
+@section('title') API Documentation :: @parent @stop
 
 <?php
 setlocale(LC_MONETARY, 'de_DE.UTF8');
