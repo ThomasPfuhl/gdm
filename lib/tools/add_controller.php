@@ -244,7 +244,7 @@ class CAP_NAMEController extends Controller {
 
         $form = $formBuilder->create(\App\Forms\CAP_NAMEForm::class, [
             'method' => 'POST',
-            'url' => route('TABLE_NAME.store'),
+            'url' => action('CAP_NAMEController@store'),
             'model' => $record
         ]);
               

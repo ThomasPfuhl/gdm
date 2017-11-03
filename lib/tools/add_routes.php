@@ -30,13 +30,14 @@ Route::get('TABLENAME/aggregated',  'CTABLENAMEController@index_aggregated');
 Route::get('TABLENAME/data',        'CTABLENAMEController@data');
 Route::get('TABLENAME/{id}/datum',  'CTABLENAMEController@datum');
 // FORBIDDEN, unless authenticated:
-Route::get(     'TABLENAME/{id}/edit',  ['middleware' => 'auth', 'uses' => 'CTABLENAMEController@show']);
+Route::get(     'TABLENAME/{id}/edit',  ['middleware' => 'auth', 'uses' => 'CTABLENAMEController@edit']);
 Route::put(     'TABLENAME/{id}',       ['middleware' => 'auth', 'uses' => 'CTABLENAMEController@show']);
 Route::delete(  'TABLENAME/{id}',       ['middleware' => 'auth', 'uses' => 'CTABLENAMEController@show']);
 // since we are lazy, we use this shortcut:
 Route::resource('TABLENAME', 'CTABLENAMEController');
 // FORBIDDEN, unless authenticated:
 Route::get(     'TABLENAME/create',     ['middleware' => 'auth', 'uses' => 'CTABLENAMEController@show']);
+Route::post(    'TABLENAME/store',      ['middleware' => 'auth', 'uses' => 'CTABLENAMEController@store']);
 Route::post(    'TABLENAME',            ['middleware' => 'auth', 'uses' => 'CTABLENAMEController@show']);
 
 PHPCODE;

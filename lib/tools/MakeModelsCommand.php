@@ -67,7 +67,8 @@ class MakeModelsCommand extends GeneratorCommand {
      *
      * @var array
      */
-    protected $timestampRules = 'ends:_at'; //['ends' => ['_at']];
+    //protected $timestampRules = 'ends:_at'; //['ends' => ['_at']];
+    protected $timestampRules = 'equals:xxx'; // will be set to false
 
     /**
      * Contains the template stub for set function

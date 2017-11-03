@@ -141,7 +141,7 @@ Create the tables needed by GDM.
 Populate the database tables.
 Liquibase provides Seeder classes in the folder ``database/seeds``
 
-- Table `users`: *administrator* : username=GDM_MANAGER_NAME  email=GDM_MANAGER_EMAIL  password=admin  
+- Table `users`: *administrator* : username=`GDM_MANAGER_NAME`  email=`GDM_MANAGER_EMAIL`  password=`admin`  
 - Table `users`: *test user*: username=test_user   password=user   (currently not used)
 
         composer dump-autoload
