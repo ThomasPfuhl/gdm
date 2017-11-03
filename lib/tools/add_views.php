@@ -440,33 +440,3 @@ $content = str_replace('MODEL_NAME', singularize(ucfirst($name)), $content);
 @mkdir("../../resources/views/" . $name);
 file_put_contents("../../resources/views/" . $name . "/edit.blade.php", $content);
 
-
-
-///////////////////////////////////////////////////////////
-// API ENDPOINT DOC
-
-$content = <<<'PHPCODE'
-
-@extends('layouts.app')
-
-@section('title') MODEL_NAME :: @parent @stop
-
-<?php
-setlocale(LC_MONETARY, 'de_DE.UTF8');
-?>
-
-@section('content')
-<div class="page-header">
-    <span style="vertical-align:top;font-size:1.6em;font-weight:bold;padding-right:3em;">API Endpoint Documentation for MODEL_NAME</span>
-</div>
-
-<div class="alert alert-danger">work in progress</div>
-@stop
-
-PHPCODE;
-
-$content = str_replace('MODEL_NAME', singularize(ucfirst($name)), $content);
-
-//echo $content;
-@mkdir("../../resources/views/" . $name);
-file_put_contents("../../resources/views/" . $name . "/doc.blade.php", $content);
