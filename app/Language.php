@@ -11,7 +11,8 @@ class Language extends Model {
     protected $fillable = [
         'alpha2_code',
         'name'
-    ];
+    ];   
+    public $timestamps = false;
 
 //    private $rules = array(
 //        'name' => 'required|min:2',

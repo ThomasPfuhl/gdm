@@ -1,8 +1,8 @@
 <?php
-
 /**
  * routes
  */
+
 /* * **************   Model binding into route ************************* */
 
 Route::model('user', 'App\User');
@@ -30,14 +30,18 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
     # Admin UpdateUI
     Route::get('update-ui', 'Admin\UpdateUIController@index');
+    Route::get('update-ui/go', 'Admin\UpdateUIController@go');
 
     # Admin Languages
     Route::get('languages/data', 'Admin\LanguageController@data');
+    Route::get('languages/{id}/delete', 'Admin\LanguageController@destroy');
     Route::resource('languages', 'Admin\LanguageController');
 
     # Admin Users
     Route::get('users/data', 'Admin\UserController@data');
+    Route::get('users/{id}/delete', 'Admin\UserController@destroy');
     Route::resource('users', 'Admin\UserController');
+    
 });
 
 

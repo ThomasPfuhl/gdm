@@ -13,8 +13,11 @@ class UpdateUIController extends AdminController {
     }
 
     public function index() {
-
         return view('admin.updateUI.index');
+    }
+
+    public function go() {
+        return view('admin.updateUI.go');
     }
 
 }

@@ -10,7 +10,7 @@ return [
       | set by thomas.pfuhl@mfn-berlin.de
       |
      */
-    'version' => 'r0.5beta 10/2017',
+    'version' => 'r0.6beta 11/2017',
     /*
       |--------------------------------------------------------------------------
       | Application Debug Mode
@@ -54,7 +54,7 @@ return [
       | to any of the locales which will be supported by the application.
       |
      */
-    'locale' => 'en_GB',
+    'locale' => 'en',
     /*
       |--------------------------------------------------------------------------
       | Application Fallback Locale

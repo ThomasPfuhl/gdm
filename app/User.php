@@ -17,6 +17,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         CanResetPassword;
 
     protected $guarded = array('id');
+    
+    protected $fillable = [
+        'email',
+        'name',
+        'language'
+    ];
+    
+    public $timestamps = false;
 
     /**
      * The attributes excluded from the model's JSON form.

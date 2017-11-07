@@ -11,30 +11,30 @@
         {!! trans("admin/users.users") !!}
         <div class="pull-right">
             <div class="pull-right">
-                <a href="{!! URL::to('admin/user/create') !!}"
+                <a href="{!! URL::to('admin/users/create') !!}"
                    class="btn btn-sm  btn-primary iframe"><span
                         class="glyphicon glyphicon-plus-sign"></span> {{
-					trans("admin/modal.new") }}</a>
+                    trans("admin/modal.new") }}</a>
             </div>
         </div>
     </h3>
 </div>
 
-<table id="table" class="table table-striped table-hover">
+<table id="table" class="maintable table table-striped table-hover">
     <thead>
         <tr>
-            <th>ID</th>
-            <th>{!! trans("admin/users.name") !!}</th>
-            <th>Username</th>
-            <th>{!! trans("admin/users.email") !!}</th>
-            <th>Confirmation Code</th>
-            <th>{!! trans("admin/users.active_user") !!}</th>
-            <th>admin ?</th>
-            <th>{!! trans("admin/admin.language") !!}</th>
-            <th>{!! trans("admin/admin.created_at") !!}</th>
-            <th>{!! trans("admin/admin.updated_at") !!}</th>
-            <th>{!! trans("admin/admin.deleted_at") !!}</th>
-            <th>{!! trans("admin/admin.action") !!}</th>
+            <th class="rotate"><div>ID</div></th>
+            <th class="rotate"><div>{!! trans("admin/users.name") !!}</div></th>
+            <th class="rotate"><div>{!! trans("admin/users.username") !!}</div></th>
+            <th class="rotate"><div>{!! trans("admin/users.email") !!}</div></th>
+            <th class="rotate"><div>{!! trans("admin/users.confirmation_code") !!}</div></th>
+            <th class="rotate"><div>{!! trans("admin/users.active_user") !!}</div></th>
+            <th class="rotate"><div>{!! trans("admin/users.is_admin") !!}</div></th>
+            <th class="rotate"><div>{!! trans("admin/admin.language") !!}</div></th>
+            <th class="rotate"><div>{!! trans("admin/admin.created_at") !!}</div></th>
+            <th class="rotate"><div>{!! trans("admin/admin.updated_at") !!}</div></th>
+            <th class="rotate"><div>{!! trans("admin/admin.deleted_at") !!}</div></th>
+            <th class="rotate"><div>{!! trans("admin/admin.action") !!}</div></th>
         </tr>
     </thead>
     <tbody></tbody>

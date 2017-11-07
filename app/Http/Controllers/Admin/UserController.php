@@ -3,9 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\AdminController;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+
 use App\User;
 use App\Http\Requests\Admin\UserRequest;
+
+use App\Http\Requests\Admin\DeleteRequest;
+use App\Http\Requests\Admin\ReorderRequest;
+
 use Datatables;
+use Session;
 
 class UserController extends AdminController {
 
@@ -60,40 +68,51 @@ class UserController extends AdminController {
     /**
      * Update the specified resource in storage.
      *
-     * @param $request
-     * @param $user
+     * @param UserRequest $request
+     * @param int $id
      * @return Response
      */
-    public function update(UserRequest $request, User $user) {
-        $password = $request->password;
-        $passwordConfirmation = $request->password_confirmation;
+    public function update(UserRequest $request, int $id) {
+
+        $user = User::find($id);
+
+        $password = $user->password;
+        $passwordConfirmation = $user->password_confirmation;
 
         if (!empty($password)) {
             if ($password === $passwordConfirmation) {
                 $user->password = bcrypt($password);
             }
         }
+
         $user->update($request->except('password', 'password_confirmation'));
+
+        return view('admin.users.index', compact('user'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param $user
+     * @param $id
      * @return Response
      */
     public function delete(User $user) {
-        return view('admin.users.delete', compact('user'));
+        // Show the page
+        return view('admin/users/delete', compact('user'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param $user
-     * @return Response
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user) {
+    public function destroy(int $id) {
+        $user = User::find($id);
+        $user_email = $user->email;
         $user->delete();
+        Session::flash('message', trans("admin/user.user") . ' ' . $user_email . ' ' . trans("admin/admin.deletion_successful"));
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -132,9 +151,15 @@ class UserController extends AdminController {
                         ->edit_column('admin', '@if ($admin=="1") <span class="glyphicon glyphicon-ok"></span> @else <span class=\'glyphicon glyphicon-remove\'></span> @endif')
                         ->add_column('actions', '
                     <a href="{{{ URL::to(\'admin/users/\' . $id . \'/edit\' ) }}}" class="btn btn-success btn-sm iframe" ><span class="glyphicon glyphicon-pencil"></span>  {{ trans("admin/modal.edit") }}</a>
-                    <a href="{{{ URL::to(\'admin/users/\' . $id . \'/delete\' ) }}}" class="btn btn-sm btn-danger iframe"><span class="glyphicon glyphicon-trash"></span> {{ trans("admin/modal.delete") }}</a>
-                ')
-                        //->remove_column('id')
+                '                       
+                . '
+            <form action="{{{ URL::to(\'admin/users/\' . $id . \'/delete\' ) }}}" method="GET" style="display:inline;" onsubmit="if(confirm(\'{{ trans("admin/admin.confirm_operation") }}\')) {return true} else {return false};">
+                <input type="hidden" name="id" value="{{$id}}">
+                <input type="hidden" name="_method" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                <button type="submit" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-trash"></i> Delete</button>
+            </form>
+                        ') 
                         ->make();
     }
 
