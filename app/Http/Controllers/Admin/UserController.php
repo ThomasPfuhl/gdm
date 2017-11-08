@@ -144,7 +144,6 @@ class UserController extends AdminController {
      */
     public function data() {
         $records = User::all();
-        //$records = Language::select(array('languages.id', 'languages.alpha2_code', 'languages.name'))->get();
 
         return Datatables::of($records)
                         ->edit_column('confirmed', '@if ($confirmed=="1") <span class="glyphicon glyphicon-ok"></span> @else <span class=\'glyphicon glyphicon-remove\'></span> @endif')

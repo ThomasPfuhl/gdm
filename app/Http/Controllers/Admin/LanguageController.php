@@ -136,7 +136,7 @@ class LanguageController extends AdminController {
         // in blade, you would use:
 //          {!! Form::open(['method' => 'DELETE','route' => ['admin/languages/destroy', {{ $id }} ],'style'=>'display:inline']) !!}
 //          {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-//          {!! Form::close() !!}' ")
+//          {!! Form::close() !!}
 
         $datatable = Datatables::of($records)
                 ->add_column('actions', '
