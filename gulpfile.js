@@ -8,22 +8,20 @@ gulp.task('bower', function() {
 
 var vendors = '../../vendor/';
 
-
 var paths = {
     'jquery': vendors + '/jquery/dist',
     'bootstrap': vendors + '/bootstrap/dist',
-    'bootswatch': vendors + '/bootswatch/simplex',
+    'bootswatch': vendors + '/bootswatch/lumen',
     'fontawesome': vendors + '/font-awesome',
     'colorbox': vendors + '/jquery-colorbox',
     'dataTables': vendors + '/datatables/media',
     'dataTablesBootstrap3Plugin': vendors + '/datatables-bootstrap3-plugin/media',
     'datatablesResponsive': vendors + '/datatables-responsive',
-//   'flag': vendors + '/flag-sprites/dist',
     'metisMenu': vendors + '/metisMenu/dist',
     'summernote': vendors + '/summernote/dist',
     'select2': vendors + '/select2/dist',
-    'jqueryui':  vendors + '/jquery-ui',
-    'justifiedGallery':  vendors + '/Justified-Gallery/dist/'
+    'jqueryui':  vendors + '/jquery-ui'
+    //'justifiedGallery':  vendors + '/Justified-Gallery/dist/'
 };
 
 elixir.config.sourcemaps = false;
@@ -42,10 +40,6 @@ elixir(function(mix) {
     mix.copy('resources/vendor/jquery-colorbox/example3/images/**', 'public/css/images');
     mix.copy('resources/vendor/jquery-ui/themes/base/images/**', 'public/css/images');
 
-    // Copy flag resources
-//    mix.copy('resources/vendor/flag-sprites/dist/css/flag-sprites.min.css', 'public/css/flags.css');
-//    mix.copy('resources/vendor/flag-sprites/dist/img/flags.png', 'public/img/flags.png');
-
     // Merge Site CSSs.
     mix.styles([
         paths.bootstrap + '/css/bootstrap.css',
@@ -53,7 +47,7 @@ elixir(function(mix) {
         paths.fontawesome + '/css/font-awesome.css',
         paths.bootswatch + '/bootstrap.css',
         paths.colorbox + '/example3/colorbox.css',
-        paths.justifiedGallery + '/css/justifiedGallery.css',
+        //paths.justifiedGallery + '/css/justifiedGallery.css',
         'gdm.css'
     ], 'public/css/site.css');
 
@@ -64,12 +58,9 @@ elixir(function(mix) {
         paths.colorbox + '/jquery.colorbox.js',
         paths.dataTables + '/js/jquery.dataTables.js',
         paths.dataTables + '/js/dataTables.bootstrap.js',
-//        paths.dataTablesBootstrap3Plugin + '/js/datatables-bootstrap3.js',
-//        paths.datatablesResponsive + '/js/dataTables.responsive.js',
         'bootstrap-dataTables-paging.js',
-//        'dataTables.bootstrap.js',
-//        'datatables.fnReloadAjax.js',
-        paths.justifiedGallery + '/js/jquery.justifiedGallery.js'
+        'bootstrap-confirmation.js',
+        //paths.justifiedGallery + '/js/jquery.justifiedGallery.js'
     ], 'public/js/site.js');
 
     // Merge Admin CSSs.
@@ -103,6 +94,7 @@ elixir(function(mix) {
         paths.summernote + '/summernote.js',
         paths.select2 + '/js/select2.js',
         'bootstrap-dataTables-paging.js',
+        'bootstrap-confirmation.js',
         'dataTables.bootstrap.js',
         'datatables.fnReloadAjax.js',
         'sb-admin-2.js'

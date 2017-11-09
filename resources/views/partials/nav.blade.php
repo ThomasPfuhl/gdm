@@ -1,4 +1,4 @@
-<nav class="navbar navbar-default navbar-inverse">
+<nav class="navbar navbar-default ">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -7,8 +7,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div style="float:left;margin-right:5px;"><img height="30" alt="logo" src="{!! asset('img/app_logo.png') !!}"/></div>
-            <a class="navbar-brand" href="#">@section('sitename') @show</a>
+            <a class="navbar-brand" href="/about">
+                <img  alt="logo" src="{!! asset('img/app_logo.png') !!}"/>
+                @section('sitename') @show</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -47,9 +48,11 @@
                 @if (Auth::guest())
                 <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"
                     ><a href="{{ URL::to('auth/login') }}"
-                    ><i class="fa fa-sign-in"></i> Login</a></li>
+                    ><i class="fa fa-sign-in"></i> Login</a>
+                </li>
                 <!-- <li class="{{ (Request::is('auth/register') ? 'active' : '') }}"
-                    ><a href="{{ URL::to('auth/register') }}">Register</a></li>
+                    ><a href="{{ URL::to('auth/register') }}">Register</a>
+                </li>
                 -->
                 @else
                 <li class="dropdown">
@@ -71,8 +74,6 @@
                 </li>
                 @endif
             </ul>
-            </ul>
-
 
         </div>
     </div>

@@ -1,12 +1,11 @@
 /*
     customized styles for MfN
-    Created on : 01.06.2017, 13:16:08
     Author     : thomas.pfuhl@mfn-berlin.de
 */
 
 @import url('/fonts/LibreFranklin-Regular.ttf');
 @import url('/fonts/LibreFranklin-Bold.ttf');
-@import url('/fonts/LibreFranklin-Bold.ttf');
+@import url('/fonts/LibreFranklin-Italic.ttf');
 @import url('/fonts/fontawesome-webfont.ttf');
 
 body {
@@ -15,13 +14,28 @@ body {
 }
 
 body:before {
-    background:url("/img/data_module_icon.png") no-repeat center center fixed;
+    background:url("/img/data_module_logo.png") no-repeat center center fixed;
     display: block; content:""; position: absolute; z-index:-1;
     top:5%; left: 0; right: 0; height: 100%;
     opacity: 0.02;
 }
 
-/* navbar */
+a {color:green;}
+a:hover {color:green;}
+
+
+.navbar-brand {
+    padding: 0px;
+}
+.navbar-brand>img {
+    height: 100%;
+    padding: 5px;
+    width: auto;
+    display: inline;
+}
+
+
+/* navbar 
 .navbar {
     color: black;
     background: #ccc;
@@ -43,10 +57,11 @@ body:before {
     font-weight: normal;
     color: #d50000;
 }
+*/
 
 /* datatables */
 .maintable{
-    font-size:0.95em;
+    /*    font-size:0.95em;*/
 }
 .maintable table.related {
     font-size:0.9em;
@@ -142,13 +157,13 @@ table.dataTable .sorting_desc::after
     vertical-align:top;
 }
 #maintable.vertical td:first-child {
-    /*    color:#d50000;*/
+    font-style: italic; 
     color: darkgray;
 }
 #maintable.vertical td:nth-child(2n) {
+    font-style: normal; 
     color: #000;
 }
-
 
 
 div.dataTables_filter {

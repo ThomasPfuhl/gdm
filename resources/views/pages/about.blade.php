@@ -34,9 +34,9 @@
         <div class="well"> 
             The
             <div style="display:inline; color:black;font-size:1em;font-weight:bolder;font-family: 'Libre Franklin', sans-serif;">
-                <span style="color:#d50000">g</span>eneric
-                <span style="color:#d50000">d</span>ata
-                <span style="color:#d50000">m</span>odule
+                <span style="color:green">g</span>eneric
+                <span style="color:green">d</span>ata
+                <span style="color:green">m</span>odule
             </div>
             software package has been developed by <a href="mailto:thomas.pfuhl@mfn-berlin.de">Thomas Pfuhl</a>
             at the Museum für Naturkunde Berlin.
