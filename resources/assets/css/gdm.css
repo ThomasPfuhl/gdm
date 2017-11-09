@@ -35,30 +35,6 @@ a:hover {color:green;}
 }
 
 
-/* navbar 
-.navbar {
-    color: black;
-    background: #ccc;
-    border: none;
-}
-
-.navbar .navbar-nav > li > a {color:black;}
-.navbar .navbar-nav > li > a:hover  {color:#d50000;}
-.navbar .navbar-nav > li > a:focus  {color:#d50000;}
-.navbar .navbar-nav > li.active > a {color:#d50000; background: transparent;}
-
-.navbar-inverse .navbar-nav > li > a {color:black;}
-.navbar-inverse .navbar-nav > li > a:hover {color:#d50000;}
-.navbar-inverse .navbar-nav > li > a:focus {color:#d50000;}
-.navbar-inverse .navbar-nav > li.active > a {color:#d50000; background: transparent;}
-
-.navbar-inverse .navbar-brand {
-    text-transform: uppercase;
-    font-weight: normal;
-    color: #d50000;
-}
-*/
-
 /* datatables */
 .maintable{
     /*    font-size:0.95em;*/
@@ -157,11 +133,11 @@ table.dataTable .sorting_desc::after
     vertical-align:top;
 }
 #maintable.vertical td:first-child {
-    font-style: italic; 
+    font-style: italic;
     color: darkgray;
 }
 #maintable.vertical td:nth-child(2n) {
-    font-style: normal; 
+    font-style: normal;
     color: #000;
 }
 
@@ -191,6 +167,6 @@ ul.dropdown-menu > li > a:hover {
 }
 ul.dropdown-menu > li.active > a,
 ul.dropdown-menu > li.active > a:hover {
-    color: #d50000;
+    color: green;
     background: #ccc;
 }
