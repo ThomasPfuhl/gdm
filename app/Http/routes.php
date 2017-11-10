@@ -21,6 +21,11 @@ Route::controllers([
     'password' => 'Auth\PasswordController',
 ]);
 
+/* * *************    API documentation route  ********************************* */
+
+Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') , 'AdminController@apiGetDoc');
+
+    
 /* * *************    Admin routes  ********************************* */
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
@@ -58,5 +63,5 @@ Route::group(['prefix' => 'api/admin', 'middleware' => 'auth'], function() {
 });
 
 
-/* * ************  dynamically generated routes ************* */
-include('more_routes.php');
+/* * ************  dynamically generated routes for the given data model ************* */
+include('routes_datamodel.php');
