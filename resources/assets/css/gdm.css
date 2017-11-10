@@ -34,11 +34,37 @@ a:hover {color:green;}
     display: inline;
 }
 
+.alert, .btn {
+    border:none;
+}
 
 /* datatables */
-.maintable{
-    /*    font-size:0.95em;*/
+.maintable th.rotate {
+    height: 160px !important;
+    white-space: nowrap !important;
+    vertical-align: top !important;
+    max-width: 2em !important;
+    border-bottom: 1px solid #ccc !important;
 }
+
+.maintable th.rotate > div {
+    transform:
+        translate(-25px, 75px)
+        rotate(315deg) !important;
+    width:160px !important;
+    border-top: 1px solid #ccc !important;
+}
+.maintable th.rotate > div > span {
+    padding: 0 !important;
+    width:160px !important;
+}
+
+.maintable td {
+    border: 1px solid #ccc !important;
+}
+
+
+/* related tables */
 .maintable table.related {
     font-size:0.9em;
     border:1px solid #ccc;
@@ -63,29 +89,6 @@ a:hover {color:green;}
     color: #fff;
     text-decoration: none;
 }
-
-.maintable th.rotate {
-    height: 160px !important;
-    white-space: nowrap !important;
-    vertical-align: top !important;
-    max-width: 2em !important;
-}
-
-.maintable th.rotate > div {
-    transform:
-        translate(-25px, 75px)
-        rotate(315deg) !important;
-    width:160px !important;
-
-}
-.maintable th.rotate > div > span {
-    padding: 0 !important;
-    width:160px !important;
-}
-.maintable td {
-    border-right: 1px solid #ccc !important;
-}
-
 
 /* sorting */
 table.dataTable thead th.sorting:after {

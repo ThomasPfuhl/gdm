@@ -129,6 +129,8 @@ Create the tables needed by GDM.
         touch database/liquibase/changelog.xml      
         @mkdir database/liquibase/changelogs   
 
+- if you want to rollout a sample data module, take the provided changelog files in `database/liquibase/changelogs
+
 - run Liquibase (put executable file in an appropriate folder)  
 `update` command must be executed after each schema modification
 
@@ -168,14 +170,14 @@ You might have to have sudoers' rights to do so.
     cd GDM_HOME
     chgrp -R www-data app/Models
     chgrp -R www-data app/Http/Controllers
-    chgrp  www-data app/Http/more_routes.php
+    chgrp  www-data app/Http/routes_datamodel.php
     chgrp  www-data resources/views/partials/menu-items.blade.php
     chmod -R g+w app/Models
     chmod -R g+w app/Http/Controllers
     chmod -R g+w app/Http/more_routes.php
     chmod -R g+w resources/views/partials/menu-items.blade.php
 
-PENDING: many-to-many relations are yet not generated automagically.   
+PENDING: many-to-many relations are not yet generated automagically.   
 
 ### Generate the API docs:
 
@@ -210,5 +212,8 @@ The API comes with a concise and complete documentation, including webforms to t
 - JSON: `/docs`
 - GUI:  `/api/_module_name_ /_version_/_tablename_/`
 
+
+## TO DO
+see [TODO.md](TODO.md)
 
 END OF DOCUMENT.

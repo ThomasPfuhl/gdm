@@ -3,24 +3,26 @@
 ## laravel framework
 
 - upgrade to v5.4 LTS
+- replace package ignasbernotas/laravel-model-generator by [https://github.com/reliese/laravel](https://github.com/reliese/laravel)
 
 ## write Tests
 
+- big tables, lot of data
 
 ## Frontend
 
 - many-to-many Relations
-- zoom into referenced tables, given the depth as parameter
+- zoom into referenced tables, given the depth as parameter. 
+cf https://www.sitepoint.com/laravel-blade-recursive-partials/ 
 
 ## Backend
 
-- delete records
 - create records
+- provide GUI for modifying the data model
 
 
 ## Localisation
 
-- check language files in `resources/lang/en`
 - create `resources/lang/[de,fr,es,it,sv,jp,cn]`
 
 

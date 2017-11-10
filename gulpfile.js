@@ -38,7 +38,7 @@ elixir(function(mix) {
 
     // Copy images straight to public
     mix.copy('resources/vendor/jquery-colorbox/example3/images/**', 'public/css/images');
-    mix.copy('resources/vendor/jquery-ui/themes/base/images/**', 'public/css/images');
+    //mix.copy('resources/vendor/jquery-ui/themes/base/images/**', 'public/css/images');
 
     // Merge Site CSSs.
     mix.styles([
@@ -75,7 +75,7 @@ elixir(function(mix) {
         paths.metisMenu + '/metisMenu.css',
         paths.summernote + '/summernote.css',
         paths.select2 + '/css/select2.css',
-        paths.jqueryui + '/themes/base/minified/jquery-ui.min.css',
+        //paths.jqueryui + '/themes/base/minified/jquery-ui.min.css',
         'sb-admin-2.css',
         'gdm_admin.css'
     ], 'public/css/admin.css');
