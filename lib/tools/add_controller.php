@@ -44,6 +44,7 @@ use Datatables;
 use Request;
 use Input;
 use DB;
+use Session;
 use Kris\LaravelFormBuilder\FormBuilder;
 
 
@@ -96,17 +97,6 @@ class CAP_NAMEController extends Controller {
      * @return Response
      */
     public function index_aggregated() {
-
-//        try {
-//            $agg = \App\Models\Aggregation::where('table_name', 'TABLE_NAME')->firstOrFail();
-//        } catch (Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-//            $records = array();
-//            $propertyNames = array();
-//            $extPropertyValues = array();
-//            $collection = array();
-//            return $e->getMessage();
-//            return view('TABLE_NAME.index_aggregated', compact('records', 'propertyNames', 'extPropertyValues', 'collection'));
-//        }
         
         $agg = \App\Models\Aggregation::where('table_name', 'TABLE_NAME')->first();
         if (count($agg) == 0) {
@@ -172,17 +162,19 @@ class CAP_NAMEController extends Controller {
     /**
      * Destroy the specified resource.
      *
-     * @param MODEL_NAME $record
+     * @param int $id
      * @return Response
      */
-    public function destroy(MODEL_NAME $record) {
-        $record->delete();
-        return view('TABLE_NAME.destroy', compact('record'));
+    public function destroy(int $id) {
+        MODEL_NAME::destroy($id);
+        Session::flash('message', trans('admin/admin.deletion_successful') );
+        return view('TABLE_NAME.destroy', compact('id'));
     }
 
     /**
      * Store the form data for the specified resource.
      *
+     * @param  Request  $request
      * @param  FormBuilder $formBuilder
      * @return Response
      */
@@ -192,43 +184,37 @@ class CAP_NAMEController extends Controller {
         
         $arequest = (array)$form->getRequest();
         
-//        echo "<pre>";
-//        echo "---#request items: " . count( $arequest );
-//        echo "<br>---request keys: " . implode(",", array_keys( $arequest ));
-//        //echo "<br>---request data object: \n" . print_r($arequest["request"], true );
-        
-//        echo "<br>---Form Data stored in key=request:";
         $myInput = array();
         $myData = (array)$arequest["request"];
         foreach ($myData as $row)
             foreach ($row as $k=>$v) {
-                //echo "\n $k=>$v";
-                $myInput[$k] = $v;
+                 $myInput[$k] = $v;
             }
-//        echo "<hr>";
-//        echo print_r($myData,true);
-//         
-//
-//        echo " #fields: " . count($form->getFields());
-//        foreach ($form->getFields() as $field) {
-//            echo "<br>field name: " . $field->getName();
-//            echo " ----field value: *" . $field->getValue() . "*";
-//        }      
-//        //echo " #field values: " . count($form->getFieldValues()); // method not defined
-//        echo "</pre>";
-
 
         if (!$form->isValid()) {
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
-
-//        echo "updating Record " . $myInput["id"];
-//        echo print_r(Input::all(), true);
         
         $record = MODEL_NAME::find($myInput["id"]);
         $record->update(Input::all());
+        Session::flash('message', trans('admin/admin.update_successful') );
 
         return redirect()->route('TABLE_NAME.show', $myInput["id"]);
+    }
+
+    /**
+     * Update the form data for the specified resource.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function update(int $id) {
+
+        $record = MODEL_NAME::find($id);
+        $record->update(Input::all());
+        Session::flash('message', trans("admin/admin.update_successful") );
+
+        return redirect()->route('TABLE_NAME.show', $id);
     }
 
     /**
@@ -244,7 +230,7 @@ class CAP_NAMEController extends Controller {
 
         $form = $formBuilder->create(\App\Forms\CAP_NAMEForm::class, [
             'method' => 'POST',
-            'url' => action('CAP_NAMEController@store'),
+            'url' => route('TABLE_NAME.store'),
             'model' => $record
         ]);
               
@@ -309,7 +295,7 @@ class CAP_NAMEController extends Controller {
 
     /**
      * @SWG\Get(
-     *   path="/MODULE_INSTANCE/v0_9/TABLE_NAME/{id}",
+     *   path="/MODULE_INSTANCE/DATAMODEL_VERSION/TABLE_NAME/{id}",
      *   description="get single record from TABLE_NAME",
      *   operationId="getMODEL_NAME",
      *   produces={"application/json"},  
@@ -367,7 +353,7 @@ class CAP_NAMEController extends Controller {
 
    /**
      * @SWG\Get(
-     *   path="/MODULE_INSTANCE/v0_9/TABLE_NAME/all",
+     *   path="/MODULE_INSTANCE/DATAMODEL_VERSION/TABLE_NAME/all",
      *   description="get all records from TABLE_NAME",
      *   operationId="getCAP_NAME",
      *   produces={"application/json"},  
@@ -464,12 +450,12 @@ echo "\n adding controller for " . $name;
 
 $content = $stub;
 $content = str_replace('MODULE_INSTANCE', GDM_NAME, $content);
+$content = str_replace('DATAMODEL_VERSION', GDM_DATAMODEL_VERSION, $content);
 
 $content = str_replace('SINGULAR_NAME', singularize($name), $content);
 $content = str_replace('CAP_NAME', ucfirst($name), $content);
 $content = str_replace('MODEL_NAME', ucfirst(singularize($name)), $content);
 $content = str_replace('TABLE_NAME', $name, $content);
-//$content = str_replace('NAME', $name, $content);
 
 $relation_stub = <<<'PHPCODE'
     if ($record->REFERENCED_TABLE_SINGULAR_NAME) {

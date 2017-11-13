@@ -39,7 +39,7 @@ system($content);
 $code = file_get_contents('../../app/Forms/' . ucfirst($name) . 'Form.php');
 $code = str_replace("'id', 'number'", "'id', 'hidden'", $code);
 $code = str_replace("'submit')", "'submit', ['label' => 'Save',  'attr' => ['class' => 'btn btn-success']])", $code);
-$code = str_replace("'reset')", "'reset', ['label' => 'Cancel',  'attr' => ['class' => 'btn btn-warning']])", $code);
+$code = str_replace("'reset')", "'reset', ['label' => 'Reset',  'attr' => ['class' => 'btn btn-warning']])", $code);
 file_put_contents('../../app/Forms/' . ucfirst($name) . 'Form.php', $code);
 
 //   ->add('submit', 'submit', ['label' => 'Save',  'attr' => ['class' => 'btn btn-success']])

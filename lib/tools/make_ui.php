@@ -61,7 +61,7 @@ $maintable = ucfirst(GDM_MAIN_TABLE);
 $entrypoint = "<?php \n\n"
         . "// Entry Point\n"
         . "Route::get('/', '${maintable}Controller@index'); \n";
-file_put_contents("../../app/Http/more_routes.php", $entrypoint, FILE_TEXT | LOCK_EX);
+file_put_contents("../../app/Http/routes_datamodel.php", $entrypoint, FILE_TEXT | LOCK_EX);
 
 
 echo "\n------------\n MAIN CONTROLLER ---\n";

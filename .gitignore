@@ -39,3 +39,5 @@
 /storage/debugbar/
 /storage/logs/
 /storage/docs/
+/tests/sampledata.sql
+/tests/SampledataTest.php

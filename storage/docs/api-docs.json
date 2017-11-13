@@ -1,8 +1,8 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "kaffeekasse",
-        "description": "Kaffeekasse FB3",
+        "title": "kitty",
+        "description": "FB3 money pool for coffee",
         "contact": {
             "email": "thomas.pfuhl@mfn-berlin.de"
         },
@@ -142,7 +142,7 @@
                 }
             }
         },
-        "/kaffeekasse/v0_9/members/{id}": {
+        "/kitty/v0_9/members/{id}": {
             "get": {
                 "description": "get single record from members",
                 "operationId": "getMember",

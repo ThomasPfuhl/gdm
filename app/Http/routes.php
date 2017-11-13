@@ -66,3 +66,4 @@ Route::group(['prefix' => 'api/admin', 'middleware' => 'auth'], function() {
 
 /* * ************  dynamically generated routes for the given data model ************* */
 include('routes_datamodel.php');
+
