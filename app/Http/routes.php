@@ -1,8 +1,8 @@
 <?php
+
 /**
  * routes
  */
-
 /* * **************   Model binding into route ************************* */
 
 Route::model('user', 'App\User');
@@ -14,7 +14,7 @@ Route::pattern('slug', '[0-9a-z-_]+');
 /* * *************    Site routes  ********************************* */
 
 Route::get('about', 'PagesController@about');
-Route::get('home',  'PagesController@about');
+Route::get('home', 'PagesController@about');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
@@ -23,9 +23,11 @@ Route::controllers([
 
 /* * *************    API documentation route  ********************************* */
 
-Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') , 'AdminController@apiGetDoc');
+Route::get('api/' . env('GDM_NAME') . '/' . env('GDM_DATAMODEL_VERSION'), 'ApiDocController@apiGetDoc');
+Route::get('api/' . env('GDM_NAME'), 'ApiDocController@apiGetDoc');
+Route::get('api/', 'ApiDocController@apiGetDoc');
 
-    
+
 /* * *************    Admin routes  ********************************* */
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
@@ -46,7 +48,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
     Route::get('users/data', 'Admin\UserController@data');
     Route::get('users/{id}/delete', 'Admin\UserController@destroy');
     Route::resource('users', 'Admin\UserController');
-    
 });
 
 
