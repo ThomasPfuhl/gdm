@@ -18,12 +18,12 @@
             <tr><td>Data Model Version: <td>{{ env("GDM_DATAMODEL_VERSION") }}
             <tr><td>Authors:</td> <td>{{ env("GDM_AUTHORS") }}
             <tr><td>URL: </td> <td> {{ $_SERVER["HTTP_HOST"] }}
-            <tr><td>API Endpoint Documentation:</td> <td> {{ $_SERVER["HTTP_HOST"] }}/api/{{ env("GDM_NAME") }}/{{ env("GDM_DATAMODEL_VERSION") }}
-            <tr><td>API Endpoint Documentation:</td> <td> {{ $_SERVER["HTTP_HOST"] }}/api/{{ env("GDM_NAME") }}/{{ env("GDM_DATAMODEL_VERSION") }}/<i>{tablename}</i>/
-            <tr><td>API Endpoint for all records:</td> <td> {{ $_SERVER["HTTP_HOST"] }}/api/{{ env("GDM_NAME") }}/{{ env("GDM_DATAMODEL_VERSION") }}/<i>{tablename}</i>/all/
-            <tr><td>API Endpoint for record {id}:</td> 
-                <td> <a target="apidoc" href="http://{{ $_SERVER['HTTP_HOST'] }}/api/{{ env('GDM_NAME') }}/{{ env('GDM_DATAMODEL_VERSION') }}/{{ env('GDM_MAIN_TABLE') }}/1/"
-                        >{{ $_SERVER['HTTP_HOST'] }}/api/{{ env('GDM_NAME') }}/{{ env('GDM_DATAMODEL_VERSION') }}/<i>{tablename}/{id}</i></a>
+            <tr><td>API Endpoints General Documentation:</td>    
+                <td><a target="apidoc" href="http://{{ $_SERVER['HTTP_HOST'] }}/api/{{ env('GDM_NAME') }}/{{ env('GDM_DATAMODEL_VERSION') }}"
+                         >{{ $_SERVER["HTTP_HOST"] }}/api/{{ env("GDM_NAME") }}/{{ env("GDM_DATAMODEL_VERSION") }}</a>
+            <tr><td>API Endpoint Documentation for a given table:</td>    <td> {{ $_SERVER["HTTP_HOST"] }}/api/{{ env("GDM_NAME") }}/{{ env("GDM_DATAMODEL_VERSION") }}/<i>{tablename}</i>/
+            <tr><td>API Endpoint for all records of a given table:</td>  <td> {{ $_SERVER["HTTP_HOST"] }}/api/{{ env("GDM_NAME") }}/{{ env("GDM_DATAMODEL_VERSION") }}/<i>{tablename}</i>/all/
+            <tr><td>API Endpoint for record {id} of a given table::</td>  <td> {{ $_SERVER['HTTP_HOST'] }}/api/{{ env('GDM_NAME') }}/{{ env('GDM_DATAMODEL_VERSION') }}/<i>{tablename}/{id}</i>
         </table>
 
         <div class="well"> 

@@ -5,10 +5,10 @@
  * @author Thomas Pfuhl <thomas.pfuhl@mfn-berlin.de>
  * @todo:  install and use  https://github.com/constant-null/backstubber
  */
-echo "\n adding menu items for " . $name;
+echo "\n adding menu item for " . $name;
 
-if ($name !== "aggregations") {
-    //$name = $argv[1];
+if (strtolower($name) !== "aggregations") {
+    
     $cname = ucfirst($name);
 
     $content = <<<'CODE'
@@ -32,8 +32,8 @@ CODE;
 // metatables
 $content = <<<'CODE'
    
-<li class="{{ (Request::is('aggregations') ? 'active' : '') }}">
-    <a href="{{ URL::to('aggregations') }}">Aggregations</a>
+<li class="{{ (Request::is('Aggregations') ? 'active' : '') }}">
+    <a href="{{ URL::to('Aggregations') }}">Aggregations</a>
 </li>
 
 CODE;
@@ -45,36 +45,16 @@ if ($pos === FALSE) {
 }
 
 
+// start menu item
 
-/*
-// NOT NEEDED
-$navbar_content = file_get_contents('../../resources/views/partials/nav.blade.php');
+$content = <<<'CODE'
+   
+<li class="{{ (Request::is('ITEM') ? 'active' : '') }}">
+    <a href="{{ URL::to( 'ITEM' ) }}"><i class="fa fa-home"></i> Start</a> 
+</li>
 
-$xmlstr = "<?xml version='1.0' standalone='yes'?>" . PHP_EOL . $navbar_content;
+CODE;
 
-$nav = new SimpleXMLElement($xmlstr);
-
-$menu = $nav->xpath('//ul')[0];
-
-$new_item = $menu->addChild('li');
-$new_item->addAttribute('class', "{{ (Request::is('" . $cnames . "') ? 'active' : '') }}");
-$new_link = $new_item->addChild('a', $cnames);
-$new_link->addAttribute('href', "{{ URL::to('" . $names . "') }}");
-
-// we need empty elements in html output
-$dom_sxe = dom_import_simplexml($nav);  // Returns a DomElement object
-
-$dom_output = new DOMDocument('1.0');
-$dom_output->preserveWhiteSpace = true;
-$dom_output->formatOutput = true;
-$dom_sxe = $dom_output->importNode($dom_sxe, true);
-$dom_sxe = $dom_output->appendChild($dom_sxe);
-
-$new_nav_string = $dom_output->saveXML($dom_output->documentElement, LIBXML_NOEMPTYTAG);
-$new_nav_string = html_entity_decode($new_nav_string, ENT_HTML5, 'utf-8');
-
-// make backup
-copy('../../resources/views/partials/nav.blade.php', '../../resources/views/partials/nav' . date("_Ymd_his") . '.blade.php');
-
-file_put_contents('../../resources/views/partials/nav.blade.php', $new_nav_string);
-*/
+$startMenuItem = toCamelCase(GDM_MAIN_TABLE);
+$content = str_replace('ITEM', $startMenuItem, $content);
+file_put_contents("../../resources/views/partials/menu-start-item.blade.php", $content);

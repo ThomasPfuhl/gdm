@@ -62,7 +62,7 @@ class CAP_NAMEController extends Controller {
      */
     public function index() {
     
-        $agg = \App\Models\Aggregation::where('table_name', 'TABLE_NAME')->first();
+        $agg = \App\Models\Aggregation::where('table_name', 'DB_TABLE_NAME')->first();
         $has_aggregated_view = (count($agg) > 0) ? true : false;
 
         $records = MODEL_NAME::all();
@@ -98,7 +98,7 @@ class CAP_NAMEController extends Controller {
      */
     public function index_aggregated() {
         
-        $agg = \App\Models\Aggregation::where('table_name', 'TABLE_NAME')->first();
+        $agg = \App\Models\Aggregation::where('table_name', 'DB_TABLE_NAME')->first();
         if (count($agg) == 0) {
             $records = array();
             $propertyNames = array();
@@ -446,7 +446,7 @@ PHPCODE;
 
 
 // launch it
-echo "\n adding controller for " . $name;
+echo "\n adding controller " . $name ;
 
 $content = $stub;
 $content = str_replace('MODULE_INSTANCE', GDM_NAME, $content);
@@ -455,6 +455,7 @@ $content = str_replace('DATAMODEL_VERSION', GDM_DATAMODEL_VERSION, $content);
 $content = str_replace('SINGULAR_NAME', singularize($name), $content);
 $content = str_replace('CAP_NAME', ucfirst($name), $content);
 $content = str_replace('MODEL_NAME', ucfirst(singularize($name)), $content);
+$content = str_replace('DB_TABLE_NAME', $table_name, $content);
 $content = str_replace('TABLE_NAME', $name, $content);
 
 $relation_stub = <<<'PHPCODE'
@@ -508,6 +509,4 @@ if (array_key_exists($name, $foreign_keys)) {
     $content = str_replace('RELATIONS', "", $content);
 }
 
-file_put_contents("../../app/Http/Controllers/" . ucfirst($name) . "Controller.php", $content);
-
-
+file_put_contents("../../app/Http/Controllers/" . $name . "Controller.php", $content);

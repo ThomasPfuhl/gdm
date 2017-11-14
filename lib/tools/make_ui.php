@@ -36,6 +36,7 @@ copy("model.stub", getcwd() . "/../../vendor/ignasbernotas/laravel-model-generat
 
 echo "\n\n-----------\nCREATING MODELS...\n\n";
 
+mkdir (" ../../app/Models");
 system('cd ../../; php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations,languages --getset');
 
 $sql = "SELECT TABLE_NAME
@@ -58,7 +59,7 @@ $response = $pdo->query($sql);
 
 echo "\n------------\nROUTING ENTRYPOINT ---\n";
 
-$maintable = ucfirst(GDM_MAIN_TABLE);
+$maintable = toCamelCase(GDM_MAIN_TABLE, true);
 $entrypoint = "<?php \n\n"
         . "// Entry Point\n"
         . "Route::get('/', '${maintable}Controller@index'); \n";
@@ -121,8 +122,12 @@ echo "\n------------\nCREATING CONTROLLERS, VIEWS, FORMS, MENU ITEMS, and ROUTES
 touch("../../resources/views/partials/menu-items.blade.php");
 
 foreach ($response as $row) {
-    $name = $row["TABLE_NAME"];
-    echo "\n----------------\n" . $row["TABLE_NAME"];
+    $table_name = $row["TABLE_NAME"];
+    $name = toCamelCase($row["TABLE_NAME"]);
+//    $lc_name = toCamelCase($row["TABLE_NAME"], false); // currently unused
+//    $hyphen_name = toHyphen($row["TABLE_NAME"]); // currently unused
+
+    echo "\n----------------\n" . $name;
 
     include("add_controller.php");
     include("add_menu_item.php");

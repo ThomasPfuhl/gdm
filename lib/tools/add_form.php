@@ -8,7 +8,7 @@
  */
 echo "\n adding form for " . $name;
 
-$field_names = getFields($name);
+$field_names = getFields($table_name);
 echo "\nfieldnames: " . $field_names;
  
 //php ../../artisan make:form Forms/CTABLENAMEForm --fields="name:text, lyrics:textarea, publish:checkbox"
@@ -19,7 +19,7 @@ rm -f ../../app/Forms/CTABLENAMEForm.php
 COMMAND;
 
 
-$content = str_replace('CTABLENAME', ucfirst($name), $content);
+$content = str_replace('CTABLENAME', $name, $content);
 $content = str_replace('FIELDS', $field_names, $content);
 
 $content = str_replace('LONGLONG', 'number', $content);
@@ -36,11 +36,12 @@ $content = str_replace('BLOB', 'textarea', $content);
 echo "\nexecuting: " . $content . "\n";
 system($content);
 
-$code = file_get_contents('../../app/Forms/' . ucfirst($name) . 'Form.php');
+$code = file_get_contents('../../app/Forms/' . $name . 'Form.php');
+
 $code = str_replace("'id', 'number'", "'id', 'hidden'", $code);
 $code = str_replace("'submit')", "'submit', ['label' => 'Save',  'attr' => ['class' => 'btn btn-success']])", $code);
 $code = str_replace("'reset')", "'reset', ['label' => 'Reset',  'attr' => ['class' => 'btn btn-warning']])", $code);
-file_put_contents('../../app/Forms/' . ucfirst($name) . 'Form.php', $code);
+file_put_contents('../../app/Forms/' . $name . 'Form.php', $code);
 
 //   ->add('submit', 'submit', ['label' => 'Save',  'attr' => ['class' => 'btn btn-success']])
 //   ->add('clear', 'reset', ['label' => 'Cancel', 'attr' => ['class' => 'btn btn-info']])

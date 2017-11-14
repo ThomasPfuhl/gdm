@@ -38,9 +38,9 @@ Otherwise build GDM step by step:
 
 ### Deployment
 Unpack the downloaded tarball or clone the git repository in a folder 
-which we will refer to as `GDM_HOME`.
+which we will refer to as `$GDM_HOME`.
 
-    cd GDM_HOME
+    cd $GDM_HOME
 
 
 ### Customization
@@ -90,11 +90,12 @@ Create a database with utf-8 collation (utf8_general_ci).
 There are some constraints for the database tables, 
 in order to ensure the automatic generation of the User Interface:
 
+- Table names should be in lower case, contain only letters, numbers and the underscore.
 - Every table should have as its first column the auto_increment primary key `id`.
 - The second column should be a column with a human readable content, like .e.g `title` or `shortdescription`.
 - Foreign key columns should be built with the referenced table name in singular form, followed by `_id`.
 - Aggregations are displayed in special aggregated views, getting the necessary information from the following table, 
-which is under complete control of the user.
+which is under complete dynamic control of the user.
  
         CREATE TABLE IF NOT EXISTS aggregations (
             `id`                    BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -164,13 +165,17 @@ the file `app/Http/routes_datamodel.php`,
 and the file `resources/views/partials/menu-items.blade.php`.
 You might have to have sudoers' rights to do so.
 
-    cd GDM_HOME
+    cd $GDM_HOME
+    mkdir app/Models
     chgrp -R www-data app/Models
+    chmod -R g+w app/Models
+
     chgrp -R www-data app/Http/Controllers
+    chmod -R g+w app/Http/Controllers
+
     chgrp  www-data app/Http/routes_datamodel.php
     chgrp  www-data resources/views/partials/menu-items.blade.php
-    chmod -R g+w app/Models
-    chmod -R g+w app/Http/Controllers
+
     touch app/Http/routes_datamodel.php
     chmod -R g+w app/Http/routes_datamodel.php
     touch resources/views/partials/menu-items.blade.php
@@ -190,9 +195,14 @@ The script may also be called in the Admin Dashboard, so you do not need a comma
     php artisan vendor:publish --tag=views
 
 
+
 ## Webserver
-Either install and configure a webserver for `GDM_URL`  
-or launch the command `php artisan serve` and point your browser  to `http://localhost:8000`
+Either install and configure a webserver for `$GDM_URL`  
+or launch the command 
+
+    php artisan serve
+
+and point your browser to `http://localhost:8000`
 
 ### Frontend
 Point your browser to the domain name or IP.

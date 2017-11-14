@@ -177,3 +177,16 @@ function getAllForeignKeys() {
 
     return $out;
 }
+
+
+function toCamelCase($string, $capitalizeFirstCharacter = true) {
+    
+    $str = str_replace('_', '', ucwords($string, '_'));
+    return $str;
+}
+
+function toHyphen($string) {
+    
+    $str = str_replace('_', '-', strtolower($string));
+    return $str;
+}
