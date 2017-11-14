@@ -24,7 +24,6 @@
         <script src="{{ asset('js/custom.js') }}"></script>
 
         @yield('styles')
-
     </head>
     <body>
         @include('partials.nav')
@@ -67,23 +66,19 @@
                             "serverSide": false,
                     });
             });
-            
-            //askForConfirmation = "{{ trans('admin/admin.confirm_operation') }}";
             $('[data-toggle=confirmation]').confirmation({
-                rootSelector: "[data-toggle=confirmation]",
-                title: "{{ trans('admin/admin.confirm_operation') }}",
-                
-                btnOkLabel: "{{ trans('admin/admin.yes') }}",
-                btnOkClass: "btn-md btn-success",
-                btnOkIcon: "glyphicon glyphicon-ok",
-                onConfirm: function(){$(this)[0].submit(); return true;},
-               
-                btnCancelLabel: "{{ trans('admin/admin.no') }}",
-                btnCancelClass: "btn-md btn-default",
-                btnCancelIcon: "glyphicon glyphicon-remove",               
-                onCancel: function(){return false;},
-                    });
-        </script>
+            rootSelector: "[data-toggle=confirmation]",
+                    title: "{{ trans('admin/admin.confirm_operation') }}",
+                    btnOkLabel: "{{ trans('admin/admin.yes') }}",
+                    btnOkClass: "btn-md btn-success",
+                    btnOkIcon: "glyphicon glyphicon-ok",
+                    onConfirm: function(){$(this)[0].submit(); return true; },
+                    btnCancelLabel: "{{ trans('admin/admin.no') }}",
+                    btnCancelClass: "btn-md btn-default",
+                    btnCancelIcon: "glyphicon glyphicon-remove",
+                    onCancel: function(){return false; },
+            });
+         </script>
         @yield('scripts')
 
     </body>

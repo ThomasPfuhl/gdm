@@ -57,6 +57,7 @@ $response = $pdo->query($sql);
 
 
 echo "\n------------\nROUTING ENTRYPOINT ---\n";
+
 $maintable = ucfirst(GDM_MAIN_TABLE);
 $entrypoint = "<?php \n\n"
         . "// Entry Point\n"
@@ -117,6 +118,8 @@ file_put_contents("../../app/Http/Controllers/Controller.php", $content);
 
 echo "\n------------\nCREATING CONTROLLERS, VIEWS, FORMS, MENU ITEMS, and ROUTES...\n";
  
+touch("../../resources/views/partials/menu-items.blade.php");
+
 foreach ($response as $row) {
     $name = $row["TABLE_NAME"];
     echo "\n----------------\n" . $row["TABLE_NAME"];

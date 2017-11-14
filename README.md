@@ -48,7 +48,7 @@ which we will refer to as `GDM_HOME`.
 Laravel uses an environment file ``.env`` which overwrites the settings defined 
 in  ``config/database.php`` and ``config/app.php``.   
 __You have to adapt it to your needs:__
-Edit the file `config/.env.example`, and define at least all variables `GDM_*` and `DB_*`.
+Edit the file `custom/.env.example`, and define at least all variables `GDM_*` and `DB_*`.
  
 All customizing files are located in the folder ``custom``. Please edit them:   
 - `about.html` contains a description of your application.  
@@ -110,6 +110,7 @@ which is under complete control of the user.
 
 Create the tables needed by GDM.
 
+    touch app/Http/routes_datamodel.php
     composer dump-autoload
     php artisan migrate  
 
@@ -155,15 +156,11 @@ Liquibase provides Seeder classes in the folder ``database/seeds``
 We generate models automatically, depending on the database schemes,    
 based on [https://github.com/ignasbernotas/laravel-model-generator](https://github.com/ignasbernotas/laravel-model-generator)
 
-This is done in a handy PHP script, and must be executed after each schema modification: 
 
-    (cd lib/tools; php make_ui.php)
-
-The script may also be called in the Admin Dashboard, so you do not need a commandline access.   
 Make sure that the webuser (e.g. www-data) has write permissions for the folders 
 `app/Models`, 
 `app/Http/Controllers`,
-the file `app/Http/more_routes.php`,
+the file `app/Http/routes_datamodel.php`,
 and the file `resources/views/partials/menu-items.blade.php`.
 You might have to have sudoers' rights to do so.
 
@@ -174,10 +171,17 @@ You might have to have sudoers' rights to do so.
     chgrp  www-data resources/views/partials/menu-items.blade.php
     chmod -R g+w app/Models
     chmod -R g+w app/Http/Controllers
-    chmod -R g+w app/Http/more_routes.php
+    touch app/Http/routes_datamodel.php
+    chmod -R g+w app/Http/routes_datamodel.php
+    touch resources/views/partials/menu-items.blade.php
     chmod -R g+w resources/views/partials/menu-items.blade.php
 
 PENDING: many-to-many relations are not yet generated automagically.   
+
+This is done in a handy PHP script, and must be executed after each schema modification. 
+The script may also be called in the Admin Dashboard, so you do not need a commandline access.   
+
+    (cd lib/tools; php make_ui.php)
 
 ### Generate the API docs:
 

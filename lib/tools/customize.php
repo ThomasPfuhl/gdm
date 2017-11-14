@@ -12,6 +12,8 @@ $about = preg_replace('/<!--(.*?)-->/Us', '', $about);
 $about = str_replace('GDM_NAME', $env['GDM_NAME'], $about);
 $about = str_replace('GDM_MANAGER_NAME', $env['GDM_MANAGER_NAME'], $about);
 $about = str_replace('GDM_MANAGER_EMAIL', $env['GDM_MANAGER_EMAIL'], $about);
+
+mkdir(getcwd() . "/public/appfiles/");
 file_put_contents(getcwd() . "/public/appfiles/about.html", $about);
 
 copy("custom/institution_logo.png", getcwd() . "/public/img/institution_logo.png");

@@ -18,6 +18,7 @@
             <tr><td>Data Model Version: <td>{{ env("GDM_DATAMODEL_VERSION") }}
             <tr><td>Authors:</td> <td>{{ env("GDM_AUTHORS") }}
             <tr><td>URL: </td> <td> {{ $_SERVER["HTTP_HOST"] }}
+            <tr><td>API Endpoint Documentation:</td> <td> {{ $_SERVER["HTTP_HOST"] }}/api/{{ env("GDM_NAME") }}/{{ env("GDM_DATAMODEL_VERSION") }}
             <tr><td>API Endpoint Documentation:</td> <td> {{ $_SERVER["HTTP_HOST"] }}/api/{{ env("GDM_NAME") }}/{{ env("GDM_DATAMODEL_VERSION") }}/<i>{tablename}</i>/
             <tr><td>API Endpoint for all records:</td> <td> {{ $_SERVER["HTTP_HOST"] }}/api/{{ env("GDM_NAME") }}/{{ env("GDM_DATAMODEL_VERSION") }}/<i>{tablename}</i>/all/
             <tr><td>API Endpoint for record {id}:</td> 
