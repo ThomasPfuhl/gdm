@@ -2,11 +2,6 @@
 
 @section('title') API Documentation :: @parent @stop
 
-<?php
-setlocale(LC_MONETARY, 'de_DE.UTF8');
-?>
-
-
 @section('content')
 
 <link rel="stylesheet" type="text/css" href="/vendor/swaggervel/swagger-ui.css" >

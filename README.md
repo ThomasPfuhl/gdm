@@ -74,6 +74,10 @@ This is an optional step, since the minimzed and compressed files are already pr
 
     gulp --production
 
+If there are errors, run again `npm --install --save-dev; gulp --production` and it should work. 
+The minified scripts and stylesheets are already provided in the distribution, so you only need to run gulp for customizing.
+ 
+
 ### Laravel framework
 
     composer dump-autoload
@@ -97,14 +101,6 @@ in order to ensure the automatic generation of the User Interface:
 - Aggregations are displayed in special aggregated views, getting the necessary information from the following table, 
 which is under complete dynamic control of the user.
  
-        CREATE TABLE IF NOT EXISTS aggregations (
-            `id`                    BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-            `table_name`            VARCHAR(200),
-            `grouped_by_field_name` VARCHAR(200),
-            `field_name`            VARCHAR(200),
-            `function_name`         ENUM('AVG','COUNT','GROUP_CONCAT','MAX','MIN','SUM') 
-        ) COMMENT 'aggregations table'; 
-
 
 
 ### using Laravel migration utility
@@ -158,28 +154,25 @@ We generate models automatically, depending on the database schemes,
 based on [https://github.com/ignasbernotas/laravel-model-generator](https://github.com/ignasbernotas/laravel-model-generator)
 
 
-Make sure that the webuser (e.g. www-data) has write permissions for the folders 
-`app/Models`, 
-`app/Http/Controllers`,
-the file `app/Http/routes_datamodel.php`,
-and the file `resources/views/partials/menu-items.blade.php`.
-You might have to have sudoers' rights to do so.
+Make sure that the webuser (e.g. `www-data`) has the necessary write permissions
+in order to regenerate dynamically the User Interface.
 
     cd $GDM_HOME
     mkdir app/Models
-    chgrp -R www-data app/Models
     chmod -R g+w app/Models
-
-    chgrp -R www-data app/Http/Controllers
     chmod -R g+w app/Http/Controllers
-
-    chgrp  www-data app/Http/routes_datamodel.php
-    chgrp  www-data resources/views/partials/menu-items.blade.php
-
     touch app/Http/routes_datamodel.php
     chmod -R g+w app/Http/routes_datamodel.php
     touch resources/views/partials/menu-items.blade.php
-    chmod -R g+w resources/views/partials/menu-items.blade.php
+    chmod -R g+w resources/views
+
+You might have to have sudoers' rights for the following commands:
+
+    chgrp -R www-data app/Models
+    chgrp -R www-data app/Http/Controllers
+    chgrp -R www-data resources/views
+    chgrp  www-data app/Http/routes_datamodel.php
+
 
 PENDING: many-to-many relations are not yet generated automagically.   
 

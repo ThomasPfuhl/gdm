@@ -16,11 +16,6 @@
             <ul class="nav navbar-nav">
 
                 @include("partials/menu-start-item")
-                 <!--
-                 <li class="{{ (Request::is('/') ? 'active' : '') }}">
-                    <a href="{{ URL::to(  env('GDM_MAIN_TABLE')  ) }}"><i class="fa fa-home"></i> Start</a> 
-                </li>
-                -->
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"

@@ -9,7 +9,7 @@
 echo "\n adding form for " . $name;
 
 $field_names = getFields($table_name);
-echo "\nfieldnames: " . $field_names;
+//echo "\nfieldnames: " . $field_names;
  
 //php ../../artisan make:form Forms/CTABLENAMEForm --fields="name:text, lyrics:textarea, publish:checkbox"
 
@@ -33,7 +33,7 @@ $content = str_replace('VAR', 'text', $content);
 $content = str_replace('STRING', 'text', $content);
 $content = str_replace('BLOB', 'textarea', $content);
 
-echo "\nexecuting: " . $content . "\n";
+//echo "\nexecuting: " . $content . "\n";
 system($content);
 
 $code = file_get_contents('../../app/Forms/' . $name . 'Form.php');
