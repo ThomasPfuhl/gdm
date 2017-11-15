@@ -94,12 +94,14 @@ Create a database with utf-8 collation (utf8_general_ci).
 There are some constraints for the database tables, 
 in order to ensure the automatic generation of the User Interface:
 
-- Table names should be in lower case, contain only letters, numbers and the underscore.
-- Every table should have as its first column the auto_increment primary key `id`.
+- You must not use `gdm_` as prefix for table names.
+- Table and column names must be in lower case, contain only letters, numbers and the underscore sign.
+- Every table must have as its first column the auto_increment primary key `id`.
 - The second column should be a column with a human readable content, like .e.g `title` or `shortdescription`.
-- Foreign key columns should be built with the referenced table name in singular form, followed by `_id`.
-- Aggregations are displayed in special aggregated views, getting the necessary information from the following table, 
-which is under complete dynamic control of the user.
+- Foreign key columns must be built with the referenced table name in singular form, followed by `_id`.
+
+Aggregations are displayed in special aggregated views, 
+which are under the complete dynamic control of the user, via the UI.
  
 
 
@@ -127,7 +129,13 @@ Create the tables needed by GDM.
         touch database/liquibase/changelog.xml      
         @mkdir database/liquibase/changelogs   
 
-- if you want to rollout a sample data module, take the provided changelog files in `database/liquibase/changelogs
+
+- There is a simple data module provided, featuring a money pool for coffee and tea.
+If you want to rollout this _kitty_, take the provided changelog files in `custom/liquibase/changelogs`.
+Either you import the SQL statements directly into your database and ignore the liquibase procedure, or:
+
+        cp custom/liquibase/changelogs/*.sql  database/liquibase/changelogs/
+
 
 - run Liquibase (put executable file in an appropriate folder)  
 `update` command must be executed after each schema modification
