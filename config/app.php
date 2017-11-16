@@ -141,7 +141,6 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
-        Codingo\Dropzoner\DropzonerServiceProvider::class,
         Iber\Generator\ModelGeneratorProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
         Appointer\Swaggervel\SwaggervelServiceProvider::class,

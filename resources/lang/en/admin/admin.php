@@ -19,5 +19,6 @@ return [
     'languages' => 'Languages',
     'deletion_successful' => 'successfully deleted',
     'update_successful' => 'successfully updated',
+    'creation_successful' => 'successfully created  a new record.',
 
 ];

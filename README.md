@@ -27,7 +27,7 @@ This code has been inspired by
 - Tokenizer PHP Extension (included in php7)
 - SQL engine (for example MySQL)
 - Composer: see `https://getcomposer.org/`
-- NodeJS:  `sudo apt-get install nodejs; sudo apt-get install npm`
+- NodeJS. see `https://nodejs.org/`
 
 
 ### Docker
@@ -63,14 +63,15 @@ We make use of **node** and the node package manager **npm**.
 A recent version must be installed. Check with ``node -v``.
 Install the dependencies listed in ``package.json`` :
 
-    npm install --save-dev
+    npm install 
+    #npm install --save-dev
 
 Retrieve the frontend dependencies with Bower, compile SASS, and move frontend files into place:   
 This is an optional step, since the minimzed and compressed files are already provided.
 
     gulp --production
 
-If there are errors, run again `npm --install --save-dev; gulp --production` and it should work. 
+If there are errors, run again `npm --install; gulp --production` and it should work. 
 The minified scripts and stylesheets are already provided in the distribution, so you only need to run gulp for customizing.
  
 
@@ -78,7 +79,7 @@ The minified scripts and stylesheets are already provided in the distribution, s
 
     composer dump-autoload
     composer install --no-scripts
-    composer update --no-scripts
+    #composer update --no-scripts
 
 ## Database 
 
@@ -155,7 +156,7 @@ in order to regenerate dynamically the User Interface.
     chmod -R g+w app/Models
     chmod -R g+w app/Http/Controllers
     #touch app/Http/routes_datamodel.php
-    chmod -R g+w app/Http/routes_datamodel.php
+    #chmod -R g+w app/Http/routes_datamodel.php
     #touch resources/views/partials/menu-items.blade.php
     chmod -R g+w resources/views
 
@@ -165,7 +166,7 @@ You might have to have sudoers' rights for the following commands:
     chgrp -R www-data app/Http/Controllers
     chgrp -R www-data resources/views
     chgrp  www-data app/Http/routes.php
-    chgrp  www-data app/Http/routes_datamodel.php
+    #chgrp  www-data app/Http/routes_datamodel.php
 
 
 PENDING: many-to-many relations are not yet generated automagically.   

@@ -195,12 +195,22 @@ class CAP_NAMEController extends Controller {
         if (!$form->isValid()) {
             return redirect()->back()->withErrors($form->getErrors())->withInput();
         }
-        
-        $record = MODEL_NAME::find($myInput["id"]);
-        $record->update(Input::all());
-        Session::flash('message', trans('admin/admin.update_successful') );
 
-        return redirect()->route('TABLE_NAME.show', $myInput["id"]);
+        if ($myInput["id"]) {
+          $record = MODEL_NAME::find($myInput["id"]);
+          $record->update(Input::all());
+          Session::flash('message', trans('admin/admin.update_successful') );
+        }
+        else {
+          $record = new MODEL_NAME();
+          foreach (Input::except(['id','_token']) as $key=>$value) {
+            $record->$key = $value;
+          }
+          $record->save();
+          Session::flash('message', trans('admin/admin.creation_successful') );
+        }
+
+        return redirect()->route('TABLE_NAME.index');
     }
 
     /**
