@@ -12,7 +12,7 @@ class CreateAggregationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('aggregations', function (Blueprint $table) {
+        Schema::create('gdm_aggregations', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id')->unsigned();
             $table->string('table_name', 200);
@@ -29,7 +29,7 @@ class CreateAggregationsTable extends Migration
      */
     public function down()
     {
-        Schema::table('aggregations', function (Blueprint $table) {
+        Schema::table('gdm_aggregations', function (Blueprint $table) {
             //
         });
     }

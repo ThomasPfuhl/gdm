@@ -28,7 +28,7 @@
     <body>
         @include('partials.nav')
 
-        <div class="container">
+        <div class="container-fluid" style="margin:auto 5%">
             @yield('content')
         </div>
 

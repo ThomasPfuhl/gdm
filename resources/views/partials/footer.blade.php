@@ -1,6 +1,6 @@
 <hr/>
 <div id="footer">
-    <div class="container">
+    <div class="container-fluid" style="margin:auto 5%">
         <div class="row">
 
             <div class="col-md-3" >
@@ -15,17 +15,17 @@
                     {{ env('GDM_TITLE') }}
                     <br/>
                     <a href="mailto:{{ env('GDM_MANAGER_EMAIL') }}">  {{ env('GDM_MANAGER_NAME') }} </a>
-                    
+
                 </div>
             </div>
 
             <div class="col-md-5" >
-                 <div style="float:right;color:black;font-size:1.1em;font-weight:bolder;">
+                <div style="float:right;color:black;font-size:1.1em;font-weight:bolder;">
                     <span style="color:green">g</span>eneric<br/>
                     <span style="color:green">d</span>ata<br/>
                     <span style="color:green">m</span>odule
                 </div>
-               <div style="float:right;margin-right:2em;margin-top:5px;display:inline-block;text-align:right;color:black;font-size:0.8em;">
+                <div style="float:right;margin-right:2em;margin-top:5px;display:inline-block;text-align:right;color:black;font-size:0.8em;">
                     version: <span style="color:black">{{ config('app.version') }}</span>
                     <br/>
                     author: <a href="mailto:thomas.pfuhl@mfn-berlin.de">thomas.pfuhl@mfn-berlin.de</a>

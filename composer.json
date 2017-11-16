@@ -9,7 +9,6 @@
         "laravel/framework": "5.1.*",
         "barryvdh/laravel-debugbar": "^2.0@dev",
         "laravelcollective/html": "5.1.*",
-        "codingo-me/dropzoner": "^1.0",
         "intervention/image": "^2.3",
         "yajra/laravel-datatables-oracle": "6.1.*",
         "cviebrock/eloquent-sluggable": "3.1.4",

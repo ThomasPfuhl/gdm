@@ -1,17 +1,23 @@
 <?php
 
 /**
- * customizing GDM
+ * customizing GDM   about, css, js, logos 
+ * @todo find a simpler way , merge with about.blade.php
  */
 include("helpers.php");
 
-$env = readEnvFile(getcwd() . "/.env");
+echo getcwd() . "\n";
+echo $_SERVER['PATH_INFO'] . "/../../.env";
+
+
+$env = readEnvFile( $_SERVER['PATH_INFO'] . "/../../.env");
 
 $about = file_get_contents("custom/about.html");
 $about = preg_replace('/<!--(.*?)-->/Us', '', $about);
 $about = str_replace('GDM_NAME', $env['GDM_NAME'], $about);
 $about = str_replace('GDM_MANAGER_NAME', $env['GDM_MANAGER_NAME'], $about);
 $about = str_replace('GDM_MANAGER_EMAIL', $env['GDM_MANAGER_EMAIL'], $about);
+
 
 mkdir(getcwd() . "/public/appfiles/");
 file_put_contents(getcwd() . "/public/appfiles/about.html", $about);

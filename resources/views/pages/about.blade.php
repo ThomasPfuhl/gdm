@@ -3,15 +3,14 @@
 @section('title') @parent @stop
 
 @section('content')
-<div class="row">
-    <!--
-    <div class="page-header"></div>
-    -->
+<div class="row">    
+    <div class="page-header"> 
+         
+    </div>    
 </div>
 <div class="row">
     <div class="col-md-12">
-        <?php include("appfiles/about.html") ?>
-
+        
         <table class="table table-hover">
             <tr><td>Data Module:</td> <td>{{ env("GDM_TITLE") }}
             <tr><td>Short Name:</td> <td>{{ env("GDM_NAME") }}

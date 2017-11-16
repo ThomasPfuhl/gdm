@@ -59,10 +59,6 @@ Once these steps accomplished, create the environment file:
 
     cp custom/.env.example .env
 
-Then run the customizing script: 
-
-    php lib/tools/customize.php
-
 We make use of **node** and the node package manager **npm**.
 A recent version must be installed. Check with ``node -v``.
 Install the dependencies listed in ``package.json`` :
@@ -105,55 +101,44 @@ which are under the complete dynamic control of the user, via the UI.
  
 
 
-### using Laravel migration utility
+### Populate the database with basic data
 
-Create the tables needed by GDM.
+Create the tables and pupopulate them with minimal data:
 
-    touch app/Http/routes_datamodel.php
+    #touch app/Http/routes_datamodel.php
     composer dump-autoload
     php artisan migrate  
+    php artisan db:seed  
+
+This creates an  administrator account:
+username=`GDM_MANAGER_NAME`  email=`GDM_MANAGER_EMAIL`  password=`admin`  
 
 
-### using Liquibase (optionally)
+
+### Populate the database using Liquibase (optional)
 
 - Liquibase needs a Java Runtime. A JRE is not part of this distribution.
 - download Liquibase: `curl https://github.com/liquibase/liquibase/releases/download/liquibase-parent-3.5.3/liquibase-3.5.3-bin.tar.gz`
-- download DB connector for java, e.g. `https://dev.mysql.com/downloads/connector/j/`
+- download a DB connector for java, e.g. `https://dev.mysql.com/downloads/connector/j/`
 - create Liquibase file structure  
-    - read the official liquibase documentation 
-    - main changelog must be an XML file   
-    - chained changelog files may be XML or SQL files   
- 
+    - please read the official liquibase documentation 
+    - the main changelog file must be an XML file   
+    - the chained changelog files may be XML or SQL files   
 
-        @mkdir database/liquibase   
-        touch database/liquibase/changelog.xml      
-        @mkdir database/liquibase/changelogs   
+#### Sample data module
 
-
-- There is a simple data module provided, featuring a money pool for coffee and tea.
-If you want to rollout this _kitty_, take the provided changelog files in `custom/liquibase/changelogs`.
+- We provide sample data module, featuring a _money pool for coffee and tea_.
+If you want to rollout this _kitty_, take the provided changelog files in `custom/liquibase/example/changelogs`.
 Either you import the SQL statements directly into your database and ignore the liquibase procedure, or:
 
-        cp custom/liquibase/changelogs/*.sql  database/liquibase/changelogs/
+        cp custom/liquibase/example/changelogs/*.sql  database/liquibase/changelogs/
 
-
-- run Liquibase (put executable file in an appropriate folder)  
-`update` command must be executed after each schema modification
+- run Liquibase (put the executable file in an appropriate folder).
+Note that the `update` command must be executed after each schema modification.
 
         cd database/liquibase   
         liquibase updateSQL   
         liquibase update  --defaultsFile=database/liquibase/changelog.xml
-
-### Database initial seed
-
-Populate the database tables.
-Liquibase provides Seeder classes in the folder ``database/seeds``
-
-- Table `users`: *administrator* : username=`GDM_MANAGER_NAME`  email=`GDM_MANAGER_EMAIL`  password=`admin`  
-- Table `users`: *test user*: username=test_user   password=user   (currently not used)
-
-        composer dump-autoload
-        php artisan db:seed  
 
 
 ### Models, Views, Controllers, Menu-Items, Routes
@@ -166,12 +151,12 @@ Make sure that the webuser (e.g. `www-data`) has the necessary write permissions
 in order to regenerate dynamically the User Interface.
 
     cd $GDM_HOME
-    mkdir app/Models
+    #mkdir app/Models
     chmod -R g+w app/Models
     chmod -R g+w app/Http/Controllers
-    touch app/Http/routes_datamodel.php
+    #touch app/Http/routes_datamodel.php
     chmod -R g+w app/Http/routes_datamodel.php
-    touch resources/views/partials/menu-items.blade.php
+    #touch resources/views/partials/menu-items.blade.php
     chmod -R g+w resources/views
 
 You might have to have sudoers' rights for the following commands:
@@ -179,6 +164,7 @@ You might have to have sudoers' rights for the following commands:
     chgrp -R www-data app/Models
     chgrp -R www-data app/Http/Controllers
     chgrp -R www-data resources/views
+    chgrp  www-data app/Http/routes.php
     chgrp  www-data app/Http/routes_datamodel.php
 
 
@@ -227,6 +213,10 @@ The API comes with a concise and complete documentation, including webforms to t
 - JSON: `/docs`
 - GUI:  `/api/_module_name_ /_version_/_tablename_/`
 
+
+## Known Issues
+
+- many-to-many relations
 
 ## TO DO
 see [TODO.md](TODO.md)

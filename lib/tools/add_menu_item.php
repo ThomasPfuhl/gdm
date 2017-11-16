@@ -32,8 +32,8 @@ CODE;
 // metatables
 $content = <<<'CODE'
    
-<li class="{{ (Request::is('Aggregations') ? 'active' : '') }}">
-    <a href="{{ URL::to('Aggregations') }}">Aggregations</a>
+<li class="{{ (Request::is('gdm_aggregations') ? 'active' : '') }}">
+    <a href="{{ URL::to('gdm_aggregations') }}">Aggregations</a>
 </li>
 
 CODE;

@@ -47,7 +47,6 @@ elixir(function(mix) {
         paths.fontawesome + '/css/font-awesome.css',
         paths.bootswatch + '/bootstrap.css',
         paths.colorbox + '/example3/colorbox.css',
-        //paths.justifiedGallery + '/css/justifiedGallery.css',
         'gdm.css'
     ], 'public/css/site.css');
 
@@ -60,7 +59,6 @@ elixir(function(mix) {
         paths.dataTables + '/js/dataTables.bootstrap.js',
         'bootstrap-dataTables-paging.js',
         'bootstrap-confirmation.js',
-        //paths.justifiedGallery + '/js/jquery.justifiedGallery.js'
     ], 'public/js/site.js');
 
     // Merge Admin CSSs.
@@ -75,7 +73,6 @@ elixir(function(mix) {
         paths.metisMenu + '/metisMenu.css',
         paths.summernote + '/summernote.css',
         paths.select2 + '/css/select2.css',
-        //paths.jqueryui + '/themes/base/minified/jquery-ui.min.css',
         'sb-admin-2.css',
         'gdm_admin.css'
     ], 'public/css/admin.css');

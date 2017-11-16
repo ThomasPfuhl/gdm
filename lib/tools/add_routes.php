@@ -22,24 +22,23 @@ $content = <<<'PHPCODE'
 
 //////////////////////////////
 // API, returns JSON
-Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') , 'CTABLENAMEController@apiGetDoc');
-Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') . '/TABLENAME/', 'CTABLENAMEController@apiGetDoc');
-Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') . '/TABLENAME/all', 'CTABLENAMEController@apiGetAll');
-Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') . '/TABLENAME/{id}', 'CTABLENAMEController@apiGetOne');
-Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') . '/TABLENAME/search', 'CTABLENAMEController@apiSearch');
+Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') ,                   'Data\CTABLENAMEController@apiGetDoc');
+Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') . '/TABLENAME/',    'Data\CTABLENAMEController@apiGetDoc');
+Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') . '/TABLENAME/all', 'Data\CTABLENAMEController@apiGetAll');
+Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') . '/TABLENAME/{id}', 'Data\CTABLENAMEController@apiGetOne');
+Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') . '/TABLENAME/search', 'Data\CTABLENAMEController@apiSearch');
 // GUI
-Route::get('TABLENAME/aggregated',  'CTABLENAMEController@index_aggregated');
-Route::get('TABLENAME/data',        'CTABLENAMEController@data');
-Route::get('TABLENAME/{id}/datum',  'CTABLENAMEController@datum');
+Route::get('TABLENAME/aggregated',  'Data\CTABLENAMEController@index_aggregated');
+Route::get('TABLENAME/data',        'Data\CTABLENAMEController@data');
+Route::get('TABLENAME/{id}/datum',  'Data\CTABLENAMEController@datum');
 // FORBIDDEN, unless authenticated:
-Route::get(     'TABLENAME/{id}/edit',  ['middleware' => 'auth', 'uses' => 'CTABLENAMEController@edit']);
-Route::get(     'TABLENAME/{id}/delete',['middleware' => 'auth', 'uses' => 'CTABLENAMEController@destroy']);
-Route::put(     'TABLENAME/{id}',       ['middleware' => 'auth', 'uses' => 'CTABLENAMEController@update']);
-// FORBIDDEN, unless authenticated:
-//Route::get(     'TABLENAME/create',     ['middleware' => 'auth', 'uses' => 'CTABLENAMEController@create']);
-Route::post(    'TABLENAME',            ['middleware' => 'auth', 'uses' => 'CTABLENAMEController@store']);
+Route::get(     'TABLENAME/{id}/edit',  ['middleware' => 'auth', 'uses' => 'Data\CTABLENAMEController@edit']);
+Route::get(     'TABLENAME/{id}/delete',['middleware' => 'auth', 'uses' => 'Data\CTABLENAMEController@destroy']);
+Route::put(     'TABLENAME/{id}',       ['middleware' => 'auth', 'uses' => 'Data\CTABLENAMEController@update']);
+//Route::get(     'TABLENAME/create',     ['middleware' => 'auth', 'uses' => 'Data\CTABLENAMEController@create']);
+Route::post(    'TABLENAME',            ['middleware' => 'auth', 'uses' => 'Data\CTABLENAMEController@store']);
 // since we are lazy, we use this shortcut:
-Route::resource('TABLENAME', 'CTABLENAMEController');
+Route::resource('TABLENAME', 'Data\CTABLENAMEController');
 
 PHPCODE;
 

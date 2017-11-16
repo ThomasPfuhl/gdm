@@ -15,7 +15,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
   *   @SWG\Info(  
   *     version="v0_9",  
   *     title="kitty",  
-  *     description="FB3 money pool for coffee",  
+  *     description="money pool for coffee and tea",  
   *     @SWG\Contact(  
   *       email="thomas.pfuhl@mfn-berlin.de"  
   *     ),  

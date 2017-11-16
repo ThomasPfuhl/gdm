@@ -37,8 +37,9 @@
 $stub = <<<'PHPCODE'
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Data;
 
+use App\Http\Controllers\Controller;
 use App\Models\MODEL_NAME;
 use Datatables;
 use Request;
@@ -62,7 +63,7 @@ class CAP_NAMEController extends Controller {
      */
     public function index() {
     
-        $agg = \App\Models\Aggregation::where('table_name', 'DB_TABLE_NAME')->first();
+        $agg = \App\Aggregation::where('table_name', 'DB_TABLE_NAME')->first();
         $has_aggregated_view = (count($agg) > 0) ? true : false;
 
         $records = MODEL_NAME::all();
@@ -71,7 +72,7 @@ class CAP_NAMEController extends Controller {
             $propertyNames = array();
             $extPropertyValues = array();
             $collection = array();
-            return view('TABLE_NAME.index', compact('records', 'has_aggregated_view', 'propertyNames', 'extPropertyValues', 'collection'));
+            return view('data.TABLE_NAME.index', compact('records', 'has_aggregated_view', 'propertyNames', 'extPropertyValues', 'collection'));
         }
 
         //$propertyNames = MODEL_NAME:::first()["fillable"]; // without field "id"
@@ -88,7 +89,7 @@ class CAP_NAMEController extends Controller {
 
         $collection = collect($extPropertyValues);
 
-        return view('TABLE_NAME.index', compact('records', 'has_aggregated_view', 'propertyNames', 'extPropertyValues', 'collection'));
+        return view('data.TABLE_NAME.index', compact('records', 'has_aggregated_view', 'propertyNames', 'extPropertyValues', 'collection'));
     }
 
     /**
@@ -98,7 +99,7 @@ class CAP_NAMEController extends Controller {
      */
     public function index_aggregated() {
         
-        $agg = \App\Models\Aggregation::where('table_name', 'DB_TABLE_NAME')->first();
+        $agg = \App\Aggregation::where('table_name', 'DB_TABLE_NAME')->first();
         if (count($agg) == 0) {
             $records = array();
             $propertyNames = array();
@@ -124,7 +125,7 @@ class CAP_NAMEController extends Controller {
             $extPropertyValues[] = $extValues;
         }
         $collection = collect($extPropertyValues);
-        return view('TABLE_NAME.index_aggregated', compact('records', 'propertyNames', 'extPropertyValues', 'collection'));
+        return view('data.TABLE_NAME.index_aggregated', compact('records', 'propertyNames', 'extPropertyValues', 'collection'));
     }
 
     /**
@@ -142,7 +143,7 @@ class CAP_NAMEController extends Controller {
         $extPropertyValues = $extValues;
         $type = ""; // used for datatable js in app.blade.php
 
-        return view('TABLE_NAME.view', compact('id', 'record', 'extPropertyValues', 'type'));
+        return view('data.TABLE_NAME.view', compact('id', 'record', 'extPropertyValues', 'type'));
     }
 
     /**
@@ -156,7 +157,7 @@ class CAP_NAMEController extends Controller {
             'method' => 'POST',
             'url' => route('TABLE_NAME.store')
         ]);
-        return view('TABLE_NAME.create', compact('form'));
+        return view('data.TABLE_NAME.create', compact('form'));
     }
 
     /**
@@ -165,10 +166,10 @@ class CAP_NAMEController extends Controller {
      * @param int $id
      * @return Response
      */
-    public function destroy(int $id) {
+    public function destroy($id) {
         MODEL_NAME::destroy($id);
         Session::flash('message', trans('admin/admin.deletion_successful') );
-        return view('TABLE_NAME.destroy', compact('id'));
+        return view('data.TABLE_NAME.destroy', compact('id'));
     }
 
     /**
@@ -208,7 +209,7 @@ class CAP_NAMEController extends Controller {
      * @param  int  $id
      * @return Response
      */
-    public function update(int $id) {
+    public function update($id) {
 
         $record = MODEL_NAME::find($id);
         $record->update(Input::all());
@@ -224,7 +225,7 @@ class CAP_NAMEController extends Controller {
      * @param FormBuilder $formBuilder
      * @return Response
      */
-    public function edit(int $id, FormBuilder $formBuilder) {
+    public function edit($id, FormBuilder $formBuilder) {
     
         $record = MODEL_NAME::find($id);
 
@@ -237,7 +238,7 @@ class CAP_NAMEController extends Controller {
         $referenced_tables = array();
         RELATIONS_FOR_EDIT
 
-        return view('TABLE_NAME.edit', compact('form', 'record', 'referenced_tables'))->with('TABLE_NAME', $record);
+        return view('data.TABLE_NAME.edit', compact('form', 'record', 'referenced_tables'))->with('TABLE_NAME', $record);
     }
 
     /**
@@ -295,7 +296,7 @@ class CAP_NAMEController extends Controller {
 
     /**
      * @SWG\Get(
-     *   path="/MODULE_INSTANCE/DATAMODEL_VERSION/TABLE_NAME/{id}",
+     *   path="/MODULE_INSTANCE/GDM_DATAMODEL_VERSION/TABLE_NAME/{id}",
      *   description="get single record from TABLE_NAME",
      *   operationId="getMODEL_NAME",
      *   produces={"application/json"},  
@@ -330,7 +331,7 @@ class CAP_NAMEController extends Controller {
         $record = MODEL_NAME::where('id', $id);
 
         $jsonapi = array();
-        $jsonapi["version"] = env('GDM_DATAMODEL_VERSION');
+        $jsonapi["version"] = '1.0';
 
         $meta_infos = array();
         $meta_infos["copyright"] = env('GDM_COPYRIGHT');
@@ -353,7 +354,7 @@ class CAP_NAMEController extends Controller {
 
    /**
      * @SWG\Get(
-     *   path="/MODULE_INSTANCE/DATAMODEL_VERSION/TABLE_NAME/all",
+     *   path="/MODULE_INSTANCE/GDM_DATAMODEL_VERSION/TABLE_NAME/all",
      *   description="get all records from TABLE_NAME",
      *   operationId="getCAP_NAME",
      *   produces={"application/json"},  
@@ -389,7 +390,7 @@ class CAP_NAMEController extends Controller {
         $collection = collect($extPropertyValues);
 
         $jsonapi = array();
-        $jsonapi["version"] = env('GDM_DATAMODEL_VERSION') ;
+        $jsonapi["version"] = '1.0' ;
         
         $meta_infos = array();
         $meta_infos["copyright"] = env('GDM_COPYRIGHT');
@@ -450,7 +451,7 @@ echo "\n adding controller " . $name ;
 
 $content = $stub;
 $content = str_replace('MODULE_INSTANCE', GDM_NAME, $content);
-$content = str_replace('DATAMODEL_VERSION', GDM_DATAMODEL_VERSION, $content);
+$content = str_replace('GDM_DATAMODEL_VERSION',  GDM_DATAMODEL_VERSION, $content);
 
 $content = str_replace('SINGULAR_NAME', singularize($name), $content);
 $content = str_replace('CAP_NAME', ucfirst($name), $content);
@@ -477,11 +478,14 @@ PHPCODE;
 
 $foreign_keys = getAllForeignKeys();
 
-if (array_key_exists($name, $foreign_keys)) {
+echo "\n-- foreign keys: " .  print_r(array_keys($foreign_keys), true);
+echo "\n-- $table_name in foreign keys ?";
+
+if (array_key_exists($table_name, $foreign_keys)) {
     $related_tables = "";
     $relations = "";
     $relations2 = "";
-    foreach ($foreign_keys[$name] as $relation) {
+    foreach ($foreign_keys[$table_name] as $relation) {
         
         $foreign_key = $relation['foreign_key'];
         $referenced_table = $relation['referenced_table'];
@@ -509,4 +513,4 @@ if (array_key_exists($name, $foreign_keys)) {
     $content = str_replace('RELATIONS', "", $content);
 }
 
-file_put_contents("../../app/Http/Controllers/" . $name . "Controller.php", $content);
+file_put_contents("../../app/Http/Controllers/Data/" . $name . "Controller.php", $content);
