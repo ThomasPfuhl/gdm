@@ -1,6 +1,6 @@
 # TODO 
 
-## laravel framework
+## Laravel framework
 
 - upgrade to v5.4 LTS
 - replace package ignasbernotas/laravel-model-generator by [https://github.com/reliese/laravel](https://github.com/reliese/laravel)
@@ -18,7 +18,6 @@ cf https://www.sitepoint.com/laravel-blade-recursive-partials/
 
 ## Backend
 
-- create records
 - provide GUI for modifying the data model
 
 

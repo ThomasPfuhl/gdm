@@ -12,7 +12,6 @@
 /app/Models/
 /public/appfiles/
 /public/vendor/
-/public/doc/
 /resources/views/vendor/
 /resources/vendor/
 /storage/debugbar/
@@ -20,3 +19,4 @@
 /storage/docs/
 /tests/
 /vendor/
+/public/doc/referencemanual/
