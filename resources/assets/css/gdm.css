@@ -36,6 +36,7 @@ a:hover {color:green;}
 
 .alert, .btn {
     border:none;
+    color:black;
 }
 
 /* datatables */
