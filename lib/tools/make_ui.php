@@ -24,20 +24,17 @@ foreach ($env as $line) {
 }
 
 
-echo "\n------------------------\nCUSTOM LAYOUT:\n";
+echo "\n-----------\nCUSTOM LAYOUT...\n";
 
-$about = file_get_contents("custom/about.html");
-$content = file_get_contents("../../resources/views/pages/about.blade.php");
-$content = str_replace('CUSTOM_ABOUT', $about, $content);
-file_put_contents("../../resources/views/pages/about.blade.php", $content, FILE_TEXT | LOCK_EX);
+copy("../../custom/about.html", "../../resources/views/pages/userinfo.blade.php");
 
-copy("custom/institution_logo.png", "../../public/img/institution_logo.png");
-copy("custom/app_logo.png", "../../public/img/app_logo.png");
+copy("../../custom/institution_logo.png", "../../public/img/institution_logo.png");
+copy("../../custom/app_logo.png", "../../public/img/app_logo.png");
 
-copy("custom/custom.css", "../../public/css/custom.css");
-copy("custom/custom.js", "../../public/js/custom.js");
+copy("../../custom/custom.css", "../../public/css/custom.css");
+copy("../../custom/custom.js", "../../public/js/custom.js");
 
-echo "\n custom layout installed.\n";
+echo "\n installed.\n";
 
 
 /////////////////////////////////////////
@@ -49,7 +46,7 @@ copy("model.stub", getcwd() . "/../../vendor/ignasbernotas/laravel-model-generat
 
 echo "\n\n-----------\nCREATING MODELS...\n\n";
 
-mkdir(" ../../app/Models");
+//mkdir(" ../../app/Models");
 system('cd ../../; php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations,users,languages,gdm_aggregations --getset');
 
 $sql = "SELECT TABLE_NAME
@@ -71,7 +68,7 @@ $pdo = new PDO(DB_CONNECTION . ":host=" . DB_HOST . ";dbname=" . DB_DATABASE, DB
 $response = $pdo->query($sql);
 
 
-echo "\n------------\nROUTING ENTRYPOINT ---\n";
+echo "\n------------\nROUTING ENTRYPOINT...\n";
 
 $maintable = toCamelCase(GDM_MAIN_TABLE, true);
 $entrypoint = "<?php \n\n"
@@ -83,7 +80,7 @@ file_put_contents("../../app/Http/routes.php", "include('routes_datamodel.php');
 echo " data model routes integrated.\n";
 
 
-echo "\n------------\n MAIN CONTROLLER ---\n";
+echo "\n------------\nMAIN CONTROLLER...\n";
 
 $stub = <<<'PHPCODE'
 <?php
@@ -96,24 +93,24 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 /**
-  * @SWG\Swagger(  
-  *   schemes={"http","https"},  
-  *   host="GDM_URL",  
-  *   basePath="/api",  
-  *   @SWG\Info(  
-  *     version="GDM_DATAMODEL_VERSION",  
-  *     title="GDM_NAME",  
-  *     description="GDM_TITLE",  
-  *     @SWG\Contact(  
-  *       email="GDM_MANAGER_EMAIL"  
-  *     ),  
-  *     @SWG\License(  
-  *       name="GNU General Public License",  
-  *       url="http://www.gnu.org/licenses/"  
-  *     )  
+  * @SWG\Swagger(
+  *   schemes={"http","https"},
+  *   host="GDM_URL",
+  *   basePath="/api",
+  *   @SWG\Info(
+  *     version="GDM_DATAMODEL_VERSION",
+  *     title="GDM_NAME",
+  *     description="GDM_TITLE",
+  *     @SWG\Contact(
+  *       email="GDM_MANAGER_EMAIL"
+  *     ),
+  *     @SWG\License(
+  *       name="GNU General Public License",
+  *       url="http://www.gnu.org/licenses/"
+  *     )
   *   )
-  * )  
-  */  
+  * )
+  */
 abstract class Controller extends BaseController {
 
     use AuthorizesRequests,
@@ -132,6 +129,7 @@ $content = str_replace('GDM_MANAGER_EMAIL', GDM_MANAGER_EMAIL, $content);
 $content = str_replace('""', '"', $content);
 
 file_put_contents("../../app/Http/Controllers/Controller.php", $content);
+echo " added.\n";
 
 
 echo "\n------------\nCREATING CONTROLLERS, VIEWS, FORMS, MENU ITEMS, and ROUTES...\n";
@@ -154,8 +152,3 @@ foreach ($response as $row) {
 }
 
 echo "\n\n>>>>>>>>>>>>>>>>>>>> ALL DONE.\n";
-
-echo '<div class="alert alert-success">ALL DONE.</div>';
-echo "\n\n";
-
-

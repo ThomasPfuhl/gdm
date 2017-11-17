@@ -14,7 +14,7 @@
 <div class="row">
     <pre>
         <?php
-        chdir(getcwd() . "/../lib/tools");
+        chdir("../lib/tools");
         include("make_ui.php");
         ?>
     </pre>
