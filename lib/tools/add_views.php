@@ -68,12 +68,8 @@ $content = <<<'PHPCODE'
                 @if (strlen($item) < 30)
                 {{ $item }}
                 @else
-                <!--
-                <a class="toggle-link" href="#maintable" data-toggle="collapse" data-target="#related_{{ $row }}_{{ $key }}"
-                  ><span class="glyphicon glyphicon-plus-sign"></span><span class="glyphicon glyphicon-minus-sign hidden"></span></a>
-                -->
                 <a class="toggle-link" href="#maintable" data-toggle="modal" data-target="#related-text-{{ $row }}-{{ $key }}"
-                   ><span class="glyphicon glyphicon-plus-sign"></span></a> {{ str_limit($item, 30) }}
+                   ><span class="glyphicon glyphicon-resize-full"></span></a> {{ str_limit($item, 30) }}
                 <!-- Modal -->
                 <div class="modal fade" id="related-text-{{ $row }}-{{ $key }}" role="dialog">
                     <div class="modal-dialog">
@@ -188,7 +184,7 @@ $content = <<<'PHP_CODE'
                 {{ $item }}
                 @else
                <a class="toggle-link" href="#maintable" data-toggle="modal" data-target="#related-text-{{ $row }}-{{ $key }}"
-                   ><span class="glyphicon glyphicon-plus-sign"></span></a> {{ str_limit($item, 30) }}
+                   ><span class="glyphicon glyphicon-resize-full"></span></a> {{ str_limit($item, 30) }}
                 <!-- Modal -->
                 <div class="modal fade" id="related-text-{{ $row }}-{{ $key }}" role="dialog">
                     <div class="modal-dialog">
