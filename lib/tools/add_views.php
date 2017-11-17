@@ -38,12 +38,13 @@ $content = <<<'PHPCODE'
             @endif
             @endif
         </div>
-        @if(Session::has('message'))
-        <div class="alert alert-info"><strong>{{ Session::get('message') }}</strong></div>
-        @endif
+
 </div>
 
-
+@if(Session::has('message'))
+<div class="alert alert-info"><strong>{{ Session::get('message') }}</strong></div>
+@endif
+        
 <table id="maintable" class="maintable table table-hover table-responsive table-condensed">
     <thead>
         <tr>
@@ -117,9 +118,11 @@ $content = <<<'PHPCODE'
             @if(Auth::user()->admin==1)
 
                 <a href="{{ URL::to('NAME/' . $record['id'] . '/edit' ) }}" class="btn btn-md btn-info"><span class="glyphicon glyphicon-pencil"></span> {{ trans("admin/modal.edit") }}</a>
-                <!--
-                <a href="{{ URL::to('NAME/' . $record['id'] . '/destroy' ) }}" class="btn btn-md btn-danger"><span class="glyphicon glyphicon-trash"></span> {{ trans("admin/modal.delete") }}</a>
-                -->
+                
+                {!! Form::open(['method' => 'DELETE', 'url' => URL::to('NAME/' . $record['id'] . '/delete' ), 'style'=>'display:inline']) !!}
+                {!! Form::button( trans("admin/modal.delete"), ['class' => 'btn btn-md btn-danger', 'type' => 'submit']) !!}
+                {!! Form::close() !!}
+                
             @endif
             @endif
             </td>
@@ -156,10 +159,11 @@ $content = <<<'PHP_CODE'
            class="btn btn-md  btn-success"><span
                 class="glyphicon glyphicon-eye-open"></span> General View</a>
     </div>
-    @if(Session::has('message'))
-    <div class="alert alert-info"><strong>{{ Session::get('message') }}</strong></div>
-    @endif
 </div>
+
+@if(Session::has('message'))
+<div class="alert alert-info"><strong>{{ Session::get('message') }}</strong></div>
+@endif
 
 <table id="maintable" class="maintable table table-hover table-responsive table-condensed">
     <thead>
@@ -238,7 +242,6 @@ $content = str_replace('CNAME', ucfirst($name), $content);
 $content = str_replace('MODEL_NAME', singularize(ucfirst($name)), $content);
 $content = str_replace('NAME', $name, $content);
 
-//echo $content;
 @mkdir("../../resources/views/data/" . $name);
 file_put_contents("../../resources/views/data/" . $name . "/index_aggregated.blade.php", $content);
 
@@ -260,11 +263,11 @@ $content = <<<'PHPCODE'
             ><span class = "glyphicon glyphicon-eye-open"></span> {{ " view all" }}</a>
         </div>
     </h3>
-    @if(Session::has('message'))
-    <div class="alert alert-info"><strong>{{ Session::get('message') }}</strong></div>
-    @endif
 </div>
 
+@if(Session::has('message'))
+<div class="alert alert-info"><strong>{{ Session::get('message') }}</strong></div>
+@endif
 
 <div class="row">
 <div class="col-md-11">
@@ -301,7 +304,7 @@ $content = <<<'PHPCODE'
 
             @else
             <a class="toggle-link" href="#maintable" data-toggle="collapse" data-target="#related_{{ $key }}"
-               ><span class="glyphicon glyphicon-plus-sign"></span><span class="glyphicon glyphicon-minus-sign hidden"></span></a>
+               ><span class="glyphicon glyphicon-resize-full"></span><span class="glyphicon glyphicon-resize-small hidden"></span></a>
             {{ $value[array_keys($value)[2]] }}
             <div>
                 <table id="related_{{ $key }}" class="table table-condensed collapse related">
@@ -343,7 +346,6 @@ $content = str_replace('CNAME', ucfirst($name), $content);
 $content = str_replace('MODEL_NAME', singularize(ucfirst($name)), $content);
 $content = str_replace('NAME', $name, $content);
 
-//echo $content;
 @mkdir("../../resources/views/data/" . $name);
 file_put_contents("../../resources/views/data/" . $name . "/view.blade.php", $content);
 
@@ -353,12 +355,27 @@ file_put_contents("../../resources/views/data/" . $name . "/view.blade.php", $co
 $content = <<<'PHPCODE'
 @extends('layouts.app')
 
+@section('title') @parent @stop
+
 @section('content')
-    {!! form($form) !!}
+<div class = "page-header">
+
+        <span style="vertical-align:top;font-size:1.6em;font-weight:bold;padding-right:3em;">add MODEL_NAME</span>
+
+        <div style="float:right">
+            <a href = "{{{ URL::to('Deposits/') }}}" class = "btn btn-success btn-md"
+            ><span class = "glyphicon glyphicon-eye-open"></span> {{ " view all" }}</a>
+        </div>
+  
+</div>
+
+{!! form($form) !!}
+
 @endsection
 PHPCODE;
 
-//echo $content;
+$content = str_replace('MODEL_NAME', singularize(ucfirst($name)), $content);
+
 @mkdir("../../resources/views/data/" . $name);
 file_put_contents("../../resources/views/data/" . $name . "/create.blade.php", $content);
 
@@ -369,23 +386,32 @@ file_put_contents("../../resources/views/data/" . $name . "/create.blade.php", $
 $content = <<<'PHPCODE'
 @extends('layouts.app')
 
-@section('title') MODEL_NAME {{$record->id}} :: @parent @stop
+@section('title') MODEL_NAME {{$id}} :: @parent @stop
 
 @section('content')
-    
+
+<div class = "page-header">
+    <h3>
+        MODEL_NAME {{$id}}
+        <div style="float:right">
+            <a href = "{{{ URL::to('NAME/') }}}" class = "btn btn-success btn-md"
+            ><span class = "glyphicon glyphicon-eye-open"></span> {{ " view all" }}</a>
+        </div>
+    </h3>
+</div>
+
 <div class="row">
-    <div class="page-header">
-        <span style="vertical-align:top;font-size:1.6em;font-weight:bold;padding-right:3em;">MODEL_NAME {{$record->id}} deleted.</span>
-    </div>
     @if(Session::has('message'))
-    <div class="alert alert-info"><strong>{{ Session::get('message') }}</strong></div>
+    <div class="alert alert-info"><strong>MODEL_NAME {{$id}} {{ Session::get('message') }}</strong></div>
     @endif
 </div>
 
 @endsection
 PHPCODE;
 
-//echo $content;
+$content = str_replace('MODEL_NAME', singularize(ucfirst($name)), $content);
+$content = str_replace('NAME', $name, $content);
+
 @mkdir("../../resources/views/data/" . $name);
 file_put_contents("../../resources/views/data/" . $name . "/destroy.blade.php", $content);
 
@@ -440,7 +466,6 @@ PHPCODE;
 
 $content = str_replace('MODEL_NAME', singularize(ucfirst($name)), $content);
 
-//echo $content;
 @mkdir("../../resources/views/data/" . $name);
 file_put_contents("../../resources/views/data/" . $name . "/edit.blade.php", $content);
 

@@ -33,9 +33,7 @@ Route::get('TABLENAME/data',        'Data\CTABLENAMEController@data');
 Route::get('TABLENAME/{id}/datum',  'Data\CTABLENAMEController@datum');
 // FORBIDDEN, unless authenticated:
 Route::get(     'TABLENAME/{id}/edit',  ['middleware' => 'auth', 'uses' => 'Data\CTABLENAMEController@edit']);
-Route::get(     'TABLENAME/{id}/delete',['middleware' => 'auth', 'uses' => 'Data\CTABLENAMEController@destroy']);
-Route::put(     'TABLENAME/{id}',       ['middleware' => 'auth', 'uses' => 'Data\CTABLENAMEController@update']);
-//Route::get(     'TABLENAME/create',     ['middleware' => 'auth', 'uses' => 'Data\CTABLENAMEController@create']);
+Route::delete(  'TABLENAME/{id}/delete',['middleware' => 'auth', 'uses' => 'Data\CTABLENAMEController@destroy']);
 Route::post(    'TABLENAME',            ['middleware' => 'auth', 'uses' => 'Data\CTABLENAMEController@store']);
 // since we are lazy, we use this shortcut:
 Route::resource('TABLENAME', 'Data\CTABLENAMEController');

@@ -32,6 +32,10 @@ $content = str_replace('VAR_STRING', 'text', $content);
 $content = str_replace('VAR', 'text', $content);
 $content = str_replace('STRING', 'text', $content);
 $content = str_replace('BLOB', 'textarea', $content);
+$content = str_replace('TEXT', 'textarea', $content);
+$content = str_replace('DATE', 'date', $content);
+$content = str_replace('TIME', 'time', $content);
+$content = str_replace('DATETIME', 'datetime-local', $content);
 
 //echo "\nexecuting: " . $content . "\n";
 system($content);
@@ -40,10 +44,6 @@ $code = file_get_contents('../../app/Forms/' . $name . 'Form.php');
 
 $code = str_replace("'id', 'number'", "'id', 'hidden'", $code);
 $code = str_replace("'submit')", "'submit', ['label' => 'Save',  'attr' => ['class' => 'btn btn-success']])", $code);
-$code = str_replace("'reset')", "'reset', ['label' => 'Reset',  'attr' => ['class' => 'btn btn-warning']])", $code);
+$code = str_replace("'reset')",  "'reset',  ['label' => 'Reset', 'attr' => ['class' => 'btn btn-warning']])", $code);
 file_put_contents('../../app/Forms/' . $name . 'Form.php', $code);
-
-//   ->add('submit', 'submit', ['label' => 'Save',  'attr' => ['class' => 'btn btn-success']])
-//   ->add('clear', 'reset', ['label' => 'Cancel', 'attr' => ['class' => 'btn btn-info']])
-
 

@@ -66,6 +66,7 @@
                             "serverSide": false,
                     });
             });
+            // confirmation dialog
             $('[data-toggle=confirmation]').confirmation({
             rootSelector: "[data-toggle=confirmation]",
                     title: "{{ trans('admin/admin.confirm_operation') }}",
@@ -78,7 +79,10 @@
                     btnCancelIcon: "glyphicon glyphicon-remove",
                     onCancel: function(){return false; },
             });
-         </script>
+            // add glyphicon for FormBuilder delete button
+            $("form button.btn-danger").prepend("<span class='glyphicon glyphicon-trash' style='display:inline;float:left'></span>&nbsp;");
+
+        </script>
         @yield('scripts')
 
     </body>

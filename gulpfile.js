@@ -21,7 +21,6 @@ var paths = {
     'summernote': vendors + '/summernote/dist',
     'select2': vendors + '/select2/dist',
     'jqueryui':  vendors + '/jquery-ui'
-    //'justifiedGallery':  vendors + '/Justified-Gallery/dist/'
 };
 
 elixir.config.sourcemaps = false;
