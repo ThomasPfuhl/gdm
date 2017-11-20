@@ -46,7 +46,6 @@ copy("model.stub", getcwd() . "/../../vendor/ignasbernotas/laravel-model-generat
 
 echo "\n\n-----------\nCREATING MODELS...\n\n";
 
-//mkdir(" ../../app/Models");
 system('cd ../../; php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations,users,languages,gdm_aggregations --getset');
 
 $sql = "SELECT TABLE_NAME
