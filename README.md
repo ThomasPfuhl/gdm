@@ -152,20 +152,19 @@ in order to regenerate dynamically the User Interface.
     chmod -R g+w app/Http/Controllers
     chmod -R g+w resources/views
 
-You might have to have sudoers' rights for the following commands:
+This is done in a handy PHP script, and must be executed after each schema modification. 
+The script may also be called in the Admin Dashboard, so you do not need a commandline access.   
+
+    (cd lib/tools; php make_ui.php)
+
+PENDING: many-to-many relations are not yet generated automagically.   
+
+You might have to have sudoers' rights for the following commands
 
     chgrp -R www-data app/Models
     chgrp -R www-data app/Http/Controllers
     chgrp -R www-data resources/views
     chgrp  www-data app/Http/routes.php
-
-
-PENDING: many-to-many relations are not yet generated automagically.   
-
-This is done in a handy PHP script, and must be executed after each schema modification. 
-The script may also be called in the Admin Dashboard, so you do not need a commandline access.   
-
-    (cd lib/tools; php make_ui.php)
 
 
 ## Documentation
