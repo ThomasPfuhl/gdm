@@ -104,7 +104,7 @@ class AggregationsController extends Controller {
      */
     public function store(Request $request, FormBuilder $formBuilder) {
 
-        $form = $formBuilder->create(\App\Forms\MembersForm::class);
+        $form = $formBuilder->create(\App\Forms\AggregationsForm::class);
 
         $arequest = (array) $form->getRequest();
 
