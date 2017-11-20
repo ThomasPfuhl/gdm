@@ -27,7 +27,7 @@ $content = <<<'PHPCODE'
             @if ($has_aggregated_view)
             <a href="{!! URL::to('NAME/aggregated') !!}"
                class="btn btn-md btn-success"><span
-                    class="glyphicon glyphicon-eye-open"></span> Aggregated View</a>
+                    class="glyphicon glyphicon-eye-open"></span> {!! trans('displaymodes.aggregated') !!}</a>
             @endif
             @if(Auth::check())
             @if(Auth::user()->admin==1)
@@ -149,11 +149,11 @@ $content = <<<'PHP_CODE'
 
 @section('content')
 <div class="page-header">
-    <span style="vertical-align:top;font-size:1.6em;font-weight:bold;padding-right:3em;">CNAME &mdash; Aggregated View</span>
+    <span style="vertical-align:top;font-size:1.6em;font-weight:bold;padding-right:3em;">CNAME &mdash; {!! trans('displaymodes.all') !!}</span>
     <div class="pull-right">
         <a href="{!! URL::to('NAME') !!}"
            class="btn btn-md  btn-success"><span
-                class="glyphicon glyphicon-eye-open"></span> General View</a>
+                class="glyphicon glyphicon-eye-open"></span> {!! trans('displaymodes.general') !!}</a>
     </div>
 </div>
 
@@ -256,7 +256,7 @@ $content = <<<'PHPCODE'
         MODEL_NAME {{$id}}
         <div style="float:right">
             <a href = "{{{ URL::to('NAME/') }}}" class = "btn btn-success btn-md"
-            ><span class = "glyphicon glyphicon-eye-open"></span> {{ " view all" }}</a>
+            ><span class = "glyphicon glyphicon-eye-open"></span> {!! trans('displaymodes.all') !!}</a>
         </div>
     </h3>
 </div>
@@ -359,8 +359,8 @@ $content = <<<'PHPCODE'
         <span style="vertical-align:top;font-size:1.6em;font-weight:bold;padding-right:3em;">add MODEL_NAME</span>
 
         <div style="float:right">
-            <a href = "{{{ URL::to('Deposits/') }}}" class = "btn btn-success btn-md"
-            ><span class = "glyphicon glyphicon-eye-open"></span> {{ " view all" }}</a>
+            <a href = "{{{ URL::to('NAME/') }}}" class = "btn btn-success btn-md"
+            ><span class = "glyphicon glyphicon-eye-open"></span> {!! trans('displaymodes.all') !!}</a>
         </div>
   
 </div>
@@ -371,6 +371,7 @@ $content = <<<'PHPCODE'
 PHPCODE;
 
 $content = str_replace('MODEL_NAME', singularize(ucfirst($name)), $content);
+$content = str_replace('NAME', $name, $content);
 
 @mkdir("../../resources/views/data/" . $name);
 file_put_contents("../../resources/views/data/" . $name . "/create.blade.php", $content);
@@ -391,7 +392,7 @@ $content = <<<'PHPCODE'
         MODEL_NAME {{$id}}
         <div style="float:right">
             <a href = "{{{ URL::to('NAME/') }}}" class = "btn btn-success btn-md"
-            ><span class = "glyphicon glyphicon-eye-open"></span> {{ " view all" }}</a>
+            ><span class = "glyphicon glyphicon-eye-open"></span> {!! trans('displaymodes.all') !!}</a>
         </div>
     </h3>
 </div>
@@ -428,7 +429,7 @@ $content = <<<'PHPCODE'
         &nbsp;
         <div class="pull-right">
                 <a href="../" class="btn btn-primary btn-md">
-                    <span class="glyphicon glyphicon-backward"></span> {!! trans('admin/admin.back')!!}
+                    <span class="glyphicon glyphicon-backward"></span> {!! trans('admin/admin.back') !!}
                 </a>
         </div>
     @if(Session::has('message'))
