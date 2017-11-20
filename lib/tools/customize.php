@@ -7,10 +7,10 @@
 include("helpers.php");
 
 echo getcwd() . "\n";
-echo $_SERVER['PATH_INFO'] . "/../../.env";
+echo pathinfo(__FILE__)['dirname'] . "/../../.env";
 
 
-$env = readEnvFile( $_SERVER['PATH_INFO'] . "/../../.env");
+$env = readEnvFile( pathinfo(__FILE__)['dirname'] . "/../../.env" );
 
 $about = file_get_contents("custom/about.html");
 $about = preg_replace('/<!--(.*?)-->/Us', '', $about);
