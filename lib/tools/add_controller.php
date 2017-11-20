@@ -487,9 +487,7 @@ if ($record->REFERENCED_TABLE_SINGULAR_NAME) {
 PHPCODE;
 
 $foreign_keys = getAllForeignKeys();
-
-echo "\n-- foreign keys: " .  print_r(array_keys($foreign_keys), true);
-echo "\n-- $table_name in foreign keys ?";
+echo "\n-- foreign keys: " .  implode(",", array_keys($foreign_keys));
 
 if (array_key_exists($table_name, $foreign_keys)) {
     $related_tables = "";
