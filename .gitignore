@@ -8,7 +8,6 @@
 /database/dumps/
 /database/liquibase/
 /app/Http/routes.php
-/app/Http/routes_datamodel.php
 /app/Models/
 /public/appfiles/
 /public/vendor/
