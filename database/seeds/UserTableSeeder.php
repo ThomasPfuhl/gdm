@@ -6,6 +6,8 @@ class UserTableSeeder extends Seeder {
 
     public function run() {
 
+        DB::table('users')->delete();
+
         \App\User::create([
             'name' => 'Administrator',
             'username' => env('GDM_MANAGER_NAME'),
