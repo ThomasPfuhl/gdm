@@ -5,10 +5,12 @@
  * */
 require("helpers.php");
 
+$cwd = pathinfo(__FILE__)['dirname'];
+
 echo "\n------------------------\nENVIRONMENT VARIABLES:\n";
 // get env variables defined in .env
 //
-$env = file(getcwd() . "/../../.env");
+$env = file($cwd . "/../../.env");
 foreach ($env as $line) {
     $elt = trim($line);
     $pos = strpos($elt, "=");
@@ -40,8 +42,8 @@ echo "\n installed.\n";
 /////////////////////////////////////////
 // install modified Model Generator
 
-copy("MakeModelsCommand.php", getcwd() . "/../../vendor/ignasbernotas/laravel-model-generator/src/Commands/MakeModelsCommand.php");
-copy("model.stub", getcwd() . "/../../vendor/ignasbernotas/laravel-model-generator/src/stubs/model.stub");
+copy("MakeModelsCommand.php", $cwd . "/../../vendor/ignasbernotas/laravel-model-generator/src/Commands/MakeModelsCommand.php");
+copy("model.stub", $cwd . "/../../vendor/ignasbernotas/laravel-model-generator/src/stubs/model.stub");
 
 
 echo "\n\n-----------\nCREATING MODELS...\n\n";
