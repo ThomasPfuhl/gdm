@@ -30,9 +30,6 @@ This code has been inspired by
 - NodeJS. see `https://nodejs.org/`
 
 
-### Docker
-If you want to deploy GDM with docker, have a look at the fully automated installer **docker-gdm**,
-at [https://code.naturkundemuseum.berlin/MfN-Berlin/docker-gdm](https://code.naturkundemuseum.berlin/MfN-Berlin/docker-gdm) . 
 
 Otherwise build GDM step by step:
 
@@ -58,6 +55,13 @@ All customizing files are located in the folder ``custom``. Please edit them:
 Once these steps accomplished, create the environment file:
 
     cp custom/.env.example .env
+
+
+### Docker
+If you want to deploy GDM with docker, have a look at the fully automated installer **docker-gdm**,
+at [https://code.naturkundemuseum.berlin/MfN-Berlin/docker-gdm](https://code.naturkundemuseum.berlin/MfN-Berlin/docker-gdm) . 
+
+Otherwise proceed step by step:
 
 We make use of **node** and the node package manager **npm**.
 A recent version must be installed. Check with ``node -v``.

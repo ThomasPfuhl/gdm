@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+  <databaseChangeLog
+      xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+      xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+      http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+    <changeSet id="dropTable-1" author="thomas.pfuhl" >
+       <preConditions onFail="CONTINUE">
+            <tableExists schemaName="kittyd" tableName="products"/>
+        </preConditions>
+        <dropTable cascadeConstraints="true"
+                schemaName="kittyd"
+                tableName="products"/>
+    </changeSet>
+
+    <changeSet id="dropTable-2" author="thomas.pfuhl" >
+      <preConditions onFail="CONTINUE">
+           <tableExists schemaName="kittyd" tableName="deposits"/>
+       </preConditions>
+        <dropTable cascadeConstraints="true"
+                schemaName="kittyd"
+                tableName="deposits"/>
+    </changeSet>
+
+    <changeSet id="dropTable-3" author="thomas.pfuhl" >
+      <preConditions onFail="CONTINUE">
+           <tableExists schemaName="kittyd" tableName="members"/>
+       </preConditions>
+        <dropTable cascadeConstraints="true"
+                schemaName="kittyd"
+                tableName="members"/>
+    </changeSet>
+
+    <changeSet id="dropTable-4" author="thomas.pfuhl" >
+      <preConditions onFail="CONTINUE">
+           <tableExists schemaName="kittyd" tableName="communities"/>
+       </preConditions>
+        <dropTable cascadeConstraints="true"
+                schemaName="kittyd"
+                tableName="communities"/>
+    </changeSet>
+
+</databaseChangeLog>
