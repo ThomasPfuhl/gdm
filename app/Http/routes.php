@@ -15,6 +15,7 @@ Route::pattern('slug', '[0-9a-z-_]+');
 /* * *************    Site routes  ********************************* */
 
 Route::get('about', 'PagesController@about');
+Route::get('about-gdm', 'PagesController@about_gdm');
 Route::get('home',  'PagesController@about');
 
 Route::get('gdm_aggregations/data',        'AggregationsController@data');
@@ -79,3 +80,4 @@ Route::group(['prefix' => 'api/admin', 'middleware' => 'auth'], function() {
 /* * ************  dynamically generated routes for the given data models ************* */
 //include('routes_datamodel.php');
 
+include('routes_datamodel.php');

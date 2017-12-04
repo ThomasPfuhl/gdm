@@ -43,6 +43,11 @@
                        ><i class="fa fa-info-circle"></i> About</a>
                 </li>
 
+                <li class="{{ (Request::is('about-gdm') ? 'active' : '') }}">
+                    <a href="{{ URL::to('about-gdm') }}"
+                       ><i class="fa fa-info-circle"></i> About GDM</a>
+                </li>
+
                 @if (Auth::guest())
                 <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"
                     ><a href="{{ URL::to('auth/login') }}"

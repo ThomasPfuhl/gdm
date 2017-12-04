@@ -18,6 +18,10 @@ class PagesController extends Controller {
 
     public function about() {
         return view('pages.about');
+    } 
+    
+    public function about_gdm() {
+        return view('pages.about_gdm');
     }
 
     public function contact() {

@@ -1,0 +1,1 @@
+<div class="jumbotron">Infos about this data module.</div>
