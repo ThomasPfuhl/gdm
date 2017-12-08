@@ -179,6 +179,30 @@ function getAllForeignKeys() {
 }
 
 
+function getForeignKeys($schema, $name) {
+    $sql = "SELECT
+                    TABLE_NAME as table_name,
+                    COLUMN_NAME as foreign_key,
+                    REFERENCED_TABLE_NAME as referenced_table,
+                    CONCAT(REFERENCED_TABLE_NAME, '.', REFERENCED_COLUMN_NAME) as referenced_key
+                FROM
+                    INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+                WHERE
+                    TABLE_SCHEMA = '" . $schema . "'"
+            . " AND REFERENCED_TABLE_NAME != 'DATABASECHANGELOG' AND REFERENCED_TABLE_NAME != 'DATABASECHANGELOGLOCK'"
+            . " AND TABLE_NAME = '$name'"
+            ;
+
+    $pdo = new PDO(DB_CONNECTION . ":host=" . DB_HOST . ";dbname=" . DB_DATABASE, DB_USERNAME, DB_PASSWORD);
+    $response = $pdo->query($sql);
+    $result = array();
+    foreach ($response as $row) {
+        $result[] = $row;
+    }
+    return $result;
+}
+
+
 function toCamelCase($string, $capitalizeFirstCharacter = true) {
     
     $str = str_replace('_', '', ucwords($string, '_'));
