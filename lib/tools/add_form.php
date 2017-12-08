@@ -6,12 +6,14 @@
  * @see http://kristijanhusak.github.io/laravel-form-builder/
  * @todo:  install and use  https://github.com/constant-null/backstubber
  */
-echo "\n adding form for " . $name;
+
+echo "\n adding form for " . $name . " with table_name: " . $table_name;
 
 $field_names = getFields($table_name);
-//echo "\nfieldnames: " . $field_names;
- 
-//php ../../artisan make:form Forms/CTABLENAMEForm --fields="name:text, lyrics:textarea, publish:checkbox"
+echo "\nFIELD NAMES: " . $field_names;
+
+$foreignKeys = getForeignKeys(DB_DATABASE, $table_name);
+echo "\n\nFOREIGN KEYS for table $table_name: " .print_r($foreignKeys ,true);
 
 $content = <<<'COMMAND'
 rm -f ../../app/Forms/CTABLENAMEForm.php
@@ -45,5 +47,30 @@ $code = file_get_contents('../../app/Forms/' . $name . 'Form.php');
 $code = str_replace("'id', 'number'", "'id', 'hidden'", $code);
 $code = str_replace("'submit')", "'submit', ['label' => 'Save',  'attr' => ['class' => 'btn btn-success']])", $code);
 $code = str_replace("'reset')",  "'reset',  ['label' => 'Reset', 'attr' => ['class' => 'btn btn-warning']])", $code);
-file_put_contents('../../app/Forms/' . $name . 'Form.php', $code);
 
+foreach ($foreignKeys as $fk) {
+
+  $modelName = ucfirst(singularize(explode("_", $fk['foreign_key'])[0]));
+  $modelTableName = $fk['referenced_table'];
+
+  echo "\n--foreign key: " .  $fk['foreign_key'] . " --referenced model: "  . $modelName . " --referenced table: " . $fk['referenced_table'] ;
+
+  $model_field_names = getFields($modelTableName);
+  $model2ndField = explode(":", explode(",", $model_field_names)[1])[0];
+
+  $pattern = "/(add\('" . $fk['foreign_key'] . "\'), ('number')/i";
+  $replacement = '$1, "entity", [
+              "class" => "\App\Models' . '\\' . $modelName . '"
+              ,"property" => "' . $model2ndField .'"
+              /*
+              ,"query_builder" => function (\App\Models' . '\\' . $modelName . ' $model) {
+                  return $model->where("id", $this->getModel()->id);
+              }
+              */
+            ]';
+  $code = preg_replace($pattern, $replacement, $code);
+  //echo "\nFINAL CODE: =============================\n" . preg_replace($pattern, $replacement, $code) . "\n======================\n\n";
+}
+
+
+file_put_contents('../../app/Forms/' . $name . 'Form.php', $code);

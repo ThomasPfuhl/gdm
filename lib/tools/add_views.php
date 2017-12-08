@@ -65,11 +65,11 @@ $content = <<<'PHPCODE'
 
                 @elseif (is_string($item))
                 <div id="related_{{ $row }}_{{ $key }}" class="collapse" style="width:10em;">{{ $item}}</div>
-                @if (strlen($item) < 30)
+                @if (strlen($item) < 50)
                 {{ $item }}
                 @else
                 <a class="toggle-link" href="#maintable" data-toggle="modal" data-target="#related-text-{{ $row }}-{{ $key }}"
-                   ><span class="glyphicon glyphicon-resize-full"></span></a> {{ str_limit($item, 30) }}
+                   ><span class="glyphicon glyphicon-resize-full"></span></a> {{ str_limit($item, 50) }}
                 <!-- Modal -->
                 <div class="modal fade" id="related-text-{{ $row }}-{{ $key }}" role="dialog">
                     <div class="modal-dialog">
@@ -114,6 +114,9 @@ $content = <<<'PHPCODE'
             @if(Auth::user()->admin==1)
 
                 <a href="{{ URL::to('NAME/' . $record['id'] . '/edit' ) }}" class="btn btn-md btn-info"><span class="glyphicon glyphicon-pencil"></span> {{ trans("admin/modal.edit") }}</a>
+                                
+            @endif
+            @if(Auth::user()->admin==2)
                 
                 {!! Form::open(['method' => 'DELETE', 'url' => URL::to('NAME/' . $record['id'] . '/delete' ), 'style'=>'display:inline']) !!}
                 {!! Form::button( trans("admin/modal.delete"), ['class' => 'btn btn-md btn-danger', 'type' => 'submit']) !!}
@@ -442,7 +445,8 @@ $content = <<<'PHPCODE'
 {!! form($form) !!}
 </div>
 
-<div class="row">
+
+<div class="row" style="display:none">
 <hr/>
 <div class="well"><h4>Referenced Tables:</h4></div>
     @foreach ($referenced_tables as $tablename=>$table)
