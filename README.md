@@ -73,7 +73,7 @@ Optional: Retrieve the frontend dependencies with Bower, compile SASS, and move 
 
     gulp --production
 
-If there are errors, run again `npm --install; gulp --production` and it should work. 
+If there are errors, run again `npm install; gulp --production` and it should work. 
 The minified scripts and stylesheets are already provided in the distribution, so you only need to run gulp for customizing.
  
 
@@ -105,7 +105,7 @@ which are under the complete dynamic control of the user, via the UI.
 
 ### Populate the database with basic data
 
-Create the tables and pupopulate them with minimal data:
+Create the GDM system tables and pupopulate them with minimal data:
 
     composer dump-autoload
     php artisan migrate  
