@@ -116,7 +116,7 @@ $content = <<<'PHPCODE'
                 <a href="{{ URL::to('NAME/' . $record['id'] . '/edit' ) }}" class="btn btn-md btn-info"><span class="glyphicon glyphicon-pencil"></span> {{ trans("admin/modal.edit") }}</a>
                                 
             @endif
-            @if(Auth::user()->admin==2)
+            @if(Auth::user()->admin==1)
                 
                 {!! Form::open(['method' => 'DELETE', 'url' => URL::to('NAME/' . $record['id'] . '/delete' ), 'style'=>'display:inline']) !!}
                 {!! Form::button( trans("admin/modal.delete"), ['class' => 'btn btn-md btn-danger', 'type' => 'submit']) !!}
