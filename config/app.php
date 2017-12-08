@@ -10,7 +10,7 @@ return [
       | set by thomas.pfuhl@mfn-berlin.de
       |
      */
-    'version' => 'r0.5beta 11/2017',
+    'version' => 'r0.5beta',
     /*
       |--------------------------------------------------------------------------
       | Application Debug Mode
