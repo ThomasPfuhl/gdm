@@ -9,7 +9,7 @@
 
 
     <changeSet id="dropTable-1" author="thomas.pfuhl" >
-       <preConditions onFail="CONTINUE">
+       <preConditions onFail="MARK_RAN">
             <tableExists schemaName="kittyd" tableName="products"/>
         </preConditions>
         <dropTable cascadeConstraints="true"
@@ -18,7 +18,7 @@
     </changeSet>
 
     <changeSet id="dropTable-2" author="thomas.pfuhl" >
-      <preConditions onFail="CONTINUE">
+      <preConditions onFail="MARK_RAN">
            <tableExists schemaName="kittyd" tableName="deposits"/>
        </preConditions>
         <dropTable cascadeConstraints="true"
@@ -27,7 +27,7 @@
     </changeSet>
 
     <changeSet id="dropTable-3" author="thomas.pfuhl" >
-      <preConditions onFail="CONTINUE">
+      <preConditions onFail="MARK_RAN">
            <tableExists schemaName="kittyd" tableName="members"/>
        </preConditions>
         <dropTable cascadeConstraints="true"
@@ -36,7 +36,7 @@
     </changeSet>
 
     <changeSet id="dropTable-4" author="thomas.pfuhl" >
-      <preConditions onFail="CONTINUE">
+      <preConditions onFail="MARK_RAN">
            <tableExists schemaName="kittyd" tableName="communities"/>
        </preConditions>
         <dropTable cascadeConstraints="true"
