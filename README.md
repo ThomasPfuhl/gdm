@@ -4,9 +4,8 @@ funded by the DFG-Projekt gfbio [German Federation For Biological Data](https://
 written by thomas.pfuhl@mfn-berlin.de at the [Museum für Naturkunde Berlin](https://www.naturkundemuseum.berlin)
 
 ## Purpose
-Provide a webframework with CRUD functionalities for any relational data base.  
-The underlying data architecture is generated 'on build' 
-but can also be modified 'on-run'.
+The Generic Data Module is a graphical user interface on top of a MySQL / MariaDB database that allows the users to browse and edit data without any SQL knowledge. See [User stories] (/GDM_user_stories.pdf)
+The underlying data architecture is generated 'on build' but can also be modified 'on-run'.
 
 ## Implementation
 - Laravel 5.1
@@ -58,8 +57,7 @@ Once these steps accomplished, create the environment file:
 
 
 ### Docker
-If you want to deploy GDM with docker, have a look at the fully automated installer **docker-gdm**,
-at [https://code.naturkundemuseum.berlin/MfN-Berlin/docker-gdm](https://code.naturkundemuseum.berlin/MfN-Berlin/docker-gdm) . 
+If you want to deploy GDM with docker, have a look at [https://github.com/MfN-Berlin/gdm-docker](https://github.com/MfN-Berlin/gdm-docker) . 
 
 Otherwise proceed step by step:
 
