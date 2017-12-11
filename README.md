@@ -4,7 +4,7 @@ funded by the DFG-Projekt gfbio [German Federation For Biological Data](https://
 written by thomas.pfuhl@mfn-berlin.de at the [Museum für Naturkunde Berlin](https://www.naturkundemuseum.berlin)
 
 ## Purpose
-Provide a webframework with CRUD functionalities for any relational data base.  
+The Generic Data Module is a graphical user interface on top of a MySQL / MariaDB database that allows the users to browse and edit data without any SQL knowledge. See [User stories] (https://code.naturkundemuseum.berlin/Thomas.Pfuhl/gdm/blob/master/GDM_user_stories.pdf)
 The underlying data architecture is generated 'on build' 
 but can also be modified 'on-run'.
 
