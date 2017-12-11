@@ -7,24 +7,23 @@
 @section('main')
 <div class="page-header">
     <h3>
-        Updating User Interface
-        <div class="pull-right">
-            <div class="pull-right" style="display:none">
-                <a href="{!! URL::to('admin/update-ui') !!}"
-                   class="btn btn-sm  btn-primary iframe"><span
-                        class="glyphicon glyphicon-plus-sign"></span> go !</a>
-            </div>
-        </div>
+        Update User Interface
     </h3>
 </div>
 
-<pre>
-    <?php
-    chdir(getcwd() . "/../lib/tools");
-    include("make_ui.php");
-    ?>
-</pre>
+<div class="row">      
+    <div class="alert alert-warning"><strong>
+        By clicking on the button below the User Interface will be completely regenerated.
+        This operation is necessary after each modification of the data model.
+        </strong>
+    </div>     
+</div>
 
+<div class="row">
+    <a href="{!! URL::to('admin/update-ui/go') !!}"
+       class="btn btn-lg  btn-primary "><span
+            class="glyphicon glyphicon-cog"></span> renegerate user interface NOW </a>
+</div>
 
 @stop
 

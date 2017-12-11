@@ -11,33 +11,24 @@
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
-
                 <li>
                     <a href="{{ URL::to('') }}"><i class="fa fa-backward"></i> Go to frontend</a>
                 </li>
-
                 <li>
-                    <a href="{{url('admin/dashboard')}}">
-                        <i class="fa fa-dashboard fa-fw"></i> Dashboard
-                    </a>
+                    <a href="{{url('admin/dashboard')}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
-
                 <li>
-                    <a href="{{url('admin/update-ui')}}">
-                        <i class="glyphicon glyphicon-cog"></i> update UI
-                    </a>
+                    <a href="{{url('admin/update-ui')}}"><i class="glyphicon glyphicon-cog"></i> update UI</a>
                 </li>
-
                 <li>
-                    <a href="{{url('admin/user')}}">
-                        <i class="glyphicon glyphicon-user"></i> Users
-                    </a>
+                    <a href="{{url('admin/users')}}"><i class="glyphicon glyphicon-user"></i> Users</a>
                 </li>
-
+                <li>
+                    <a href="{{url('admin/languages')}}"><i class="glyphicon glyphicon-globe"></i> Languages</a>
+                </li>
                 <li>
                     <a href="{{ URL::to('auth/logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
                 </li>
-
             </ul>
         </div>
     </div>

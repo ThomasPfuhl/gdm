@@ -10,17 +10,17 @@ class LanguageTableSeeder extends Seeder {
 
         $language = new Language();
         $language->name = 'English';
-        $language->lang_code = 'gb';
+        $language->alpha2_code = 'en';
         $language->save();
 
         $language = new Language();
         $language->name = 'Deutsch';
-        $language->lang_code = 'de';
+        $language->alpha2_code = 'de';
         $language->save();
 
         $language = new Language();
         $language->name = 'Français';
-        $language->lang_code = 'fr';
+        $language->alpha2_code = 'fr';
         $language->save();
     }
 

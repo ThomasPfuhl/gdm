@@ -67,7 +67,8 @@ class MakeModelsCommand extends GeneratorCommand {
      *
      * @var array
      */
-    protected $timestampRules = 'ends:_at'; //['ends' => ['_at']];
+    //protected $timestampRules = 'ends:_at'; //['ends' => ['_at']];
+    protected $timestampRules = 'equals:xxx'; // will be set to false
 
     /**
      * Contains the template stub for set function
@@ -348,7 +349,7 @@ RELATION;
         foreach ($columns as $column) {
             $column = (object) $column;
 
-//priotitze guarded properties and move to fillable
+//prioritize guarded properties and move to fillable
             if ($this->ruleProcessor->check($this->option('fillable'), $column->name)) {
                 if (!in_array($column->name, array_merge(['id', 'created_at', 'updated_at', 'deleted_at'], $primaryKey ? [$primaryKey] : []))) {
                     $fillable[] = $column->name;

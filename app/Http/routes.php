@@ -2,13 +2,12 @@
 
 /**
  * routes
- * @todo write a dummy HomeController
  */
 /* * **************   Model binding into route ************************* */
-Route::model('project', 'App\Models\Project');
 
 Route::model('user', 'App\User');
 Route::model('language', 'App\Language');
+Route::model('aggregation', 'App\Aggregation');
 
 Route::pattern('id', '[0-9]+');
 Route::pattern('slug', '[0-9a-z-_]+');
@@ -16,53 +15,69 @@ Route::pattern('slug', '[0-9a-z-_]+');
 /* * *************    Site routes  ********************************* */
 
 Route::get('about', 'PagesController@about');
-Route::get('contact', 'PagesController@contact');
+Route::get('about-gdm', 'PagesController@about_gdm');
+Route::get('home',  'PagesController@about');
 
-Route::get('/', 'HomeController@index');
-Route::get('home', 'HomeController@index');
+Route::get('gdm_aggregations/data',        'AggregationsController@data');
+Route::get('gdm_aggregations/{id}/datum',  'AggregationsController@datum');
+
+Route::get('gdm_aggregations/{id}/edit',  ['middleware' => 'auth', 'uses' => 'AggregationsController@edit']);
+Route::get('gdm_aggregations/{id}/delete',['middleware' => 'auth', 'uses' => 'AggregationsController@destroy']);
+Route::put('gdm_aggregations/{id}',       ['middleware' => 'auth', 'uses' => 'AggregationsController@update']);
+//Route::get('gdm_aggregations/create',     ['middleware' => 'auth', 'uses' => 'AggregationsController@create']);
+Route::post('gdm_aggregations',           ['middleware' => 'auth', 'uses' => 'AggregationsController@store']);
+
+Route::resource('gdm_aggregations', 'AggregationsController');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
 ]);
 
+/* * *************    API documentation route  ********************************* */
+
+Route::get('api/' . env('GDM_NAME') . '/' . env('GDM_DATAMODEL_VERSION'), 'ApiDocController@apiGetDoc');
+Route::get('api/' . env('GDM_NAME'), 'ApiDocController@apiGetDoc');
+Route::get('api/', 'ApiDocController@apiGetDoc');
+
+
 /* * *************    Admin routes  ********************************* */
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
     # Admin Dashboard
     Route::get('dashboard', 'Admin\DashboardController@index');
 
-
-    # Admin update UI
+    # Admin UpdateUI
     Route::get('update-ui', 'Admin\UpdateUIController@index');
+    Route::get('update-ui/go', 'Admin\UpdateUIController@go');
 
-    # Language
-    Route::get('language/data', 'Admin\LanguageController@data');
-    Route::get('language/{language}/show', 'Admin\LanguageController@show');
-    Route::get('language/{language}/edit', 'Admin\LanguageController@edit');
-    Route::get('language/{language}/delete', 'Admin\LanguageController@delete');
-    Route::resource('language', 'Admin\LanguageController');
+    # Admin Languages
+    Route::get('languages/data', 'Admin\LanguageController@data');
+    Route::get('languages/{id}/delete', 'Admin\LanguageController@destroy');
+    Route::resource('languages', 'Admin\LanguageController');
 
-    # Projects
-    Route::get('project/data', 'Admin\ProjectController@data');
-    Route::get('project/{project}/show', 'Admin\ProjectController@show');
-
-    Route::get('project/{project}/edit', 'Admin\ProjectController@edit');
-    Route::post('project/{project}/edit', 'Admin\ProjectController@edit');
-
-    Route::get('project/{project}/delete', 'Admin\ProjectController@delete');
-    Route::get('project/reorder', 'Admin\ProjectController@getReorder');
-    Route::resource('project', 'Admin\ProjectController');
-
-    # Users
-    Route::get('user/data', 'Admin\UserController@data');
-    Route::get('user/{user}/show', 'Admin\UserController@show');
-    Route::get('user/{user}/edit', 'Admin\UserController@edit');
-    Route::get('user/{user}/delete', 'Admin\UserController@delete');
-    Route::resource('user', 'Admin\UserController');
+    # Admin Users
+    Route::get('users/data', 'Admin\UserController@data');
+    Route::get('users/{id}/delete', 'Admin\UserController@destroy');
     Route::resource('users', 'Admin\UserController');
 });
 
-/* * ************  dynamically generated routes ************* */
 
-include('more_routes.php');
+/* * *************   API Admin routes  ********************************* */
+Route::group(['prefix' => 'api/admin', 'middleware' => 'auth'], function() {
+
+    # Languages
+    Route::get('languages', 'Admin\LanguageController@apiGetAll');
+    Route::get('languages/{id}', 'Admin\LanguageController@apiGetOne');
+
+    # Users
+    Route::get('users', 'Admin\UserController@apiGetAll');
+    Route::get('users/{id}', 'Admin\UserController@apiGetOne');
+});
+
+
+/* * ************  dynamically generated routes for the given data models ************* */
+//include('routes_datamodel.php');
+
+include('routes_datamodel.php');

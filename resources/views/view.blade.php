@@ -14,9 +14,6 @@
     </h3>
 </div>
 
-<?php
-setlocale(LC_MONETARY, 'de_DE.UTF8');
-?>
 
 <table id="maintable" class="vertical">
     @foreach ($extPropertyValues as $key=>$value)

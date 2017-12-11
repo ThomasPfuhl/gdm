@@ -15,7 +15,8 @@
         @section('meta_description')
         <meta name="description" content="A generic framework to view and edit database records"/>
         @show
-        <link rel="shortcut icon" href="{!! asset('img/data_module_icon.png')  !!} ">
+        <link rel="shortcut icon" href="{!! asset('img/data_module_icon.png') !!} ">
+
         <link href="{{ asset('css/site.css') }}" rel="stylesheet">
         <script src="{{ asset('js/site.js') }}"></script>
 
@@ -23,78 +24,64 @@
         <script src="{{ asset('js/custom.js') }}"></script>
 
         @yield('styles')
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-
     </head>
     <body>
         @include('partials.nav')
 
-        <div class="container">
+        <div class="container-fluid" style="margin:auto 5%">
             @yield('content')
         </div>
 
         @include('partials.footer')
 
-
         <!-- Scripts -->
         <script type="text/javascript">
-// see assets/js/gdm.js
-$(document).ready(function () {
+            $(document).ready(function () {
 
-//    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-//        console.log("aha");
-//        console.log($('div.tab-pane.active > table'));
-//        console.log($.fn.dataTable.tables({visible: true, api: true}));
-//        $.fn.dataTable.tables({visible: true, api: true}).columns.adjust();
-//    });
-
-    var oTable;
-//oTable = $('div.tab-pane.active > table').DataTable
-//oTable = $('#maintable-wide, #maintable-wide2, #maintable-compact').DataTable
-    oTable = $('#maintable').DataTable
-
-            ({
-                "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
-                "sPaginationType": "bootstrap",
-                "oLanguage": {
-                    "sProcessing": "{{ trans('table.processing') }}",
-                    "sLengthMenu": "{{ trans('table.showmenu') }}",
-                    "sZeroRecords": "{{ trans('table.noresult') }}",
-                    "sInfo": "{{ trans('table.show') }}",
-                    "sEmptyTable": "{{ trans('table.emptytable') }}",
-                    "sInfoEmpty": "{{ trans('table.view') }}",
-                    "sInfoFiltered": "{{ trans('table.filter') }}",
-                    "sInfoPostFix": "",
-                    "sSearch": "{{ trans('table.search') }}:",
-                    "sUrl": "",
-                    "oPaginate": {
-                        "sFirst": "{{ trans('table.start') }}",
-                        "sPrevious": "{{ trans('table.prev') }}",
-                        "sNext": "{{ trans('table.next') }}",
-                        "sLast": "{{ trans('table.last') }}"
-                    }
-                },
-                "processing": true,
-                "serverSide": false,
-                "fnDrawCallback": function (oSettings) {
-                    $(".iframe").colorbox({
-                        iframe: true,
-                        width: "80%",
-                        height: "90%",
-                        onClosed: function () {
-                            oTable.ajax.reload();
-                        }
+            var oTable;
+            oTable = $('#maintable').DataTable
+                    ({
+                    "sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
+                            "sPaginationType": "bootstrap",
+                            "oLanguage": {
+                            "sProcessing": "{{ trans('table.processing') }}",
+                                    "sLengthMenu": "{{ trans('table.showmenu') }}",
+                                    "sZeroRecords": "{{ trans('table.noresult') }}",
+                                    "sInfo": "{{ trans('table.show') }}",
+                                    "sEmptyTable": "{{ trans('table.emptytable') }}",
+                                    "sInfoEmpty": "{{ trans('table.view') }}",
+                                    "sInfoFiltered": "{{ trans('table.filter') }}",
+                                    "sInfoPostFix": "",
+                                    "sSearch": "{{ trans('table.search') }}:",
+                                    "sUrl": "",
+                                    "oPaginate": {
+                                    "sFirst": "{{ trans('table.start') }}",
+                                            "sPrevious": "{{ trans('table.prev') }}",
+                                            "sNext": "{{ trans('table.next') }}",
+                                            "sLast": "{{ trans('table.last') }}"
+                                    }
+                            },
+                            "pageLength": 25,
+                            "processing": false,
+                            "serverSide": false,
                     });
-                }
             });
-//console.log(oTable);
-});
+            // confirmation dialog
+            $('[data-toggle=confirmation]').confirmation({
+            rootSelector: "[data-toggle=confirmation]",
+                    title: "{{ trans('admin/admin.confirm_operation') }}",
+                    btnOkLabel: "{{ trans('admin/admin.yes') }}",
+                    btnOkClass: "btn-md btn-success",
+                    btnOkIcon: "glyphicon glyphicon-ok",
+                    onConfirm: function(){$(this)[0].submit(); return true; },
+                    btnCancelLabel: "{{ trans('admin/admin.no') }}",
+                    btnCancelClass: "btn-md btn-default",
+                    btnCancelIcon: "glyphicon glyphicon-remove",
+                    onCancel: function(){return false; },
+            });
+            // add glyphicon for FormBuilder delete button
+            $("form button.btn-danger").prepend("<span class='glyphicon glyphicon-trash' style='display:inline;float:left'></span>&nbsp;");
+
         </script>
         @yield('scripts')
 

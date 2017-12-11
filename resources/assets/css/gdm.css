@@ -1,12 +1,12 @@
 /*
-    customized styles for MfN 
-    Created on : 01.06.2017, 13:16:08
+    customized styles for MfN
     Author     : thomas.pfuhl@mfn-berlin.de
 */
 
 @import url('/fonts/LibreFranklin-Regular.ttf');
 @import url('/fonts/LibreFranklin-Bold.ttf');
-@import url('/fonts/LibreFranklin-Bold.ttf');
+@import url('/fonts/LibreFranklin-Italic.ttf');
+@import url('/fonts/fontawesome-webfont.ttf');
 
 body {
     font-family: 'Libre Franklin', sans-serif;
@@ -14,39 +14,58 @@ body {
 }
 
 body:before {
-    background:url("/img/data_module_icon.png") no-repeat center center fixed;
+    background:url("/img/data_module_logo.png") no-repeat center center fixed;
     display: block; content:""; position: absolute; z-index:-1;
     top:5%; left: 0; right: 0; height: 100%;
-    opacity: 0.05;
+    opacity: 0.02;
 }
 
-/* navbar */
-.navbar {
-    color: black;
-    background: #ccc;
-    border: none;
- }
+a {color:green;}
+a:hover {color:green;}
 
 
-.navbar .navbar-nav > li > a {color:black;}
-.navbar .navbar-nav > li > a:hover  {color:#d50000;}
-.navbar .navbar-nav > li > a:focus  {color:#d50000;}
-.navbar .navbar-nav > li.active > a {color:#d50000; background: transparent;}
-.navbar-inverse .navbar-nav > li > a {color:black;}
-.navbar-inverse .navbar-nav > li > a:hover {color:#d50000;}
-.navbar-inverse .navbar-nav > li > a:focus {color:#d50000;}
-.navbar-inverse .navbar-nav > li.active > a {color:#d50000; background: transparent;}
+.navbar-brand {
+    padding: 0px;
+}
+.navbar-brand>img {
+    height: 100%;
+    padding: 5px;
+    width: auto;
+    display: inline;
+}
 
-.navbar-inverse .navbar-brand {
-    text-transform: uppercase;
-    font-weight: normal;
-    color: #d50000;
+.alert, .btn {
+    border:none;
+    color:black;
 }
 
 /* datatables */
-.maintable{
-    font-size:0.95em;
+.maintable th.rotate {
+    height: 160px !important;
+    white-space: nowrap !important;
+    vertical-align: top !important;
+    max-width: 2em !important;
+    border-bottom: 1px solid #ccc !important;
 }
+
+.maintable th.rotate > div {
+    transform:
+        translate(-25px, 75px)
+        rotate(315deg) !important;
+    width:160px !important;
+    border-top: 1px solid #ccc !important;
+}
+.maintable th.rotate > div > span {
+    padding: 0 !important;
+    width:160px !important;
+}
+
+.maintable td {
+    border: 1px solid #ccc !important;
+}
+
+
+/* related tables */
 .maintable table.related {
     font-size:0.9em;
     border:1px solid #ccc;
@@ -72,31 +91,39 @@ body:before {
     text-decoration: none;
 }
 
-.maintable th.rotate {
-    height: 160px !important;
-    white-space: nowrap !important;
-    vertical-align: top !important;
-    max-width: 2em !important;
+/* sorting */
+table.dataTable thead th.sorting:after {
+    content: "\f0dc";
+    color: #ddd;
+    font-size: 0.8em;
+    padding-top: 0.12em;
 }
-.maintable th.rotate > div {
-    transform:
-        /* Magic Numbers */
-        /* translate(25px, 51px) */
-        translate(-25px, 75px) 
-        /* 45 is really 360 - 45 */
-        rotate(315deg) !important;
-    /* width: 30px; */
-    width:160px !important;
 
+table.dataTable thead th.sorting_asc:after {
+    content: "\f0de";
 }
-.maintable th.rotate > div > span {
-    /* border-bottom: 1px solid #ccc; */
-    padding: 0 !important;
-    width:160px !important;
+
+table.dataTable thead th.sorting_desc:after {
+    content: "\f0dd";
 }
-.maintable td {
-    border-right: 1px solid #ccc !important;
+
+div.dataTables_scrollBody table.dataTable thead th.sorting:after,
+div.dataTables_scrollBody table.dataTable thead th.sorting_asc:after,
+div.dataTables_scrollBody table.dataTable thead th.sorting_desc:after {
+    content: "";
 }
+
+table.dataTable .sorting::after,
+table.dataTable .sorting_asc::after,
+table.dataTable .sorting_desc::after
+{
+    font-family: FontAwesome;
+    position: relative;
+    top: 110px;
+    right: -22px;
+}
+
+
 
 /* for views of single records */
 #maintable.vertical table.related {
@@ -110,29 +137,12 @@ body:before {
     vertical-align:top;
 }
 #maintable.vertical td:first-child {
-    color:#d50000;
+    font-style: italic;
+    color: darkgray;
 }
 #maintable.vertical td:nth-child(2n) {
-    color:#000;
-}
-
-/* put sorting arrows at bottom right of the th */
-
-
-table.dataTable thead th.sorting::after, 
-table.dataTable thead th.sorting_asc::after, 
-table.dataTable thead th.sorting_desc::after,
-table.dataTable .sorting::after, 
-table.dataTable .sorting_asc::after, 
-table.dataTable .sorting_desc::after,
-table.dataTable.table-condensed .sorting::after, 
-table.dataTable.table-condensed .sorting_asc::after, 
-table.dataTable.table-condensed .sorting_desc::after {
-    position: absolute;
-    top: 150px;
-    right: 8px;
-    display: block;
-    font-family: FontAwesome;
+    font-style: normal;
+    color: #000;
 }
 
 
@@ -159,8 +169,8 @@ ul.dropdown-menu > li > a:hover {
     color: black;
     background: #fff;
 }
-ul.dropdown-menu > li.active > a, 
+ul.dropdown-menu > li.active > a,
 ul.dropdown-menu > li.active > a:hover {
-    color: #d50000;
+    color: green;
     background: #ccc;
 }

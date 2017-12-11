@@ -4,6 +4,15 @@ return [
 
     /*
       |--------------------------------------------------------------------------
+      | Version number
+      |--------------------------------------------------------------------------
+      |
+      | set by thomas.pfuhl@mfn-berlin.de
+      |
+     */
+    'version' => 'r0.5beta',
+    /*
+      |--------------------------------------------------------------------------
       | Application Debug Mode
       |--------------------------------------------------------------------------
       |
@@ -12,7 +21,6 @@ return [
       | application. If disabled, a simple generic error page is shown.
       |
      */
-
     'debug' => env('APP_DEBUG', true),
     /*
       |--------------------------------------------------------------------------
@@ -24,7 +32,7 @@ return [
       | your application so that it is used when running Artisan tasks.
       |
      */
-    'url' => env('GDM_URL', true),
+    'url' => env('GDM_URL'),
     /*
       |--------------------------------------------------------------------------
       | Application Timezone
@@ -46,7 +54,7 @@ return [
       | to any of the locales which will be supported by the application.
       |
      */
-    'locale' => 'de_DE',
+    'locale' => 'en',
     /*
       |--------------------------------------------------------------------------
       | Application Fallback Locale
@@ -133,8 +141,9 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
-        Codingo\Dropzoner\DropzonerServiceProvider::class,
         Iber\Generator\ModelGeneratorProvider::class,
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
+        Appointer\Swaggervel\SwaggervelServiceProvider::class,
     ],
     /*
       |--------------------------------------------------------------------------
@@ -186,5 +195,6 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
+        'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
     ],
 ];

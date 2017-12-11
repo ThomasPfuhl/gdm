@@ -100,6 +100,38 @@ function singularize($params) {
 }
 
 /**
+ * get all column meta-infos from given table
+ * 
+ * @param string $table_name
+ * @return string 
+ */
+function getFields(string $table_name) {
+
+    $env = readEnvFile("../../.env");
+
+    $pdo = new PDO('mysql:host=' . $env["DB_HOST"] . ';' . 'dbname=' . $env["DB_DATABASE"], $env["DB_USERNAME"], $env["DB_PASSWORD"]);
+
+//    $q = $pdo->prepare("DESCRIBE $table_name");
+//    $q->execute();
+//    $table_fields = $q->fetchAll(PDO::FETCH_COLUMN);
+
+    $q = $pdo->prepare("SELECT * FROM $table_name limit 1");
+    $q->execute();
+    $table_fields = $q->fetch();
+    $out = "";
+    for ($i = 0; $i < $q->columnCount(); $i++) {
+        $info = $q->getColumnMeta($i);
+        if ($info["native_type"] !== "TIMESTAMP" ) 
+        //if ($info["name"] !== "id" && $info["native_type"] !== "TIMESTAMP" ) 
+            {
+            $out .= $info["name"] . ":" . $info["native_type"] . ",";
+            echo "\n" . $info["name"] . ":" . $info["native_type"];
+        }
+    }
+    return substr($out, 0, strlen($out)-1);
+}
+
+/**
  * Get all foreign key columns.
  *
  * get columns referenced by other tables as foreign keys
@@ -144,4 +176,41 @@ function getAllForeignKeys() {
     }
 
     return $out;
+}
+
+
+function getForeignKeys($schema, $name) {
+    $sql = "SELECT
+                    TABLE_NAME as table_name,
+                    COLUMN_NAME as foreign_key,
+                    REFERENCED_TABLE_NAME as referenced_table,
+                    CONCAT(REFERENCED_TABLE_NAME, '.', REFERENCED_COLUMN_NAME) as referenced_key
+                FROM
+                    INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+                WHERE
+                    TABLE_SCHEMA = '" . $schema . "'"
+            . " AND REFERENCED_TABLE_NAME != 'DATABASECHANGELOG' AND REFERENCED_TABLE_NAME != 'DATABASECHANGELOGLOCK'"
+            . " AND TABLE_NAME = '$name'"
+            ;
+
+    $pdo = new PDO(DB_CONNECTION . ":host=" . DB_HOST . ";dbname=" . DB_DATABASE, DB_USERNAME, DB_PASSWORD);
+    $response = $pdo->query($sql);
+    $result = array();
+    foreach ($response as $row) {
+        $result[] = $row;
+    }
+    return $result;
+}
+
+
+function toCamelCase($string, $capitalizeFirstCharacter = true) {
+    
+    $str = str_replace('_', '', ucwords($string, '_'));
+    return $str;
+}
+
+function toHyphen($string) {
+    
+    $str = str_replace('_', '-', strtolower($string));
+    return $str;
 }

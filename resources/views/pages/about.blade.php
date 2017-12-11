@@ -4,13 +4,11 @@
 
 @section('content')
 <div class="row">
-    <!--
-    <div class="page-header"></div>
-    -->
-</div>
-<div class="row">
-    <div class="col-md-12">
-        <?php include("appfiles/about.html") ?>
+    <div class="page-header">
+         @include('pages.userinfo')
     </div>
 </div>
+
+@include('pages.techinfo')
+
 @endsection

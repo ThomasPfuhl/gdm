@@ -1,20 +1,33 @@
 # TODO 
 
+## Laravel framework
 
-## generate models, views, controllers, routes, menu-items
-
-    php make_ui.php
-
-- write clean code, extending the existing model generating plugin
-- many-to-many relations   
-- do the same thing for the backend MVC.
+- upgrade to v5.4 LTS
+- replace package ignasbernotas/laravel-model-generator by [https://github.com/reliese/laravel](https://github.com/reliese/laravel)
 
 ## write Tests
 
+- big tables, lot of data
+
+## Frontend
+
+- many-to-many Relations
+- zoom into referenced tables, given the depth as parameter. 
+cf https://www.sitepoint.com/laravel-blade-recursive-partials/ 
+- integrate charts
+
 ## Backend
 
-- show all tables in Dashboard
-- write records back to DB
-- User Right Management
+- provide GUI for modifying the data model
+
+
+## Localisation
+
+- create `resources/lang/[de,fr,es,it,sv,jp,cn]`
+
+
+## API
+
+- 100% compatible to JSONAPI
 
 END OF DOCUMENT.
