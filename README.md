@@ -4,7 +4,7 @@ funded by the DFG-Projekt gfbio [German Federation For Biological Data](https://
 written by thomas.pfuhl@mfn-berlin.de at the [Museum für Naturkunde Berlin](https://www.naturkundemuseum.berlin)
 
 ## Purpose
-The Generic Data Module is a graphical user interface on top of a MySQL / MariaDB database that allows the users to browse and edit data without any SQL knowledge. See [User stories] (/GDM_user_stories.pdf)
+The Generic Data Module is a graphical user interface on top of a MySQL / MariaDB database that allows the users to browse and edit data without any SQL knowledge. See [User stories](/GDM_user_stories.pdf)
 The underlying data architecture is generated 'on build' but can also be modified 'on-run'.
 
 ## Implementation
@@ -57,7 +57,7 @@ Once these steps accomplished, create the environment file:
 
 
 ### Docker
-If you want to deploy GDM with docker, have a look at [https://github.com/MfN-Berlin/gdm-docker](https://github.com/MfN-Berlin/gdm-docker) . 
+If you want to deploy GDM with docker, have a look at [https://github.com/MfN-Berlin/gdm-docker](https://github.com/MfN-Berlin/gdm-docker). 
 
 Otherwise proceed step by step:
 
