@@ -57,11 +57,6 @@ Once these steps accomplished, create the environment file:
     cp custom/.env.example .env
 
 
-Generate the application key, which is used for all encrypted data:
-
-    php artisan key:generate
-
-
 ### Docker
 If you want to deploy GDM with docker, have a look at the fully automated installer **docker-gdm**,
 at [https://code.naturkundemuseum.berlin/MfN-Berlin/docker-gdm](https://code.naturkundemuseum.berlin/MfN-Berlin/docker-gdm) . 
@@ -86,6 +81,11 @@ The minified scripts and stylesheets are already provided in the distribution, s
 
     composer dump-autoload
     composer install --no-scripts
+
+Generate the application key, which is used for all encrypted data:
+
+    php artisan key:generate
+
 
 ## Database 
 
