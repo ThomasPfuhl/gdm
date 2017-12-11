@@ -58,8 +58,7 @@ Once these steps accomplished, create the environment file:
 
 
 ### Docker
-If you want to deploy GDM with docker, have a look at the fully automated installer **docker-gdm**,
-at [https://code.naturkundemuseum.berlin/MfN-Berlin/docker-gdm](https://code.naturkundemuseum.berlin/MfN-Berlin/docker-gdm) . 
+If you want to deploy GDM with docker, have a look at [https://github.com/MfN-Berlin/gdm-docker](https://github.com/MfN-Berlin/gdm-docker). 
 
 Otherwise proceed step by step:
 
