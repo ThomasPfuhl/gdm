@@ -29,6 +29,7 @@ foreach ($env as $line) {
 echo "\n-----------\nCUSTOM LAYOUT...\n";
 
 copy("../../custom/about.html", "../../resources/views/pages/userinfo.blade.php");
+copy("../../custom/404.php", "../../resources/views/errors/404.blade.php");
 
 copy("../../custom/institution_logo.png", "../../public/img/institution_logo.png");
 copy("../../custom/app_logo.png", "../../public/img/app_logo.png");

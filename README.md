@@ -49,6 +49,7 @@ Edit the file `custom/.env.example`, and define at least all variables `GDM_*` a
  
 All customizing files are located in the folder ``custom``. Please edit them:   
 - `about.html` contains a description of your application.  
+- `404.html` is a customizable page for handling the http code 404 "not found".
 - With `custom.js` and `custom.css` you can adapt the layout to your corporate identity.  
 - Finally provide the logos for your institution and your app: `institution_logo.png`, `app_logo.png`  
 
