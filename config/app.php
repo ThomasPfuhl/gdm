@@ -7,7 +7,7 @@ return [
       | Version number
       |--------------------------------------------------------------------------
       |
-      | set by thomas.pfuhl@mfn-berlin.de
+      | set by thomas.pfuhl@mfn.berlin
       |
      */
     'version' => 'r0.5beta',

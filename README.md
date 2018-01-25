@@ -1,7 +1,7 @@
 # GDM — Generic Data Module
 
 funded by the DFG-Projekt gfbio [German Federation For Biological Data](https://www.gfbio.org)   
-written by thomas.pfuhl@mfn-berlin.de at the [Museum für Naturkunde Berlin](https://www.naturkundemuseum.berlin)
+written by thomas.pfuhl@mfn.berlin at the [Museum für Naturkunde Berlin](https://www.naturkundemuseum.berlin)
 
 ## Purpose
 The Generic Data Module is a graphical user interface on top of a MySQL / MariaDB database that allows the users to browse and edit data without any SQL knowledge. See [User stories](https://code.naturkundemuseum.berlin/Thomas.Pfuhl/gdm/blob/master/GDM_user_stories.pdf).
