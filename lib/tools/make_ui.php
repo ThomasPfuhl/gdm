@@ -49,7 +49,7 @@ copy("model.stub", $cwd . "/../../vendor/ignasbernotas/laravel-model-generator/s
 
 echo "\n\n-----------\nCREATING MODELS...\n\n";
 
-system('cd ../../; php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations,users,languages,gdm_aggregations --getset');
+system('cd ../../; php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations,users,languages,gdm_aggregations,OauthIdentities --getset');
 
 $sql = "SELECT TABLE_NAME
             FROM

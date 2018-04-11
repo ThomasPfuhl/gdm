@@ -4,6 +4,13 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
+    
+    "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/tysonlt/eloquent-oauth-l5"
+    }
+],
     "require": {
         "php": ">=5.5.9",
         "laravel/framework": "5.1.*",
@@ -14,7 +21,8 @@
         "cviebrock/eloquent-sluggable": "3.1.4",
         "doctrine/dbal": "^2.5",
         "twbs/bootstrap": "3.3.7",
-        "kris/laravel-form-builder": "1.6.*"
+        "kris/laravel-form-builder": "1.6.*",
+        "adamwathan/eloquent-oauth-l5": "dev-master"
       },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -15,6 +15,7 @@ but can also be modified 'on-run'.
 - Colorbox: jQuery modal popup
 - Swagger: API generating tool 
 - optionally: Liquibase 3.5.3
+- optionally: Keycloak [https://github.com/DINA-Web/keycloak-docker](https://github.com/DINA-Web/keycloak-docker)
 
 This code has been inspired by 
 [https://github.com/mrakodol/Laravel-5-Bootstrap-3-Starter-Site/](https://github.com/mrakodol/Laravel-5-Bootstrap-3-Starter-Site/)
@@ -28,16 +29,21 @@ This code has been inspired by
 - mySQL engine (The core should work on any SQL, but the UI generation makes specific use of mySQL)
 - Composer: see `https://getcomposer.org/`
 - NodeJS. see `https://nodejs.org/`
+- optionally: Keycloak: [https://github.com/DINA-Web/keycloak-docker](https://github.com/DINA-Web/keycloak-docker)
 
 
 
-Otherwise build GDM step by step:
+Build GDM step by step:
 
 ### Deployment
 Unpack the downloaded tarball or clone the git repository in a folder 
 which we will refer to as `$GDM_HOME`.
 
     cd $GDM_HOME
+
+Optionally, install the    
+[https://github.com/DINA-Web/keycloak-docker](keycloak docker image) and run it. 
+
 
 
 ### Customization
@@ -47,6 +53,9 @@ in  ``config/database.php`` and ``config/app.php``.
 __You have to adapt it to your needs:__
 Edit the file `custom/.env.example`, and define at least all variables `GDM_*` and `DB_*`.
  
+#### Beware !
+The GDM_MANAGER_EMAIL must have a different email from each other user. This is an issue.
+
 All customizing files are located in the folder ``custom``. Please edit them:   
 - `about.html` contains a description of your application.  
 - `404.html` is a customizable page for handling the http code 404 "not found".
@@ -118,6 +127,7 @@ Create the GDM system tables and pupopulate them with minimal data:
 
 This creates an  administrator account:
 username=`GDM_MANAGER_NAME`  email=`GDM_MANAGER_EMAIL`  password=`admin`  
+
 
 
 
@@ -219,6 +229,7 @@ If you use docker, this may be `http://172.17.0.2` or some similar IP.
 
 - many-to-many relations
 - only one foreign key per referenced table
+- the GDM_MANAGER_EMAIL must have a unique email, hence different from any email imported by LDAP via Keycloak
 
 ## TO DO
 

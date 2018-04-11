@@ -20,8 +20,8 @@ body:before {
     opacity: 0.02;
 }
 
-a {color:green;}
-a:hover {color:green;}
+a {color:#a2c026;}
+a:hover {color:#a2c026;}
 
 
 .navbar-brand {

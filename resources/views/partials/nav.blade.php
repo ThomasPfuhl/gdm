@@ -51,7 +51,11 @@
                 @if (Auth::guest())
                 <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"
                     ><a href="{{ URL::to('auth/login') }}"
-                    ><i class="fa fa-sign-in"></i> Login</a>
+                    ><i class="fa fa-tachometer"></i> Administration</a>
+                </li>
+                <li class="{{ (Request::is('keyclaok/authorize') ? 'active' : '') }}"
+                    ><a href="{{ URL::to('keycloak/authorize') }}"
+                    ><i class="fa fa-sign-in"></i> <b>Login</b></a>
                 </li>
                 <!-- <li class="{{ (Request::is('auth/register') ? 'active' : '') }}"
                     ><a href="{{ URL::to('auth/register') }}">Register</a>
@@ -63,16 +67,32 @@
                        ><i class="fa fa-user"></i> {{ Auth::user()->name }} <i class="fa fa-caret-down"></i></a>
                     <ul class="dropdown-menu" role="menu">
                         @if(Auth::check())
+
                         @if(Auth::user()->admin==1)
                         <li>
                             <a href="{{ URL::to('admin/dashboard') }}"><i class="fa fa-tachometer"></i> Admin Dashboard</a>
                         </li>
-                        @endif
-                        <li role="presentation" class="divider"></li>
-                        @endif
                         <li>
                             <a href="{{ URL::to('auth/logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
+
+                        @else
+                        <li>
+                            <a href="{{ URL::to('keycloak/profile') }}"><i class="fa fa-info-circle"></i> Profile</a>
+                        </li>
+
+                        <li>
+                              <a href="{{ URL::to('keycloak/logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
+                        </li>
+                        <li role="presentation" class="divider"></li>
+                        <li>
+                            <a href="{{ URL::to('http://accounts.dina-web.local:8080/auth/realms/dina/.well-known/openid-configuration') }}"><i class="fa fa-address-card"></i> open-id config</a>
+                        </li>
+
+                        @endif
+                        @endif
+
+
                     </ul>
                 </li>
                 @endif

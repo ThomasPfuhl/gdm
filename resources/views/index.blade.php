@@ -84,6 +84,16 @@ setlocale(LC_MONETARY, 'de_DE.UTF8');
     </tbody>
 </table>
 
+<!-- keycloak  -->
+<div>
+    <a href="keycloak/authorize" class="button">
+        <span>login</span>
+    </a>
+
+    <a href="keycloak/logout" class="button">
+        <span>logout</span>
+    </a>
+</div>
 
 </div>
 @stop
