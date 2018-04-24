@@ -49,7 +49,7 @@ copy("model.stub", $cwd . "/../../vendor/ignasbernotas/laravel-model-generator/s
 
 echo "\n\n-----------\nCREATING MODELS...\n\n";
 
-system('cd ../../; php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations,users,languages,gdm_aggregations,OauthIdentities --getset');
+system('cd ../../; php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations,users,languages,gdm_aggregations,oauth_identities --getset');
 
 $sql = "SELECT TABLE_NAME
             FROM
@@ -64,6 +64,7 @@ $sql = "SELECT TABLE_NAME
                 AND TABLE_NAME != 'password_resets'
                 AND TABLE_NAME != 'languages'
                 AND TABLE_NAME != 'gdm_aggregations'
+                AND TABLE_NAME != 'oauth_identities'
             ORDER BY TABLE_NAME ASC
                 ";
 $pdo = new PDO(DB_CONNECTION . ":host=" . DB_HOST . ";dbname=" . DB_DATABASE, DB_USERNAME, DB_PASSWORD);

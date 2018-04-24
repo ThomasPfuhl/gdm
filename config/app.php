@@ -143,8 +143,7 @@ return [
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
         Iber\Generator\ModelGeneratorProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
-        Appointer\Swaggervel\SwaggervelServiceProvider::class,
-        
+        Appointer\Swaggervel\SwaggervelServiceProvider::class,        
         AdamWathan\EloquentOAuthL5\EloquentOAuthServiceProvider::class,
     ],
     /*
@@ -198,7 +197,6 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'Datatables' => Yajra\Datatables\Facades\Datatables::class,
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
-        
         'SocialAuth' => AdamWathan\EloquentOAuth\Facades\OAuth::class,
     ],
 ];

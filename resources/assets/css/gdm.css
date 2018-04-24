@@ -137,7 +137,7 @@ table.dataTable .sorting_desc::after
     vertical-align:top;
 }
 #maintable.vertical td:first-child {
-    font-style: italic;
+    font-style: italics;
     color: darkgray;
 }
 #maintable.vertical td:nth-child(2n) {
@@ -171,6 +171,7 @@ ul.dropdown-menu > li > a:hover {
 }
 ul.dropdown-menu > li.active > a,
 ul.dropdown-menu > li.active > a:hover {
-    color: green;
+    color: #a2c026;
     background: #ccc;
 }
+

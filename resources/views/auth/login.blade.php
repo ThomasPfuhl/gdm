@@ -8,6 +8,12 @@
     <div class="row">
         <div class="page-header">
             <h2>{!! trans('site/user.login_to_account') !!}</h2>
+            <div class="well">
+                Please ask
+                <b>{{ env("GDM_MANAGER_NAME") }}</b>
+                <a href="mailto:{{ env('GDM_MANAGER_EMAIL') }}">&lt;{{ env('GDM_MANAGER_EMAIL') }}></a>
+                for local access credentials if you cannot log in via the central authentication service.
+            </div>
         </div>
     </div>
 
@@ -51,3 +57,4 @@
         </div>
     </div>
 @endsection
+

@@ -34,7 +34,11 @@
     <tr><td>write</td><td>no</td></tr>
     <tr><td>administrator</td><td>no</td></tr>
 </table>
+
+<pre>{{ $debuginfo }}</pre>
+
 </div>
+
 
 <div class="col-md-1">
     @if(Auth::check())

@@ -14,9 +14,13 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+               <li class="{{ (Request::is('about') ? 'active' : '') }}">
+                  <a href="{{ URL::to('about') }}"
+                     ><i class="fa fa-info-circle"></i> About</a>
+               </li>
 
-                @include("partials/menu-start-item")
-
+               {{-- @include("partials/menu-start-item") --}}
+@if(Auth::check())
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
                        ><i class="fa fa-table"></i> Tables <i class="fa fa-caret-down"></i></a>
@@ -34,14 +38,10 @@
                         @include("partials/menu-meta-items")
                     </ul>
                 </li>
-
+@endif
             </ul>
-            <ul class="nav navbar-nav navbar-right">
 
-                <li class="{{ (Request::is('about') ? 'active' : '') }}">
-                    <a href="{{ URL::to('about') }}"
-                       ><i class="fa fa-info-circle"></i> About</a>
-                </li>
+            <ul class="nav navbar-nav navbar-right">
 
                 <li class="{{ (Request::is('about-gdm') ? 'active' : '') }}">
                     <a href="{{ URL::to('about-gdm') }}"
@@ -49,18 +49,24 @@
                 </li>
 
                 @if (Auth::guest())
+
+                <li class="{{ (Request::is('sign-in') ? 'active' : '') }}"
+                    ><a href="{{ URL::to('sign-in') }}"
+                    ><i class="fa fa-sign-in"></i> Sign in</a>
+                </li>
+<!--
                 <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"
                     ><a href="{{ URL::to('auth/login') }}"
-                    ><i class="fa fa-tachometer"></i> Administration</a>
+                    ><i class="fa fa-cog"></i> Administration</a>
                 </li>
                 <li class="{{ (Request::is('keyclaok/authorize') ? 'active' : '') }}"
                     ><a href="{{ URL::to('keycloak/authorize') }}"
                     ><i class="fa fa-sign-in"></i> <b>Login</b></a>
                 </li>
-                <!-- <li class="{{ (Request::is('auth/register') ? 'active' : '') }}"
+                 <li class="{{ (Request::is('auth/register') ? 'active' : '') }}"
                     ><a href="{{ URL::to('auth/register') }}">Register</a>
                 </li>
-                -->
+-->
                 @else
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"

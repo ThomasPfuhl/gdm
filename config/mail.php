@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'from' => ['address' => null, 'name' => null],
+    'from' => ['address' => env('GDM_MANAGER_EMAIL'), 'name' => env('GDM_MANAGER_NAME')],
 
     /*
     |--------------------------------------------------------------------------

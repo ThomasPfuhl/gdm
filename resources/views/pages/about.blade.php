@@ -5,9 +5,10 @@
 @section('content')
 <div class="row">
     <div class="page-header">
-         @include('pages.userinfo')
+         @include('pages.moduleinfo')
     </div>
 </div>
+
 
 @include('pages.techinfo')
 

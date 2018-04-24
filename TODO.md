@@ -11,7 +11,7 @@
 
 ## Frontend
 
-- many-to-many Relations
+- many-to-many relations
 - zoom into referenced tables, given the depth as parameter. 
 cf https://www.sitepoint.com/laravel-blade-recursive-partials/ 
 - integrate charts
