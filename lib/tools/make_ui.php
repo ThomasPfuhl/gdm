@@ -1,8 +1,11 @@
 <?php
 
-/**
+/** Creation Tool for GUI
+ *
+ * @author Thomas Pfuhl <thomas.pfuhl@mfn.berlin>
  * @todo integrate database views, additionally to the tables
  * */
+
 require("helpers.php");
 
 $cwd = pathinfo(__FILE__)['dirname'];
@@ -74,12 +77,27 @@ $response = $pdo->query($sql);
 echo "\n------------\nROUTING ENTRYPOINT...\n";
 
 $maintable = toCamelCase(GDM_MAIN_TABLE, true);
-$entrypoint = "<?php \n\n"
-        . "// Entry Point\n"
-        . "Route::get('/', 'Data\\${maintable}Controller@index'); \n";
+$entrypoint = "<?php \n\n/** routes for the given data model \n * all routes are forbidden unless authenticated.\n */\n";
 file_put_contents("../../app/Http/routes_datamodel.php", $entrypoint, FILE_TEXT | LOCK_EX);
 echo " data model routes created.\n";
 file_put_contents("../../app/Http/routes.php", "include('routes_datamodel.php');", FILE_APPEND | LOCK_EX);
+
+$gdm_agg = <<<'PHPCODE'
+
+Route::get('gdm_aggregations/data',         ['middleware' => 'auth', 'uses' => 'AggregationsController@data']);
+Route::get('gdm_aggregations/{id}/datum',   ['middleware' => 'auth', 'uses' => 'AggregationsController@datum']);
+Route::get('gdm_aggregations/{id}/edit',    ['middleware' => 'auth', 'uses' => 'AggregationsController@edit']);
+Route::get('gdm_aggregations/{id}/delete',  ['middleware' => 'auth', 'uses' => 'AggregationsController@destroy']);
+Route::put('gdm_aggregations/{id}',         ['middleware' => 'auth', 'uses' => 'AggregationsController@update']);
+//Route::get('gdm_aggregations/create',     ['middleware' => 'auth', 'uses' => 'AggregationsController@create']);
+Route::post('gdm_aggregations',             ['middleware' => 'auth', 'uses' => 'AggregationsController@store']);
+
+Route::resource('gdm_aggregations', 'AggregationsController');
+
+PHPCODE;
+file_put_contents("../../app/Http/routes_datamodel.php", $gdm_agg, FILE_APPEND | LOCK_EX);
+
+
 echo " data model routes integrated.\n";
 
 

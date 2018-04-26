@@ -129,6 +129,9 @@ This creates an  administrator account:
 username=`GDM_MANAGER_NAME`  email=`GDM_MANAGER_EMAIL`  password=`admin`  
 
 
+### Publish the needed elements when using keycloak (optionally)
+    
+    php artisan eloquent-oauth:install
 
 
 ### Populate the database using Liquibase (optional)

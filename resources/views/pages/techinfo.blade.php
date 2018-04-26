@@ -8,20 +8,15 @@
             <tr><td>Authors:</td> <td>{{ env("GDM_AUTHORS") }}
             <tr><td>URL: </td> <td> {{ $_SERVER["HTTP_HOST"] }}
             <tr><td>API Endpoints General Documentation:</td>
-                <td><a target="apidoc" href="http://{{ $_SERVER['HTTP_HOST'] }}/restricted/api/{{ env('GDM_NAME') }}/{{ env('GDM_DATAMODEL_VERSION') }}"
-                         >{{ $_SERVER["HTTP_HOST"] }}/restricted/api/{{ env("GDM_NAME") }}/{{ env("GDM_DATAMODEL_VERSION") }}</a>
-<!--
-            <tr><td>API Endpoint Documentation for a given table:</td>    <td> {{ $_SERVER["HTTP_HOST"] }}/restricted/api/{{ env("GDM_NAME") }}/{{ env("GDM_DATAMODEL_VERSION") }}/<i>{tablename}</i>/
-            <tr><td>API Endpoint for all records for a given table:</td>   <td> {{ $_SERVER["HTTP_HOST"] }}/restricted/api/{{ env("GDM_NAME") }}/{{ env("GDM_DATAMODEL_VERSION") }}/<i>{tablename}</i>/all/
-            <tr><td>API Endpoint for record {id} for a given table::</td>  <td> {{ $_SERVER['HTTP_HOST'] }}/restricted/api/{{ env('GDM_NAME') }}/{{ env('GDM_DATAMODEL_VERSION') }}/<i>{tablename}/{id}</i>
--->
+                <td><a target="apidoc" href="http://{{ $_SERVER['HTTP_HOST'] }}/api/{{ env('GDM_NAME') }}/{{ env('GDM_DATAMODEL_VERSION') }}"
+                         >{{ $_SERVER["HTTP_HOST"] }}/api/{{ env("GDM_NAME") }}/{{ env("GDM_DATAMODEL_VERSION") }}</a>
         </table>
 
         <div class="well">
             Please contact
             <b>{{ env("GDM_MANAGER_NAME") }}</b>
             <a href="mailto:{{ env('GDM_MANAGER_EMAIL') }}">&lt;{{ env('GDM_MANAGER_EMAIL') }}></a>
-            for any questions, and to get access credentials if you do not have a valid login.
+            for any questions, and to get local access credentials if you cannot sign in via the central authentication service.
         </div>
 
     </div>

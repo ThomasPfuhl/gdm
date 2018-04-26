@@ -44,29 +44,23 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <li class="{{ (Request::is('about-gdm') ? 'active' : '') }}">
-                    <a href="{{ URL::to('about-gdm') }}"
-                       ><i class="fa fa-info-circle"></i> About GDM</a>
+                    <a href="{{ URL::to('about-gdm') }}" title="get more info about the Generic Data Module"
+                       ><i class="fa fa-info-circle"></i>
+                          <img height="18" src="/img/data_module_logo.png" alt="GDM"/>
+                        {{--
+                          <div style="margin-left:1em;float:right;font-size:1em;font-weight:bold">
+                           <span style="color:#a2c026">G</span><span style="font-size:0.8em;">eneric</span>
+                           <span style="color:#a2c026">D</span><span style="font-size:0.8em;">ata</span>
+                           <span style="color:#a2c026">M</span><span style="font-size:0.8em;">odule</span>
+                       </div>
+                       --}} </a>
                 </li>
 
                 @if (Auth::guest())
-
                 <li class="{{ (Request::is('sign-in') ? 'active' : '') }}"
                     ><a href="{{ URL::to('sign-in') }}"
                     ><i class="fa fa-sign-in"></i> Sign in</a>
                 </li>
-<!--
-                <li class="{{ (Request::is('auth/login') ? 'active' : '') }}"
-                    ><a href="{{ URL::to('auth/login') }}"
-                    ><i class="fa fa-cog"></i> Administration</a>
-                </li>
-                <li class="{{ (Request::is('keyclaok/authorize') ? 'active' : '') }}"
-                    ><a href="{{ URL::to('keycloak/authorize') }}"
-                    ><i class="fa fa-sign-in"></i> <b>Login</b></a>
-                </li>
-                 <li class="{{ (Request::is('auth/register') ? 'active' : '') }}"
-                    ><a href="{{ URL::to('auth/register') }}">Register</a>
-                </li>
--->
                 @else
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
@@ -81,12 +75,10 @@
                         <li>
                             <a href="{{ URL::to('auth/logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
-
                         @else
                         <li>
                             <a href="{{ URL::to('keycloak/profile') }}"><i class="fa fa-info-circle"></i> Profile</a>
                         </li>
-
                         <li>
                               <a href="{{ URL::to('keycloak/logout') }}"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
@@ -97,8 +89,6 @@
 
                         @endif
                         @endif
-
-
                     </ul>
                 </li>
                 @endif

@@ -13,6 +13,8 @@ use Kris\LaravelFormBuilder\FormBuilder;
 class AggregationsController extends Controller {
 
     public function __construct() {
+        // forbidden unless authenticated
+        $this->middleware('auth');
         view()->share('type', 'Aggregations');
     }
 

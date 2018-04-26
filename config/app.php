@@ -2,15 +2,28 @@
 
 return [
 
-    /*
-      |--------------------------------------------------------------------------
-      | Version number
-      |--------------------------------------------------------------------------
-      |
-      | set by thomas.pfuhl@mfn.berlin
-      |
-     */
-    'version' => 'r0.6beta',
+  /*
+    |--------------------------------------------------------------------------
+    | Version number
+    |--------------------------------------------------------------------------
+    |
+    | set by thomas.pfuhl@mfn.berlin
+    |
+   */
+  'version' => 'r0.6beta',
+
+  /*
+    |--------------------------------------------------------------------------
+    | Keycloak
+    |--------------------------------------------------------------------------
+    |
+    | set by thomas.pfuhl@mfn.berlin
+    |
+   */
+   'kc_server' => env('KEYCLOAK_SERVER'),
+   'kc_realm' => env('KEYCLOAK_REALM'),
+   'kc_client_account_secret' => env('KEYCLOAK_CLIENT_ACCOUNT_SECRET'),
+
     /*
       |--------------------------------------------------------------------------
       | Application Debug Mode
@@ -143,7 +156,7 @@ return [
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
         Iber\Generator\ModelGeneratorProvider::class,
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class,
-        Appointer\Swaggervel\SwaggervelServiceProvider::class,        
+        Appointer\Swaggervel\SwaggervelServiceProvider::class,
         AdamWathan\EloquentOAuthL5\EloquentOAuthServiceProvider::class,
     ],
     /*

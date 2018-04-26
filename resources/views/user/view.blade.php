@@ -35,7 +35,6 @@
     <tr><td>administrator</td><td>no</td></tr>
 </table>
 
-<pre>{{ $debuginfo }}</pre>
 
 </div>
 

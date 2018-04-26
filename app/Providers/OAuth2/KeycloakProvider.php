@@ -10,14 +10,18 @@ use SocialNorm\Providers\OAuth2Provider;
 
 class KeycloakProvider extends OAuth2Provider
 {
-//    protected $authorizeUrl   = "http://keycloak.server.local:8080/auth/realms/dina/protocol/openid-connect/auth";
-//    protected $accessTokenUrl = "http://keycloak.server.local:8080/auth/realms/dina/protocol/openid-connect/token";
-//    protected $userDataUrl    = "http://keycloak.server.local:8080/auth/realms/dina/protocol/openid-connect/userinfo";
-    
-    protected $authorizeUrl   = KEYCLOAK_SERVER . "/auth/realms/" . KEYCLOAK_REALM . "/protocol/openid-connect/auth";
-    protected $accessTokenUrl = KEYCLOAK_SERVER . "/auth/realms/" . KEYCLOAK_REALM . "/protocol/openid-connect/token";
-    protected $userDataUrl    = KEYCLOAK_SERVER . "/auth/realms/" . KEYCLOAK_REALM . "/protocol/openid-connect/userinfo";
- 
+  // protected $authorizeUrl   = config('app')['kc_server'] . "/auth/realms/" . config('app')['kc_realm'] . "/protocol/openid-connect/auth";
+  // protected $accessTokenUrl = config('app')['kc_server'] . "/auth/realms/" . config('app')['kc_realm'] . "/protocol/openid-connect/token";
+  // protected $userDataUrl    = config('app')['kc_server'] . "/auth/realms/" . config('app')['kc_realm'] . "/protocol/openid-connect/userinfo";
+
+   protected $authorizeUrl   = "http://keycloak.server.local:8080/auth/realms/dina/protocol/openid-connect/auth";
+   protected $accessTokenUrl = "http://keycloak.server.local:8080/auth/realms/dina/protocol/openid-connect/token";
+   protected $userDataUrl    = "http://keycloak.server.local:8080/auth/realms/dina/protocol/openid-connect/userinfo";
+
+    // protected $authorizeUrl   = env('KEYCLOAK_SERVER') . "/auth/realms/" . env('KEYCLOAK_REALM') . "/protocol/openid-connect/auth";
+    // protected $accessTokenUrl = env('KEYCLOAK_SERVER') . "/auth/realms/" . env('KEYCLOAK_REALM') . "/protocol/openid-connect/token";
+    // protected $userDataUrl    = env('KEYCLOAK_SERVER') . "/auth/realms/" . env('KEYCLOAK_REALM') . "/protocol/openid-connect/userinfo";
+
     protected $scope = [
         'view-profile',
         'manage-account',

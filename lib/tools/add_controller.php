@@ -2,37 +2,37 @@
 
 /** Creation Tool for a Controller
  *
- * @author Thomas Pfuhl <thomas.pfuhl@mfn-berlin.de>
+ * @author Thomas Pfuhl <thomas.pfuhl@mfn.berlin>
  * @todo:  install and use  https://github.com/constant-null/backstubber
  */
 // unused
 //use Illuminate\Support\Pluralizer;
 //use Swagger\Annotations as SWG;
 
-/*  
-  * @SWG\Swagger(  
-  *   schemes={"http","https"},  
-  *   host="localhost:8000",  
-  *   basePath="/api/GDM_NAME/GDM_DATAMODEL_VERSION/TABLE_NAME",  
-  *   @SWG\Info(  
-  *     version="1.0.0",  
-  *     title="GDM API",  
-  *     description="Api description for GDM",  
-  *     termsOfService="",  
-  *     @SWG\Contact(  
-  *       email="thomas.pfuhl@mfn-berlin.de"  
-  *     ),  
-  *     @SWG\License(  
-  *       name="GNU Public License",  
-  *       url="URL to the license"  
-  *     )  
-  *   ),  
-  *   @SWG\ExternalDocumentation(  
-  *     description="Find out more about GDM",  
-  *     url="http..."  
-  *   )  
-  * )  
-  */  
+/*
+  * @SWG\Swagger(
+  *   schemes={"http","https"},
+  *   host="localhost:8000",
+  *   basePath="/api/GDM_NAME/GDM_DATAMODEL_VERSION/TABLE_NAME",
+  *   @SWG\Info(
+  *     version="1.0.0",
+  *     title="GDM API",
+  *     description="Api description for GDM",
+  *     termsOfService="",
+  *     @SWG\Contact(
+  *       email="thomas.pfuhl@mfn.berlin"
+  *     ),
+  *     @SWG\License(
+  *       name="GNU Public License",
+  *       url="URL to the license"
+  *     )
+  *   ),
+  *   @SWG\ExternalDocumentation(
+  *     description="Find out more about GDM",
+  *     url="http..."
+  *   )
+  * )
+  */
 
 $stub = <<<'PHPCODE'
 <?php
@@ -53,6 +53,8 @@ use Kris\LaravelFormBuilder\FormBuilder;
 class CAP_NAMEController extends Controller {
 
     public function __construct() {
+        // forbidden unless authenticated
+        $this->middleware('auth');
         view()->share('type', 'TABLE_NAME');
     }
 
@@ -62,12 +64,12 @@ class CAP_NAMEController extends Controller {
      * @return Response
      */
     public function index() {
-    
+
         $agg = \App\Aggregation::where('table_name', 'DB_TABLE_NAME')->first();
         $has_aggregated_view = (count($agg) > 0) ? true : false;
 
         $records = MODEL_NAME::all();
-        
+
         if (count($records) === 0) {
             $propertyNames = array();
             $extPropertyValues = array();
@@ -98,7 +100,7 @@ class CAP_NAMEController extends Controller {
      * @return Response
      */
     public function index_aggregated() {
-        
+
         $agg = \App\Aggregation::where('table_name', 'DB_TABLE_NAME')->first();
         if (count($agg) == 0) {
             $records = array();
@@ -114,14 +116,14 @@ class CAP_NAMEController extends Controller {
 
         $records = MODEL_NAME::groupBy($agg_grouped_by)
                         ->select('id', $agg_grouped_by, DB::raw($agg_function . '(' . $agg_field . ')'))->get();
-        
+
         //$propertyNames = MODEL_NAME:::first()["fillable"]; // without field "id"
         $propertyNames = array_keys($records[0]->getAttributes()); // with field "id"
         $extPropertyValues = array();
         foreach ($records as $record) {
             $extValues = $record["attributes"];
     RELATIONS
-    
+
             $extPropertyValues[] = $extValues;
         }
         $collection = collect($extPropertyValues);
@@ -180,11 +182,11 @@ class CAP_NAMEController extends Controller {
      * @return Response
      */
     public function store(Request $request, FormBuilder $formBuilder) {
-        
+
         $form = $formBuilder->create(\App\Forms\CAP_NAMEForm::class);
-        
+
         $arequest = (array)$form->getRequest();
-        
+
         $myInput = array();
         $myData = (array)$arequest["request"];
         foreach ($myData as $row)
@@ -236,7 +238,7 @@ class CAP_NAMEController extends Controller {
      * @return Response
      */
     public function edit($id, FormBuilder $formBuilder) {
-    
+
         $record = MODEL_NAME::find($id);
 
         $form = $formBuilder->create(\App\Forms\CAP_NAMEForm::class, [
@@ -244,7 +246,7 @@ class CAP_NAMEController extends Controller {
             'url' => route('TABLE_NAME.store'),
             'model' => $record
         ]);
-              
+
         $referenced_tables = array();
         RELATIONS_FOR_EDIT
 
@@ -299,7 +301,7 @@ class CAP_NAMEController extends Controller {
      * @return JSON
      */
     public function apiGetDoc() {
-       // show the API endpoint documentation for MODEL_NAME. 
+       // show the API endpoint documentation for MODEL_NAME.
        $modelName = "MODEL_NAME";
        return view('pages.apidoc', compact('modelName'));
     }
@@ -309,21 +311,21 @@ class CAP_NAMEController extends Controller {
      *   path="/MODULE_INSTANCE/GDM_DATAMODEL_VERSION/TABLE_NAME/{id}",
      *   description="get single record from TABLE_NAME",
      *   operationId="getMODEL_NAME",
-     *   produces={"application/json"},  
-     *   @SWG\Parameter(  
-     *     name="id",  
-     *     in="path",  
-     *     description="primary key",  
-     *     required=true,  
+     *   produces={"application/json"},
+     *   @SWG\Parameter(
+     *     name="id",
+     *     in="path",
+     *     description="primary key",
+     *     required=true,
      *     type="integer",
-     *     format="int32"  
+     *     format="int32"
      *   ),
-     *   @SWG\Response(  
-     *     response=200,  
+     *   @SWG\Response(
+     *     response=200,
      *     description="TABLE_NAME response"
      *     ),
-     *   @SWG\Response(  
-     *     response=500,  
+     *   @SWG\Response(
+     *     response=500,
      *     description="TABLE_NAME error: not a valid primary key ?"
      *     )
      *   )
@@ -367,15 +369,15 @@ class CAP_NAMEController extends Controller {
      *   path="/MODULE_INSTANCE/GDM_DATAMODEL_VERSION/TABLE_NAME/all",
      *   description="get all records from TABLE_NAME",
      *   operationId="getCAP_NAME",
-     *   produces={"application/json"},  
-     *   @SWG\Response(  
-     *     response=200,  
+     *   produces={"application/json"},
+     *   @SWG\Response(
+     *     response=200,
      *     description="TABLE_NAME response"
      *     )
      *   )
      * )
      */
-     
+
     /**
      * API: get all records
      *
@@ -384,7 +386,7 @@ class CAP_NAMEController extends Controller {
     public function apiGetAll() {
         $records = MODEL_NAME::all();
         //return response($records->toJson())->header('Content-Type', 'application/json');
-        
+
         $extPropertyValues = array();
         foreach ($records as $record) {
 
@@ -401,11 +403,11 @@ class CAP_NAMEController extends Controller {
 
         $jsonapi = array();
         $jsonapi["version"] = '1.0' ;
-        
+
         $meta_infos = array();
         $meta_infos["copyright"] = env('GDM_COPYRIGHT');
         $meta_infos["authors"] = explode(",", env('GDM_AUTHORS'));
-        
+
         $result = array();
         $result["jsonapi"] = $jsonapi;
         $result["meta"] = $meta_infos;
@@ -441,9 +443,9 @@ class CAP_NAMEController extends Controller {
 
         $extPropertyValues = array();
         foreach ($records as $record) {
-            $extValues = $record["attributes"];           
+            $extValues = $record["attributes"];
     RELATIONS
-    
+
             $extPropertyValues[] = $extValues;
         }
 
@@ -482,7 +484,7 @@ PHPCODE;
 
 $relation_stub2 = <<<'PHPCODE'
 if ($record->REFERENCED_TABLE_SINGULAR_NAME) {
-            $referenced_tables['REFERENCED_TABLE_SINGULAR_NAME'] = $record->REFERENCED_TABLE_SINGULAR_NAME->getAttributes();            
+            $referenced_tables['REFERENCED_TABLE_SINGULAR_NAME'] = $record->REFERENCED_TABLE_SINGULAR_NAME->getAttributes();
         }
 PHPCODE;
 
@@ -494,7 +496,7 @@ if (array_key_exists($table_name, $foreign_keys)) {
     $relations = "";
     $relations2 = "";
     foreach ($foreign_keys[$table_name] as $relation) {
-        
+
         $foreign_key = $relation['foreign_key'];
         $referenced_table = $relation['referenced_table'];
         $related_tables .= " " . "'" . $referenced_table . "'";
@@ -504,18 +506,18 @@ if (array_key_exists($table_name, $foreign_keys)) {
         $relation_content = str_replace('REFERENCED_TABLE_NAME', $referenced_table, $relation_content);
         $relation_content = str_replace('TABLE_NAME', $name, $relation_content);
         $relations .= "\n\t" . $relation_content;
-        
+
         $relation_content2 = $relation_stub2;
         $relation_content2 = str_replace('REFERENCED_TABLE_SINGULAR_NAME', singularize($referenced_table), $relation_content2);
         $relations2 .= "\n\t" . $relation_content2;
     }
     $related_tables = str_replace(" ", ", ", trim($related_tables));
-    
+
     $content = str_replace('RELATIONS_FOR_EDIT', $relations2, $content);
-    
+
     $content = str_replace('RELATED_TABLES', $related_tables, $content);
     $content = str_replace('RELATIONS', $relations, $content);
-    
+
 } else {
     $content = str_replace('RELATIONS_FOR_EDIT', "", $content);
     $content = str_replace('RELATIONS', "", $content);

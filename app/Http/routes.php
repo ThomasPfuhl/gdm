@@ -14,20 +14,16 @@ Route::pattern('slug', '[0-9a-z-_]+');
 
 /* * *************    Site routes  ********************************* */
 
+Route::get('/', 'PagesController@about');
+Route::get('home', 'PagesController@about');
 Route::get('about', 'PagesController@about');
 Route::get('about-gdm', 'PagesController@about_gdm');
-Route::get('home', 'PagesController@about');
 
-Route::get('gdm_aggregations/data', 'AggregationsController@data');
-Route::get('gdm_aggregations/{id}/datum', 'AggregationsController@datum');
+/* DISPATCHER FOR LOCAL AND KEYCLOAK LOGIN */
+Route::get('sign-in', function () {
+      return view('auth.sign-in');
+});
 
-Route::get('gdm_aggregations/{id}/edit', ['middleware' => 'auth', 'uses' => 'AggregationsController@edit']);
-Route::get('gdm_aggregations/{id}/delete', ['middleware' => 'auth', 'uses' => 'AggregationsController@destroy']);
-Route::put('gdm_aggregations/{id}', ['middleware' => 'auth', 'uses' => 'AggregationsController@update']);
-//Route::get('gdm_aggregations/create',     ['middleware' => 'auth', 'uses' => 'AggregationsController@create']);
-Route::post('gdm_aggregations', ['middleware' => 'auth', 'uses' => 'AggregationsController@store']);
-
-Route::resource('gdm_aggregations', 'AggregationsController');
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
@@ -36,8 +32,8 @@ Route::controllers([
 
 /* * *************  Keycloak  ********************************* */
 
-Route::get('keycloak/authorize', function () {
-    return SocialAuth::authorize('keycloak');
+Route::get('keycloak/authenticate', function () {
+  return SocialAuth::authorize('keycloak');
 });
 
 //OAuth redirects here after authorization
@@ -56,10 +52,11 @@ Route::get('keycloak/callback', function () {
         $user->language = "en";
         //$user->save();
 
+        /*
         echo "<pre>";
-        //echo "user: " . print_r($user, true);
         echo "details: " . print_r($details, true);
         echo "</pre>";
+        */
     });
     return Redirect::intended();
 });
@@ -125,6 +122,4 @@ Route::group(['prefix' => 'api/admin', 'middleware' => 'auth'], function() {
 
 
 /* * ************  dynamically generated routes for the given data models ************* */
-//include('routes_datamodel.php');
-
 include('routes_datamodel.php');

@@ -4,7 +4,7 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
-    
+
     "repositories": [
     {
       "type": "vcs",
