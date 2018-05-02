@@ -116,6 +116,12 @@ Aggregations are displayed in special aggregated views,
 which are under the complete dynamic control of the user, via the UI.
  
 
+### Publish the needed elements for keycloak intergration (optional)
+
+For keycloak integration, type:
+    
+    php artisan eloquent-oauth:install
+
 
 ### Populate the database with basic data
 
@@ -127,11 +133,6 @@ Create the GDM system tables and pupopulate them with minimal data:
 
 This creates an  administrator account:
 username=`GDM_MANAGER_NAME`  email=`GDM_MANAGER_EMAIL`  password=`admin`  
-
-
-### Publish the needed elements when using keycloak (optionally)
-    
-    php artisan eloquent-oauth:install
 
 
 ### Populate the database using Liquibase (optional)
