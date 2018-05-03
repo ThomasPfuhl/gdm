@@ -98,8 +98,8 @@ $content = <<<'PHPCODE'
                 <div>{{ $item }}</div>
 
                 @elseif (is_array($item))
-                <a class="toggle-link" href="#maintable" data-toggle="collapse" data-target="#related_{{ $row }}_{{ $key }}"
-                   ><span class="glyphicon glyphicon-plus-sign"></span><span class="glyphicon glyphicon-minus-sign hidden"></span></a>
+                <a class="toggle-link" href="#maintable" data-toggle="collapse" data-target="#related_{{ $row }}_{{ $key }}" aria-expanded="false"
+                   ><span class="glyphicon glyphicon-plus-sign plusplus"></span><span class="glyphicon glyphicon-minus-sign minusminus"></span></a>
                 {{ $item[array_keys($item)[2]] }}
                 <table id="related_{{ $row }}_{{ $key }}" class="table table-condensed collapse related" >
                     @foreach ($item as $k=>$v)
@@ -302,9 +302,9 @@ $content = <<<'PHPCODE'
             @endif
 
             @else
-            <a class="toggle-link" href="#maintable" data-toggle="collapse" data-target="#related_{{ $key }}"
-               ><span class="glyphicon glyphicon-plus-sign"></span><span class="glyphicon glyphicon-minus-sign hidden"></span></a>
-            {{ $value[array_keys($value)[2]] }}
+            <a class="toggle-link" href="#maintable" data-toggle="collapse" data-target="#related_{{ $key }}" aria-expanded="false"
+               ><span class="glyphicon glyphicon-plus-sign plusplus"></span><span class="glyphicon glyphicon-minus-sign minusminus"></span></a>
+            {{ $value[array_keys($value)[2]] }}</a>
             <div>
                 <table id="related_{{ $key }}" class="table table-condensed collapse related">
                     @foreach ($value as $k=>$v)

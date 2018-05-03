@@ -175,3 +175,23 @@ ul.dropdown-menu > li.active > a:hover {
     background: #ccc;
 }
 
+/* plus-minus icons to show/hide other table field values */
+.table a:not(.btn), table a:not(.btn) {
+    text-decoration: none;
+}
+
+[aria-expanded="false"] .plusplus {
+    display: block;
+}
+
+[aria-expanded="false"] .minusminus {
+    display: none;
+}
+
+[aria-expanded="true"] .plusplus {
+    display: none;
+}
+
+[aria-expanded="true"] .minusminus {
+    display: block;
+}
