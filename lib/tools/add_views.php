@@ -303,7 +303,7 @@ $content = <<<'PHPCODE'
 
             @else
             <a class="toggle-link" href="#maintable" data-toggle="collapse" data-target="#related_{{ $key }}"
-               ><span class="glyphicon glyphicon-resize-full"></span><span class="glyphicon glyphicon-resize-small hidden"></span></a>
+               ><span class="glyphicon glyphicon-plus-sign"></span><span class="glyphicon glyphicon-minus-sign hidden"></span></a>
             {{ $value[array_keys($value)[2]] }}
             <div>
                 <table id="related_{{ $key }}" class="table table-condensed collapse related">
