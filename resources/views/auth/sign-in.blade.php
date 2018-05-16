@@ -38,20 +38,10 @@
           <div id="keycloak" class="tab-pane active" >
             <div class="row">
               <div class="col-md-8 col-md-offset-2">
-
                 <h3><img valign="top" src="/img/institution_logo.png" height="40"/> {!! trans('site/user.login') !!} with your Museum credentials</h3>
                 <div class="well">
                     Please sign in with the Museum's  <a href="keycloak/authenticate"><b>Central Authentication Service</b></a>.
-                  </div>
-                {{--
-                  <pre>keycloak server: {{ config('app')['kc_server'] }}</pre>
-                  <pre>keycloak realm: {{ config('app')['kc_realm'] }}</pre>
-                  <pre>{{ print_r(config('eloquent-oauth'),true) }}</pre>
-
-                  <iframe id="museum-login" scrolling="no" width="100%" height="400" frameborder="0"
-                    src="{{ env('GDM_PROTOCOL') }}://{{ env('GDM_URL') }}/keycloak/authenticate" >
-                  </iframe>
-                --}}
+                </div>
               </div>
             </div>
           </div>

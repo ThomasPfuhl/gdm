@@ -21,9 +21,15 @@ Route::get('about-gdm', 'PagesController@about_gdm');
 
 /* DISPATCHER FOR LOCAL AND KEYCLOAK LOGIN */
 Route::get('sign-in', function () {
-      return view('auth.sign-in');
-});
 
+  Log::debug('DB Host: '    .   env('DB_HOST'));
+  Log::debug('DB: '         .   env('DB_DATABASE'));
+  Log::debug('Keycloak server: ' .   config('app')['kc_server']);
+  Log::debug('Keycloak realm: '  .   config('app')['kc_realm']);
+  Log::debug('Keycloak redirect-uri: ' .   config('eloquent-oauth')['custom-providers']['keycloak']['redirect_uri'] );
+  
+  return view('auth.sign-in');
+});
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
