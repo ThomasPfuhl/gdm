@@ -44,14 +44,14 @@ $content = <<<'PHPCODE'
 @if(Session::has('message'))
 <div class="alert alert-info"><strong>{{ Session::get('message') }}</strong></div>
 @endif
-        
+
 <table id="maintable" class="maintable table table-hover table-responsive table-condensed">
     <thead>
         <tr>
             @foreach ($propertyNames as $value)
                <th class="rotate"><div><span>{{ $value }}</span></div></th>
             @endforeach
-            <th class="rotate"></th> 
+            <th class="rotate"></th>
         </tr>
     </thead>
     <tbody>
@@ -65,8 +65,10 @@ $content = <<<'PHPCODE'
 
                 @elseif (is_string($item))
                 <div id="related_{{ $row }}_{{ $key }}" class="collapse" style="width:10em;">{{ $item}}</div>
-                @if (strlen($item) < 50)
-                {{ $item }}
+                @if (starts_with($item, "http"))
+                    <a target='blank' title="open link in new tab"  href='{{ $item }}'>{{ $item }}</a>
+                @elseif (strlen($item) < 80)
+                    {{ $item }}
                 @else
                 <a class="toggle-link" href="#maintable" data-toggle="modal" data-target="#related-text-{{ $row }}-{{ $key }}"
                    ><span class="glyphicon glyphicon-resize-full"></span></a> {{ str_limit($item, 50) }}
@@ -93,14 +95,19 @@ $content = <<<'PHPCODE'
 
                 @elseif (is_float($item))
                 <div>{{ money_format("%!#9.2n", $item) }}</div>
-                
+
                 @elseif (is_int($item))
                 <div>{{ $item }}</div>
 
                 @elseif (is_array($item))
                 <a class="toggle-link" href="#maintable" data-toggle="collapse" data-target="#related_{{ $row }}_{{ $key }}" aria-expanded="false"
-                   ><span class="glyphicon glyphicon-plus-sign plusplus"></span><span class="glyphicon glyphicon-minus-sign minusminus"></span></a>
-                {{ $item[array_keys($item)[2]] }}
+                   ><span title="expand" class="glyphicon glyphicon-plus-sign plusplus"></span><span title="collapse" class="glyphicon glyphicon-minus-sign minusminus"></span></a>
+                   @if (starts_with($item[array_keys($item)[2]], "http"))
+                       <a target='blank' title="open link in new tab" href='{{ $item[array_keys($item)[2]] }}'>{{ $item[array_keys($item)[2]] }}</a>
+                  @else {
+                         {{ $item[array_keys($item)[2]] }}
+                       }
+                  @endif
                 <table id="related_{{ $row }}_{{ $key }}" class="table table-condensed collapse related" >
                     @foreach ($item as $k=>$v)
                     <tr><td>{{ $k }}</td><td>{{ $v }}</td></tr>
@@ -114,14 +121,14 @@ $content = <<<'PHPCODE'
             @if(Auth::user()->admin==1)
 
                 <a href="{{ URL::to('NAME/' . $record['id'] . '/edit' ) }}" class="btn btn-md btn-info"><span class="glyphicon glyphicon-pencil"></span> {{ trans("admin/modal.edit") }}</a>
-                                
+
             @endif
             @if(Auth::user()->admin==1)
-                
+
                 {!! Form::open(['method' => 'DELETE', 'url' => URL::to('NAME/' . $record['id'] . '/delete' ), 'style'=>'display:inline']) !!}
                 {!! Form::button( trans("admin/modal.delete"), ['class' => 'btn btn-md btn-danger', 'type' => 'submit']) !!}
                 {!! Form::close() !!}
-                
+
             @endif
             @endif
             </td>
@@ -145,7 +152,7 @@ file_put_contents("../../resources/views/data/" . $name . "/index.blade.php", $c
 // AGGREGATED INDEX
 
 $content = <<<'PHP_CODE'
-   
+
 @extends('layouts.app')
 
 @section('title') CNAME :: @parent @stop
@@ -210,7 +217,7 @@ $content = <<<'PHP_CODE'
 
                 @elseif (is_float($item))
                 <div>{{ money_format("%!#9.2n €", $item) }}</div>
-                
+
                 @elseif (is_int($item))
                 <div>{{ $item }}</div>
 
@@ -245,7 +252,7 @@ $content = str_replace('NAME', $name, $content);
 file_put_contents("../../resources/views/data/" . $name . "/index_aggregated.blade.php", $content);
 
 ///////////////////////////////////////////////////////////
-// SINGLE RECORD 
+// SINGLE RECORD
 
 $content = <<<'PHPCODE'
 
@@ -349,7 +356,7 @@ $content = str_replace('NAME', $name, $content);
 file_put_contents("../../resources/views/data/" . $name . "/view.blade.php", $content);
 
 ///////////////////////////////////////////////////////////
-// CREATE 
+// CREATE
 
 $content = <<<'PHPCODE'
 @extends('layouts.app')
@@ -365,7 +372,7 @@ $content = <<<'PHPCODE'
             <a href = "{{{ URL::to('NAME/') }}}" class = "btn btn-success btn-md"
             ><span class = "glyphicon glyphicon-eye-open"></span> {!! trans('displaymodes.all') !!}</a>
         </div>
-  
+
 </div>
 
 {!! form($form) !!}
@@ -469,4 +476,3 @@ $content = str_replace('MODEL_NAME', singularize(ucfirst($name)), $content);
 
 @mkdir("../../resources/views/data/" . $name);
 file_put_contents("../../resources/views/data/" . $name . "/edit.blade.php", $content);
-

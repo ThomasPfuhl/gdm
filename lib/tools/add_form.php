@@ -10,10 +10,10 @@
 echo "\n adding form for " . $name . " with table_name: " . $table_name;
 
 $field_names = getFields($table_name);
-echo "\nFIELD NAMES: " . $field_names;
+if ($verbose > 1) echo "\nFIELD NAMES: " . $field_names;
 
 $foreignKeys = getForeignKeys(DB_DATABASE, $table_name);
-echo "\n\nFOREIGN KEYS for table $table_name: " .print_r($foreignKeys ,true);
+if ($verbose > 1) echo "\n\nFOREIGN KEYS for table $table_name: " .print_r($foreignKeys ,true);
 
 $content = <<<'COMMAND'
 rm -f ../../app/Forms/CTABLENAMEForm.php
@@ -53,7 +53,7 @@ foreach ($foreignKeys as $fk) {
   $modelName = ucfirst(singularize(explode("_", $fk['foreign_key'])[0]));
   $modelTableName = $fk['referenced_table'];
 
-  echo "\n--foreign key: " .  $fk['foreign_key'] . " --referenced model: "  . $modelName . " --referenced table: " . $fk['referenced_table'] ;
+  echo " foreign key: " .  $fk['foreign_key'] . " --referenced model: "  . $modelName . " --referenced table: " . $fk['referenced_table'] ;
 
   $model_field_names = getFields($modelTableName);
   $model2ndField = explode(":", explode(",", $model_field_names)[1])[0];
@@ -71,6 +71,5 @@ foreach ($foreignKeys as $fk) {
   $code = preg_replace($pattern, $replacement, $code);
   //echo "\nFINAL CODE: =============================\n" . preg_replace($pattern, $replacement, $code) . "\n======================\n\n";
 }
-
 
 file_put_contents('../../app/Forms/' . $name . 'Form.php', $code);

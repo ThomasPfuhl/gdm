@@ -8,6 +8,8 @@
 
 require("helpers.php");
 
+$verbose = 1;
+
 $cwd = pathinfo(__FILE__)['dirname'];
 
 echo "\n------------------------\nENVIRONMENT VARIABLES:\n";
@@ -80,7 +82,7 @@ $maintable = toCamelCase(GDM_MAIN_TABLE, true);
 $entrypoint = "<?php \n\n/** routes for the given data model \n * all routes are forbidden unless authenticated.\n */\n";
 file_put_contents("../../app/Http/routes_datamodel.php", $entrypoint, FILE_TEXT | LOCK_EX);
 echo " data model routes created.\n";
-file_put_contents("../../app/Http/routes.php", "include('routes_datamodel.php');", FILE_APPEND | LOCK_EX);
+file_put_contents("../../app/Http/routes.php", "\ninclude('routes_datamodel.php');", FILE_APPEND | LOCK_EX);
 
 $gdm_agg = <<<'PHPCODE'
 
@@ -151,6 +153,112 @@ $content = str_replace('""', '"', $content);
 
 file_put_contents("../../app/Http/Controllers/Controller.php", $content);
 echo " added.\n";
+
+//////////////////////////////
+// Keycloak Provider
+echo "\n------------\nCREATING Keycloak Provider\n";
+
+$stub = <<<'PHPCODE'
+<?php
+namespace App\Providers\OAuth2;
+
+use SocialNorm\Exceptions\InvalidAuthorizationCodeException;
+use SocialNorm\Providers\OAuth2Provider;
+
+class KeycloakProvider extends OAuth2Provider
+{
+    protected $authorizeUrl   = "KEYCLOAK_SERVER/auth/realms/KEYCLOAK_REALM/protocol/openid-connect/auth";
+    protected $accessTokenUrl = "KEYCLOAK_SERVER/auth/realms/KEYCLOAK_REALM/protocol/openid-connect/token";
+    protected $userDataUrl    = "KEYCLOAK_SERVER/auth/realms/KEYCLOAK_REALM/protocol/openid-connect/userinfo";
+
+    protected $scope = [
+        'view-profile',
+        'manage-account',
+    ];
+
+    protected $headers = [
+        'authorize' => [],
+        'access_token' => [
+            'Content-Type' => 'application/x-www-form-urlencoded'
+        ],
+        'user_details' => [],
+    ];
+
+    protected function compileScopes()
+    {
+        return implode(' ', $this->scope);
+    }
+
+    protected function getAuthorizeUrl()
+    {
+        return $this->authorizeUrl;
+    }
+
+    protected function getAccessTokenBaseUrl()
+    {
+        return $this->accessTokenUrl;
+    }
+
+    protected function getUserDataUrl()
+    {
+        return $this->userDataUrl;
+    }
+
+    protected function parseTokenResponse($response)
+    {
+        return $this->parseJsonTokenResponse($response);
+    }
+
+    protected function requestUserData()
+    {
+        $url = $this->buildUserDataUrl();
+        $response = $this->httpClient->get($url, [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $this->accessToken
+            ]
+        ]);
+        return $this->parseUserDataResponse((string)$response->getBody());
+    }
+
+    protected function parseUserDataResponse($response)
+    {
+        return json_decode($response, true);
+    }
+
+    protected function userId()
+    {
+        return $this->getProviderUserData('sub');
+    }
+
+    protected function nickname()
+    {
+        return $this->getProviderUserData('preferred_username');
+    }
+
+    protected function fullName()
+    {
+        return $this->getProviderUserData('given_name') . ' ' . $this->getProviderUserData('family_name');
+    }
+
+    protected function avatar()
+    {
+        return "";
+    }
+
+    protected function email()
+    {
+        return $this->getProviderUserData('email');
+    }
+}
+PHPCODE;
+
+$content = $stub;
+$content = str_replace('KEYCLOAK_SERVER', KEYCLOAK_SERVER, $content);
+$content = str_replace('KEYCLOAK_REALM',  KEYCLOAK_REALM,  $content);
+
+file_put_contents("../../app/Providers/OAuth2/KeycloakProvider.php", $content);
+echo "\n-- Keycloak provider defined. ";
+///////////////////////////////////
 
 
 echo "\n------------\nCREATING CONTROLLERS, VIEWS, FORMS, MENU ITEMS, and ROUTES...\n";

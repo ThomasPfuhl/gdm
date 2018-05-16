@@ -101,9 +101,9 @@ function singularize($params) {
 
 /**
  * get all column meta-infos from given table
- * 
+ *
  * @param string $table_name
- * @return string 
+ * @return string
  */
 function getFields(string $table_name) {
 
@@ -121,11 +121,11 @@ function getFields(string $table_name) {
     $out = "";
     for ($i = 0; $i < $q->columnCount(); $i++) {
         $info = $q->getColumnMeta($i);
-        if ($info["native_type"] !== "TIMESTAMP" ) 
-        //if ($info["name"] !== "id" && $info["native_type"] !== "TIMESTAMP" ) 
+        if ($info["native_type"] !== "TIMESTAMP" )
+        //if ($info["name"] !== "id" && $info["native_type"] !== "TIMESTAMP" )
             {
             $out .= $info["name"] . ":" . $info["native_type"] . ",";
-            echo "\n" . $info["name"] . ":" . $info["native_type"];
+            //echo "\n" . $info["name"] . ":" . $info["native_type"];
         }
     }
     return substr($out, 0, strlen($out)-1);
@@ -204,13 +204,13 @@ function getForeignKeys($schema, $name) {
 
 
 function toCamelCase($string, $capitalizeFirstCharacter = true) {
-    
+
     $str = str_replace('_', '', ucwords($string, '_'));
     return $str;
 }
 
 function toHyphen($string) {
-    
+
     $str = str_replace('_', '-', strtolower($string));
     return $str;
 }
