@@ -64,14 +64,14 @@ $content = <<<'PHPCODE'
                    ><span class="glyphicon glyphicon-eye-open"></span> {{ $item }}</a>
 
                 @elseif (is_string($item))
-                <div id="related_{{ $row }}_{{ $key }}" class="collapse" style="width:10em;">{{ $item}}</div>
+                <div id="related_{{ $row }}_{{ $key }}" class="collapse" style="width:10em;">{!! $item !!}</div>
                 @if (starts_with($item, "http"))
-                    <a target='blank' title="open link in new tab"  href='{{ $item }}'>{{ $item }}</a>
+                    <a target='blank' title="open link in new tab"  href='{{ $item }}'>{!! $item!!}</a>
                 @elseif (strlen($item) < 80)
-                    {{ $item }}
+                    {!! $item !!}
                 @else
                 <a class="toggle-link" href="#maintable" data-toggle="modal" data-target="#related-text-{{ $row }}-{{ $key }}"
-                   ><span class="glyphicon glyphicon-resize-full"></span></a> {{ str_limit($item, 50) }}
+                   ><span class="glyphicon glyphicon-resize-full"></span></a> {!! str_limit($item, 50) !!}
                 <!-- Modal -->
                 <div class="modal fade" id="related-text-{{ $row }}-{{ $key }}" role="dialog">
                     <div class="modal-dialog">
@@ -83,7 +83,7 @@ $content = <<<'PHPCODE'
                             </div>
 
                             <div class="modal-body">
-                                <p>{{ $item }}</p>
+                                <p>{!! $item !!}</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
