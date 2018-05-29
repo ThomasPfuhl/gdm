@@ -2,12 +2,12 @@
 
 /** Creation Tool for adding forms
  *
- * @author Thomas Pfuhl <thomas.pfuhl@mfn-berlin.de>
+ * @author Thomas Pfuhl <thomas.pfuhl@mfn.berlin>
  * @see http://kristijanhusak.github.io/laravel-form-builder/
  * @todo:  install and use  https://github.com/constant-null/backstubber
  */
 
-echo "\n adding form for " . $name . " with table_name: " . $table_name;
+echo "form, " ;
 
 $field_names = getFields($table_name);
 if ($verbose > 1) echo "\nFIELD NAMES: " . $field_names;
@@ -53,7 +53,7 @@ foreach ($foreignKeys as $fk) {
   $modelName = ucfirst(singularize(explode("_", $fk['foreign_key'])[0]));
   $modelTableName = $fk['referenced_table'];
 
-  echo " foreign key: " .  $fk['foreign_key'] . " --referenced model: "  . $modelName . " --referenced table: " . $fk['referenced_table'] ;
+  echo "\n\tforeign key: " .  $fk['foreign_key'] . " --referenced model: "  . $modelName . " --referenced table: " . $fk['referenced_table'] ;
 
   $model_field_names = getFields($modelTableName);
   $model2ndField = explode(":", explode(",", $model_field_names)[1])[0];

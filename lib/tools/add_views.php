@@ -9,7 +9,7 @@
  * such assuming that it shows some valuable info.
  *
  */
-echo "\n adding views for " . $name;
+echo " views,  ";
 
 ///////////////////////////////////////////////////////////
 // INDEX

@@ -60,7 +60,7 @@ $sql = "SELECT TABLE_NAME
             FROM
                 INFORMATION_SCHEMA.tables
             WHERE
-                TABLE_TYPE='BASE TABLE'
+                (TABLE_TYPE='BASE TABLE' OR TABLE_TYPE='VIEW')
                 AND TABLE_SCHEMA = '" . DB_DATABASE . "'
                 AND TABLE_NAME != 'DATABASECHANGELOG'
                 AND TABLE_NAME != 'DATABASECHANGELOGLOCK'
@@ -74,6 +74,8 @@ $sql = "SELECT TABLE_NAME
                 ";
 $pdo = new PDO(DB_CONNECTION . ":host=" . DB_HOST . ";dbname=" . DB_DATABASE, DB_USERNAME, DB_PASSWORD);
 $response = $pdo->query($sql);
+
+
 
 
 echo "\n------------\nROUTING ENTRYPOINT...\n";
@@ -271,7 +273,7 @@ foreach ($response as $row) {
 //    $lc_name = toCamelCase($row["TABLE_NAME"], false); // currently unused
 //    $hyphen_name = toHyphen($row["TABLE_NAME"]); // currently unused
 
-    echo "\n----------------\n" . $name;
+    echo "\n----------------\n" . $name  . ": " ;
 
     include("add_controller.php");
     include("add_menu_item.php");

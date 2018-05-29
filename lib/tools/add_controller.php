@@ -459,7 +459,7 @@ PHPCODE;
 
 
 // launch it
-echo "\n adding controller " . $name ;
+echo " controller, ";
 
 $content = $stub;
 $content = str_replace('MODULE_INSTANCE', GDM_NAME, $content);

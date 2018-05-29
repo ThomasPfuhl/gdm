@@ -16,7 +16,7 @@
  * DELETE  /users/{user}               destroy users.destroy
  */
 
-echo "\n adding routes for " . $name;
+echo "routes, ";
 
 $content = <<<'PHPCODE'
 

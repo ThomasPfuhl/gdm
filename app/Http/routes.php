@@ -22,14 +22,15 @@ Route::get('about-gdm', 'PagesController@about_gdm');
 /* DISPATCHER FOR LOCAL AND KEYCLOAK LOGIN */
 Route::get('sign-in', function () {
 
-  Log::debug('DB Host: '    .   env('DB_HOST'));
-  Log::debug('DB: '         .   env('DB_DATABASE'));
-  Log::debug('Keycloak server: ' .   config('app')['kc_server']);
-  Log::debug('Keycloak realm: '  .   config('app')['kc_realm']);
-  Log::debug('Keycloak redirect-uri: ' .   config('eloquent-oauth')['custom-providers']['keycloak']['redirect_uri'] );
-  
+  Log::debug('DB Host: ' .   env('DB_HOST'));
+  Log::debug('DB: ' .   env('DB_DATABASE'));
+  Log::debug('keycloak server: ' .   config('app')['kc_server']);
+  Log::debug('keycloak realm: '  .   config('app')['kc_realm']);
+  Log::debug('keycloak redirect-uri: ' .   config('eloquent-oauth')['custom-providers']['keycloak']['redirect_uri'] );
+
   return view('auth.sign-in');
 });
+
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
@@ -44,25 +45,21 @@ Route::get('keycloak/authenticate', function () {
 
 //OAuth redirects here after authorization
 Route::get('keycloak/callback', function () {
+
     // Automatically log in existing users
     // or create a new user if necessary.
     SocialAuth::login('keycloak', function ($user, $details) {
         //populate the user class.
         //this will be saved automatically by eloquent-oauth.
+        Log::debug('details: ' .   print_r($details, true));
 
-        $user->name = $details->full_name;
+        //$user->name = $details->full_name;
         $user->name = $details->nickname;
 
         $user->username = $details->nickname;
         $user->email = $details->email;
         $user->language = "en";
         //$user->save();
-
-        /*
-        echo "<pre>";
-        echo "details: " . print_r($details, true);
-        echo "</pre>";
-        */
     });
     return Redirect::intended();
 });
@@ -128,4 +125,65 @@ Route::group(['prefix' => 'api/admin', 'middleware' => 'auth'], function() {
 
 
 /* * ************  dynamically generated routes for the given data models ************* */
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
+include('routes_datamodel.php');
 include('routes_datamodel.php');

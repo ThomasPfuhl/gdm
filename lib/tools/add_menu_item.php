@@ -2,13 +2,13 @@
 
 /** Creation Tool for menu_items
  *
- * @author Thomas Pfuhl <thomas.pfuhl@mfn-berlin.de>
+ * @author Thomas Pfuhl <thomas.pfuhl@mfn.berlin>
  * @todo:  install and use  https://github.com/constant-null/backstubber
  */
-echo "\n adding menu item for " . $name;
+echo " menu item, " ;
 
 if (strtolower($name) !== "aggregations") {
-    
+
     $cname = ucfirst($name);
 
     $content = <<<'CODE'
@@ -31,7 +31,7 @@ CODE;
 
 // metatables
 $content = <<<'CODE'
-   
+
 <li class="{{ (Request::is('gdm_aggregations') ? 'active' : '') }}">
     <a href="{{ URL::to('gdm_aggregations') }}">Aggregations</a>
 </li>
@@ -48,9 +48,9 @@ if ($pos === FALSE) {
 // start menu item
 
 $content = <<<'CODE'
-   
+
 <li class="{{ (Request::is('ITEM') ? 'active' : '') }}">
-    <a href="{{ URL::to( 'ITEM' ) }}"><i class="fa fa-home"></i> Start</a> 
+    <a href="{{ URL::to( 'ITEM' ) }}"><i class="fa fa-home"></i> Start</a>
 </li>
 
 CODE;
