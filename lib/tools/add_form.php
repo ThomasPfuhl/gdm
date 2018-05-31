@@ -53,7 +53,8 @@ foreach ($foreignKeys as $fk) {
   $modelName = ucfirst(singularize(explode("_", $fk['foreign_key'])[0]));
   $modelTableName = $fk['referenced_table'];
 
-  echo "\n\tforeign key: " .  $fk['foreign_key'] . " --referenced model: "  . $modelName . " --referenced table: " . $fk['referenced_table'] ;
+  echo "\tforeign key: " .  $fk['foreign_key'] . "\t--referenced model: "  . $modelName . "\t--referenced table: " . $fk['referenced_table']  . "\n" ;
+  echo "\taccessor: " .  strtolower($modelName)  . "_" .  explode("_", $fk['foreign_key'])[0] .  "\n" ;
 
   $model_field_names = getFields($modelTableName);
   $model2ndField = explode(":", explode(",", $model_field_names)[1])[0];

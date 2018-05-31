@@ -21,8 +21,8 @@ class DummyClass extends {{shortNameExtends}}
 
     {{setters}}
 
-// thomas.pfuhl@mfn-berlin.de: one-to-one relations BEGIN
+// thomas.pfuhl@mfn.berlin: one-to-one relations BEGIN
     {{relations}}
-// thomas.pfuhl@mfn-berlin.de: one-to-one relations END
+// thomas.pfuhl@mfn.berlin: one-to-one relations END
 
 }

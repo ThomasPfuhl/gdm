@@ -22,7 +22,8 @@ This code has been inspired by
 
 ### Requirements
 
-- PHP >= 5.6
+- PHP >= 5.6  
+There is an issue with PHP7.2  for the count() function. PHP7.0 sseems to work.
 - OpenSSL PHP Extension (included in php7)
 - Mbstring PHP Extension : `sudo apt-get install php-mbstring`   
 - Tokenizer PHP Extension (included in php7)
@@ -100,8 +101,10 @@ Generate the application key, which is used for all encrypted data:
 
 ## Database 
 
-A database engine must be installed. We use here mySQL.
+A database engine must be installed. We rely heavily on mySQL.
 Create a database with utf-8 collation (e.g. utf8_general_ci).
+You must have rights for viewing the information_schema.
+
 
 ### Data Architecture
 

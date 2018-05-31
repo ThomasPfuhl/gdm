@@ -54,6 +54,11 @@ copy("model.stub", $cwd . "/../../vendor/ignasbernotas/laravel-model-generator/s
 
 echo "\n\n-----------\nCREATING MODELS...\n\n";
 
+//$foreign_keys = getAllForeignKeys();
+//echo "\n--------------------\n ALL FOREIGN KEYS: " .  implode(",", array_keys($foreign_keys)) . "\n";
+//echo "\n--------------------\n ALL FOREIGN KEYS: " .  print_r($foreign_keys,true) . "\n";
+
+
 system('cd ../../; php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations,users,languages,gdm_aggregations,oauth_identities --getset');
 
 $sql = "SELECT TABLE_NAME
@@ -158,7 +163,7 @@ echo " added.\n";
 
 //////////////////////////////
 // Keycloak Provider
-echo "\n------------\nCREATING Keycloak Provider\n";
+echo "\n------------\nCREATING KEYCLOAK PROVODER ... ";
 
 $stub = <<<'PHPCODE'
 <?php
@@ -259,11 +264,12 @@ $content = str_replace('KEYCLOAK_SERVER', KEYCLOAK_SERVER, $content);
 $content = str_replace('KEYCLOAK_REALM',  KEYCLOAK_REALM,  $content);
 
 file_put_contents("../../app/Providers/OAuth2/KeycloakProvider.php", $content);
-echo "\n-- Keycloak provider defined. ";
+echo "\n done.";
 ///////////////////////////////////
 
 
-echo "\n------------\nCREATING CONTROLLERS, VIEWS, FORMS, MENU ITEMS, and ROUTES...\n";
+
+echo "\n\n------------\nCREATING CONTROLLERS, VIEWS, FORMS, MENU ITEMS, and ROUTES...\n";
 
 touch("../../resources/views/partials/menu-items.blade.php");
 

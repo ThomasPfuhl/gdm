@@ -472,11 +472,12 @@ $content = str_replace('MODEL_NAME', ucfirst(singularize($name)), $content);
 $content = str_replace('DB_TABLE_NAME', $table_name, $content);
 $content = str_replace('TABLE_NAME', $name, $content);
 
+// foreign keys
 $relation_stub = <<<'PHPCODE'
-    if ($record->REFERENCED_TABLE_SINGULAR_NAME) {
+          if ($record->REFERENCED_TABLE_SINGULAR_NAME_REFERENCED_TABLE_SINGULAR_NAME) {
                 $self_uri = array();
-                $self_uri["self"] = env('GDM_NAME') . '/' . env('GDM_DATAMODEL_VERSION') . '/REFERENCED_TABLE_NAME/' . $record->REFERENCED_TABLE_SINGULAR_NAME->id;
-                $extValues["REFERENCED_TABLE_SINGULAR_NAME_id"] = array_merge($self_uri, $record->REFERENCED_TABLE_SINGULAR_NAME->getAttributes());
+                $self_uri["self"] = env('GDM_NAME') . '/' . env('GDM_DATAMODEL_VERSION') . '/REFERENCED_TABLE_NAME/' . $record->REFERENCED_TABLE_SINGULAR_NAME_REFERENCED_TABLE_SINGULAR_NAME->id;
+                $extValues["REFERENCED_TABLE_SINGULAR_NAME_id"] = array_merge($self_uri, $record->REFERENCED_TABLE_SINGULAR_NAME_REFERENCED_TABLE_SINGULAR_NAME->getAttributes());
             }
             else {
                 $extValues["REFERENCED_TABLE_SINGULAR_NAME_id"] = "";
@@ -492,7 +493,7 @@ PHPCODE;
 $foreign_keys = getAllForeignKeys();
 //echo "\n-- foreign keys: " .  implode(",", array_keys($foreign_keys));
 
-if (array_key_exists($table_name, $foreign_keys)) {
+if (is_array($foreign_keys) && array_key_exists($table_name, $foreign_keys)) {
     $related_tables = "";
     $relations = "";
     $relations2 = "";

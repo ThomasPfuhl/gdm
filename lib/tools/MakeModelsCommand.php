@@ -146,7 +146,7 @@ class MakeModelsCommand extends GeneratorCommand {
 
         switch ($this->databaseEngine) {
             case 'mysql':
-                $sql = "SELECT table_name AS name FROM information_schema.tables WHERE table_type='BASE TABLE' AND table_schema = '" . env('DB_DATABASE') . "'" . $filterTablesWhere;
+                $sql = "SELECT table_name AS name FROM information_schema.tables WHERE (TABLE_TYPE='BASE TABLE' OR TABLE_TYPE='VIEW') AND table_schema = '" . env('DB_DATABASE') . "'" . $filterTablesWhere;
                 $tables = \DB::select($sql);
                 break;
 
@@ -245,7 +245,7 @@ class MakeModelsCommand extends GeneratorCommand {
 
             $class = $this->replaceTokensWithSetGetFunctions($properties, $class);
 
-            /* thomas.pfuhl@mfn-berlin.de: one-to-one relations added */
+            /* thomas.pfuhl@mfn.berlin: one-to-one relations added */
             $foreign_keys = $this->getAllForeignKeys();
 
 //            echo "--------- Tables with foreign keys: \n";
@@ -291,7 +291,7 @@ class MakeModelsCommand extends GeneratorCommand {
      * Replaces relations from the stub. The functions are created
      * from the foreign_keys.
      *
-     * @author thomas.pfuhl@mfn-berlin.de
+     * @author thomas.pfuhl@mfn.berlin
      * @todo use SetGetGenerator()
      * @param  string  $table
      * @param  array  $foreign_keys
@@ -308,8 +308,15 @@ class MakeModelsCommand extends GeneratorCommand {
             foreach ($foreign_keys[$table] as $relation) {
 
                 $foreign_key = $relation['foreign_key'];
-                $referenced_table_trunc = Pluralizer::singular($relation['referenced_table']);
-                $referenced_model = ucfirst($referenced_table_trunc);
+                //$referenced_model = ucfirst($referenced_table_trunc);
+
+                // The public functions for one-to-one relations of a table are not unique as soon as
+                // the table has more than one foreign keys that refers to the SAME target table. Thus the whole GDM does not run due to a PHP error.
+                // Hence we use the following naming convention:
+                //tableName_columnName where columnName contains the foreign key instead of the target table's name as function name.
+
+                $referenced_model = ucfirst(Pluralizer::singular($relation['referenced_table']));
+                $referenced_table_trunc = Pluralizer::singular($relation['referenced_table']) . "_" . explode("_",$foreign_key)[0];
 
                 $stub = <<<RELATION
 
@@ -404,7 +411,7 @@ RELATION;
      * Get all foreign key columns.
      *
      * get columns referenced by other tables as foreign keys
-     * @author thomas.pfuhl@mfn-berlin.de
+     * @author thomas.pfuhl@mfn.berlin
      * @todo currently works only for mySQL
      *
      * @return array

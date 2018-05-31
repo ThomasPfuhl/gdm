@@ -49,7 +49,11 @@ $content = <<<'PHPCODE'
     <thead>
         <tr>
             @foreach ($propertyNames as $value)
+              @if (ends_with($value, "_id"))
+                <th class="rotate"><div><span>{{ explode("_",$value)[0] }}</span></div></th>
+              @else
                <th class="rotate"><div><span>{{ $value }}</span></div></th>
+              @endif
             @endforeach
             <th class="rotate"></th>
         </tr>
@@ -104,9 +108,8 @@ $content = <<<'PHPCODE'
                    ><span title="expand" class="glyphicon glyphicon-plus-sign plusplus"></span><span title="collapse" class="glyphicon glyphicon-minus-sign minusminus"></span></a>
                    @if (starts_with($item[array_keys($item)[2]], "http"))
                        <a target='blank' title="open link in new tab" href='{{ $item[array_keys($item)[2]] }}'>{{ $item[array_keys($item)[2]] }}</a>
-                  @else {
-                         {{ $item[array_keys($item)[2]] }}
-                       }
+                  @else
+                      {{ $item[array_keys($item)[2]] }}
                   @endif
                 <table id="related_{{ $row }}_{{ $key }}" class="table table-condensed collapse related" >
                     @foreach ($item as $k=>$v)
