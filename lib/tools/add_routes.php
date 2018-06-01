@@ -20,7 +20,9 @@ echo "routes, ";
 
 $content = <<<'PHPCODE'
 
-
+////////////////////
+// CTABLENAME
+////////////////////
 // API, returns JSON
 Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') ,                      'Data\CTABLENAMEController@apiGetDoc');
 Route::get('api/' . env('GDM_NAME') .'/' . env('GDM_DATAMODEL_VERSION') . '/TABLENAME/',       'Data\CTABLENAMEController@apiGetDoc');

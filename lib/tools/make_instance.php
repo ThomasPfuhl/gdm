@@ -280,8 +280,8 @@ foreach ($response as $row) {
     include("add_controller.php");
     //include("add_menu_item.php");
     //include("add_views.php");
-    include("add_routes.php");
     include("add_form.php");
+    //include("add_routes.php");
 }
 
 // all but hidden gdm tables
@@ -302,7 +302,9 @@ foreach ($response as $row) {
 
     include("add_menu_item.php");
     include("add_views.php");
+    include("add_routes.php");
 }
+
 
 // hidden gdm tables
 // fake view

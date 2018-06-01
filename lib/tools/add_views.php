@@ -9,7 +9,7 @@
  * such assuming that it shows some valuable info.
  *
  */
-echo " views. ";
+echo " views, ";
 
 ///////////////////////////////////////////////////////////
 // INDEX
