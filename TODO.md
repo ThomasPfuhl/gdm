@@ -20,7 +20,6 @@ cf https://www.sitepoint.com/laravel-blade-recursive-partials/
 
 - provide GUI for modifying the data model
 
-
 ## Localisation
 
 - create `resources/lang/[de,fr,es,it,sv,jp,cn]`
