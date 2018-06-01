@@ -3,7 +3,6 @@
 /** Creation Tool for GUI
  *
  * @author Thomas Pfuhl <thomas.pfuhl@mfn.berlin>
- * @todo integrate database views, additionally to the tables
  * */
 
 require("helpers.php");
@@ -19,7 +18,8 @@ $env = file($cwd . "/../../.env");
 foreach ($env as $line) {
     $elt = trim($line);
     $pos = strpos($elt, "=");
-    if ($pos !== False) {
+    $comment = !empty($elt) && $elt[0]=="#";
+    if ($pos !== False && !$comment) {
         list($key, $value) = explode("=", $elt);
         define("$key", $value);
         if ($key != 'DB_PASSWORD') {
@@ -51,34 +51,21 @@ echo "\n installed.\n";
 copy("MakeModelsCommand.php", $cwd . "/../../vendor/ignasbernotas/laravel-model-generator/src/Commands/MakeModelsCommand.php");
 copy("model.stub", $cwd . "/../../vendor/ignasbernotas/laravel-model-generator/src/stubs/model.stub");
 
+$system_excluded_tables = "'" . str_replace( "," , "','", SYSTEM_EXCLUDED_TABLES) . "'";
+$gdm_excluded_tables = "'" . str_replace( "," , "','", GDM_EXCLUDED_TABLES) . "'";
+echo "\n--------------\nSYSTEM EXCLUDED TABLES: \n" . SYSTEM_EXCLUDED_TABLES . "\n";
+echo "\n--------------\nGDM HIDDEN TABLES: \n" . $gdm_excluded_tables . "\n";
+
 
 echo "\n\n-----------\nCREATING MODELS...\n\n";
 
-//$foreign_keys = getAllForeignKeys();
+$foreign_keys = getAllForeignKeys();
 //echo "\n--------------------\n ALL FOREIGN KEYS: " .  implode(",", array_keys($foreign_keys)) . "\n";
 //echo "\n--------------------\n ALL FOREIGN KEYS: " .  print_r($foreign_keys,true) . "\n";
 
 
-system('cd ../../; php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations,users,languages,gdm_aggregations,oauth_identities --getset');
-
-$sql = "SELECT TABLE_NAME
-            FROM
-                INFORMATION_SCHEMA.tables
-            WHERE
-                (TABLE_TYPE='BASE TABLE' OR TABLE_TYPE='VIEW')
-                AND TABLE_SCHEMA = '" . DB_DATABASE . "'
-                AND TABLE_NAME != 'DATABASECHANGELOG'
-                AND TABLE_NAME != 'DATABASECHANGELOGLOCK'
-                AND TABLE_NAME != 'migrations'
-                AND TABLE_NAME != 'users'
-                AND TABLE_NAME != 'password_resets'
-                AND TABLE_NAME != 'languages'
-                AND TABLE_NAME != 'gdm_aggregations'
-                AND TABLE_NAME != 'oauth_identities'
-            ORDER BY TABLE_NAME ASC
-                ";
-$pdo = new PDO(DB_CONNECTION . ":host=" . DB_HOST . ";dbname=" . DB_DATABASE, DB_USERNAME, DB_PASSWORD);
-$response = $pdo->query($sql);
+//system('cd ../../; php artisan make:models --force=FORCE --ignoresystem --ignore=DATABASECHANGELOG,DATABASECHANGELOGLOCK,migrations,users,languages,gdm_aggregations,oauth_identities --getset');
+system("cd ../../; php artisan make:models --force=FORCE --ignoresystem --ignore=" . SYSTEM_EXCLUDED_TABLES . " --getset");
 
 
 
@@ -273,19 +260,67 @@ echo "\n\n------------\nCREATING CONTROLLERS, VIEWS, FORMS, MENU ITEMS, and ROUT
 
 touch("../../resources/views/partials/menu-items.blade.php");
 
+// all but system excluded tables
+$sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.tables
+                            WHERE
+                                (TABLE_TYPE='BASE TABLE' OR TABLE_TYPE='VIEW')
+                                AND TABLE_SCHEMA = '" . DB_DATABASE . "'
+                                AND TABLE_NAME NOT IN (" . $system_excluded_tables . ")
+                            ORDER BY TABLE_NAME ASC
+                                ";
+$pdo = new PDO(DB_CONNECTION . ":host=" . DB_HOST . ";dbname=" . DB_DATABASE, DB_USERNAME, DB_PASSWORD);
+$response = $pdo->query($sql);
+
 foreach ($response as $row) {
     $table_name = $row["TABLE_NAME"];
     $name = toCamelCase($row["TABLE_NAME"]);
-//    $lc_name = toCamelCase($row["TABLE_NAME"], false); // currently unused
-//    $hyphen_name = toHyphen($row["TABLE_NAME"]); // currently unused
 
     echo "\n----------------\n" . $name  . ": " ;
 
     include("add_controller.php");
-    include("add_menu_item.php");
-    include("add_views.php");
+    //include("add_menu_item.php");
+    //include("add_views.php");
     include("add_routes.php");
     include("add_form.php");
 }
 
+// all but hidden gdm tables
+$sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.tables
+                            WHERE
+                                (TABLE_TYPE='BASE TABLE' OR TABLE_TYPE='VIEW')
+                                AND TABLE_SCHEMA = '" . DB_DATABASE . "'
+                                AND TABLE_NAME NOT IN (" . $system_excluded_tables .",". $gdm_excluded_tables . ")
+                            ORDER BY TABLE_NAME ASC
+                                ";
+$pdo = new PDO(DB_CONNECTION . ":host=" . DB_HOST . ";dbname=" . DB_DATABASE, DB_USERNAME, DB_PASSWORD);
+$response = $pdo->query($sql);
+foreach ($response as $row) {
+    $table_name = $row["TABLE_NAME"];
+    $name = toCamelCase($row["TABLE_NAME"]);
+
+    echo "\n----------------\n" . $name  . ": " ;
+
+    include("add_menu_item.php");
+    include("add_views.php");
+}
+
+// hidden gdm tables
+// fake view
+$sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.tables
+                            WHERE
+                                (TABLE_TYPE='BASE TABLE' OR TABLE_TYPE='VIEW')
+                                AND TABLE_SCHEMA = '" . DB_DATABASE . "'
+                                AND TABLE_NAME IN (" . $gdm_excluded_tables . ")
+                            ORDER BY TABLE_NAME ASC
+                                ";
+$pdo = new PDO(DB_CONNECTION . ":host=" . DB_HOST . ";dbname=" . DB_DATABASE, DB_USERNAME, DB_PASSWORD);
+$response = $pdo->query($sql);
+foreach ($response as $row) {
+    $table_name = $row["TABLE_NAME"];
+    $name = toCamelCase($row["TABLE_NAME"]);
+
+    echo "\n----------------\n" . $name  . ": " ;
+
+    include("add_views_fake.php");
+}
 echo "\n\n>>>>>>>>>>>>>>>>>>>> ALL DONE.\n";

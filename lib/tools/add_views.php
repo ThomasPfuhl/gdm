@@ -4,12 +4,12 @@
  * add Views
  * index, view
  *
- * for embedded tables (.e.g the value is an arry, we show the second field,
- * which ist the field after the autoincrement id-field,
+ * for embedded tables (.e.g the value is an array, we show the second field,
+ * which is the field after the autoincrement id-field,
  * such assuming that it shows some valuable info.
  *
  */
-echo " views,  ";
+echo " views. ";
 
 ///////////////////////////////////////////////////////////
 // INDEX
